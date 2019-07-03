@@ -1,0 +1,16 @@
+//统计监听所有请求
+require('./statistics/reqData');
+//获取统计请求数据
+require('./statistics/getReqData');
+//上传文件
+require('./upload/upload')
+//添加博客
+require('./blog/blogHandle')
+//查询博客
+require('./blog/getBlogs')
+//博客详情
+require('./blog/getBlogDetail')
+//标签分类操作
+require('./tag/tagHandle')
+//获取标签分类
+require('./tag/getTag')
