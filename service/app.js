@@ -28,13 +28,11 @@ mongoose.connect(dbs, {
   console.log(msg, dbs)
 });
 
-
 app.use(cors());
 app.use(bodyParser());
 app.use(parameter(app));
 app.use(static(path.join(__dirname, './static')));
 routing(app);
-
 
 if (production) {
   app.use(sslify());

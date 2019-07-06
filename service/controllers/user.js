@@ -1,6 +1,10 @@
 const Users = require('../models/users');
 const utils = require('../utils/util');
+const jsonwebtoken = require('jsonwebtoken');
 const statusCode = require('../configs/statusCode');
+const {
+  tokenKey
+} = require('../configs/secretKey');
 
 class User {
   //注册
@@ -40,6 +44,7 @@ class User {
     }
     ctx.body = resData;
   }
+
   //登录
   async signIn(ctx) {
     ctx.verifyParams({
@@ -52,28 +57,37 @@ class User {
         required: true
       }
     });
-    const reqData = ctx.request.body;
-    const {
-      nickname,
-      password
-    } = reqData;
-    const queryUser = await Users.findOne({
-      nickname
-    }).select('+password');
+    ctx.request.body.password = utils.cryptoEncode(ctx.request.body.password);
+    const queryUser = await Users.findOne(ctx.request.body);
     const resData = {
       code: statusCode.success,
       msg: '登录成功，正在跳转...'
     };
     if (!queryUser) {
-      resData.code = 2;
-      resData.msg = '用户不存在';
-    } else if (queryUser.password !== utils.cryptoEncode(password)) {
-      resData.code = -1;
-      resData.msg = '密码错误';
+      resData.code = statusCode.error;
+      resData.msg = '用户名或密码错误';
     } else {
-      resData.data = queryUser._id;
+      const {
+        _id,
+        nickname
+      } = queryUser;
+      const token = jsonwebtoken.sign({
+        _id,
+        nickname
+      }, tokenKey, {
+        expiresIn: '7d'
+      });
+      resData.data = token;
     }
     ctx.body = resData;
+  }
+
+  //获取用户信息
+  async getUserInfo(ctx) {
+    ctx.body = {
+      code: 0,
+      msg: ctx.state
+    }
   }
 }
 

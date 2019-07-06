@@ -1,4 +1,7 @@
 const crypto = require('crypto');
+const {
+  cryptoKey
+} = require('../configs/secretKey');
 
 module.exports = {
   //判断字符串为空
