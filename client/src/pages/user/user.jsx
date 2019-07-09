@@ -1,8 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { AtInput } from 'taro-ui'
-// @import "~taro-ui/dist/style/components/input.scss";
-import "taro-ui/dist/style/components/input.scss";
+import { AtInput, AtButton } from 'taro-ui'
+import './user.css'
 
 export default class User extends Component {
   config = {
@@ -11,27 +10,41 @@ export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      reqLoading: true,//请求加载icon
+      signUp: {
+        nickname: '',//昵称
+        password: '',//密码
+      }
     }
   }
-  handleChange(value) {
+  //输入改变
+  inputChange(key, value) {
+    const signUp = this.state.signUp;
+    signUp[key] = value;
     this.setState({
-      value
-    })
-    // 在小程序中，如果想改变 value 的值，需要 `return value` 从而改变输入框的当前值
-    return value
+      signUp
+    });
+    console.log(this.state.signUp)
   }
   render() {
+    const { reqLoading, signUp: { nickname, password } } = this.state;
     return (
-      <View className='index'>
+      <View className='user'>
         <AtInput
-          name='value1'
-          title='文本'
+          clear={true}
           type='text'
-          placeholder='单行文本'
-          value={this.state.value1}
-          onChange={this.handleChange.bind(this)}
+          placeholder='请输入昵称/邮箱'
+          value={nickname}
+          onChange={this.inputChange.bind(this, 'nickname')}
         />
+        <AtInput
+          clear={true}
+          type='password'
+          placeholder='请输入密码'
+          value={password}
+          onChange={this.inputChange.bind(this, 'password')}
+        />
+        <AtButton loading={reqLoading} type='primary' className="signUp-btn">注册</AtButton>
       </View>
     )
   }

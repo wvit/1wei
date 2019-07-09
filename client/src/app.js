@@ -3,6 +3,10 @@ import Taro, {
   redirectTo
 } from '@tarojs/taro'
 import Index from './pages/index/index'
+import "taro-ui/dist/style/components/input.scss"
+import "taro-ui/dist/style/components/button.scss";
+import "taro-ui/dist/style/components/loading.scss";
+import './app.css'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -13,10 +17,10 @@ import Index from './pages/index/index'
 class App extends Component {
   config = {
     pages: [
+      'pages/user/user',
       'pages/index/index',
       'pages/learn/learn',
-      'pages/life/life',
-      'pages/user/user'
+      'pages/life/life'
     ],
     window: {
       backgroundTextStyle: 'light',
