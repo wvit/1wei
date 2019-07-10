@@ -1,0 +1,14 @@
+.signIn {
+  padding: 0 30px;
+}
+
+.at-input {
+  border: 2px solid #ccc;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.signIn-btn {
+  margin-top: 50px;
+}

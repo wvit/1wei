@@ -1,3 +1,13 @@
+const interfaces = require('os').networkInterfaces();
+
+let host = ''; //局域网地址
+for (let devName in interfaces) {
+  interfaces[devName].forEach(item => {
+    if (item.family === 'IPv4' && item.address !== '127.0.0.1') {
+      host = item.address;
+    }
+  })
+}
 const config = {
   projectName: 'client',
   date: '2019-7-3',
@@ -68,6 +78,10 @@ const config = {
     esnextModules: ['taro-ui'],
     publicPath: '/',
     staticDirectory: 'static',
+    devServer: {
+      port: 10086,
+      host
+    },
     module: {
       postcss: {
         autoprefixer: {

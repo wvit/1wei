@@ -17,10 +17,11 @@ import './app.css'
 class App extends Component {
   config = {
     pages: [
-      'pages/user/user',
-      'pages/index/index',
-      'pages/learn/learn',
-      'pages/life/life'
+      'pages/user/user', //用户
+      'pages/index/index', //首页
+      'pages/learn/learn', //学习
+      'pages/life/life', //生活
+      'pages/signIn/signIn' //登录
     ],
     window: {
       backgroundTextStyle: 'light',
