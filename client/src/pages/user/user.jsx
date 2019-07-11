@@ -12,15 +12,15 @@ export default class User extends Component {
   }
   render() {
     return (
-      <View className='user'>
-        <AtButton type='primary' className="go-signIn" onClick={this.goSignIn}>您还未登录，去登录吧 ~</AtButton>
+      <View className='pd-lr30'>
+        <AtButton
+          type='primary'
+          className="go-signIn"
+          onClick={() => Taro.navigateTo({ url: '/pages/signInType/signInType' })}
+        >
+          您还未登录，去登录吧 ~
+        </AtButton>
       </View>
     )
-  }
-  //去登录
-  goSignIn() {
-    Taro.navigateTo({
-      url: '/pages/signIn/signIn'
-    })
   }
 }

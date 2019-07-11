@@ -5,12 +5,12 @@
   margin-top: 30px;
 }
 
-.go-signUp {
+.go-signIn {
   text-align: right;
   margin-top: 30px;
 }
 
-.go-signUp navigator {
+.go-signIn navigator {
   display: inline-block;
   color: #409eff;
 }

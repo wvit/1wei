@@ -19,7 +19,7 @@ export default class Index extends Component {
 
   render() {
     return (
-      <View className='index'>
+      <View className='pd-lr30'>
         <Text>你好，我是首页</Text>
       </View>
     )

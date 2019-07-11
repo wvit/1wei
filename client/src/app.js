@@ -17,11 +17,13 @@ import './app.css'
 class App extends Component {
   config = {
     pages: [
+      'pages/signUp/signUp', //注册
+      'pages/signInType/signInType', //登录方式
       'pages/user/user', //用户
+      'pages/signIn/signIn', //登录
       'pages/index/index', //首页
       'pages/learn/learn', //学习
       'pages/life/life', //生活
-      'pages/signIn/signIn' //登录
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -57,15 +59,6 @@ class App extends Component {
       ]
     }
   }
-
-  componentDidMount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  componentDidCatchError() {}
-
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {

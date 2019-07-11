@@ -6,9 +6,33 @@
 .at-button {
   height: 80px;
   line-height: 80px;
+  border: none;
 }
 
 .at-button__icon {
   margin-left: 0;
   margin-right: 30px;
+}
+
+.at-button--primary {
+  background: #409eff;
+}
+
+/* 公共样式 */
+
+.pd-lr30 {
+  padding: 0 30px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
