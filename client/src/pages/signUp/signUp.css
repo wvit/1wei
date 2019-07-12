@@ -8,9 +8,31 @@
 .go-signIn {
   text-align: right;
   margin-top: 30px;
+  color: #409eff;
+  font-size: 30px;
 }
 
 .go-signIn navigator {
   display: inline-block;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 9;
+}
+
+.password-btn::before {
+  font-size: 50px;
+  color: #ccc;
+}
+
+.icon-watch::before {
   color: #409eff;
 }

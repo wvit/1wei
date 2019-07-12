@@ -3,9 +3,11 @@ import Taro, {
   redirectTo
 } from '@tarojs/taro'
 import Index from './pages/index/index'
-import "taro-ui/dist/style/components/input.scss"
-import "taro-ui/dist/style/components/button.scss";
-import "taro-ui/dist/style/components/loading.scss";
+import 'taro-ui/dist/style/components/input.scss'
+import 'taro-ui/dist/style/components/button.scss'
+import 'taro-ui/dist/style/components/loading.scss'
+import "taro-ui/dist/style/components/icon.scss"
+import './assets/iconfont/iconfont.css'
 import './app.css'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -18,9 +20,9 @@ class App extends Component {
   config = {
     pages: [
       'pages/signUp/signUp', //注册
+      'pages/signIn/signIn', //登录
       'pages/signInType/signInType', //登录方式
       'pages/user/user', //用户
-      'pages/signIn/signIn', //登录
       'pages/index/index', //首页
       'pages/learn/learn', //学习
       'pages/life/life', //生活

@@ -4,9 +4,6 @@ import { AtButton } from 'taro-ui'
 import './signInType.css'
 
 export default class SignInType extends Component {
-  constructor() {
-
-  }
   render() {
     return (
       <View className="pd-lr30">

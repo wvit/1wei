@@ -18,6 +18,10 @@
   background: #409eff;
 }
 
+.at-icon::before {
+  font-size: 40px;
+}
+
 /* 公共样式 */
 
 .pd-lr30 {
@@ -35,4 +39,8 @@
   content: " ";
   clear: both;
   height: 0;
+}
+
+.icon::before {
+  font-size: 40px;
 }
