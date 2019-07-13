@@ -1,6 +1,6 @@
 .at-input {
   border: 2px solid #ccc;
-  padding: 20px;
+  padding:0 20px;
   border-radius: 15px;
   margin-top: 30px;
 }
@@ -14,5 +14,4 @@
 
 .go-signUp navigator {
   display: inline-block;
-
 }

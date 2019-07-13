@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
-const address = 'http://10.100.115.157:1999'
+
+const address = 'http://10.100.115.159:1999'
 
 //判断字符串为空
 function judgeNull(string) {
@@ -27,13 +28,13 @@ function judgeEmail(string) {
 }
 
 // post请求
-function post(url, data) {
+function post(url, data = {}) {
   return Taro.request({
     url: `${address}${url}`,
     data,
     header: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": `Bearer ${wx.getStorageSync('token')}`
+      'Content-Type': 'application/json'
+      // "Authorization": `Bearer ${wx.getStorageSync('token')}`
     },
     method: 'POST'
   })
@@ -41,10 +42,10 @@ function post(url, data) {
 
 //get请求
 function get(url) {
-  Taro.request({
+  return Taro.request({
     url: `${address}${url}`,
     header: {
-      "Authorization": `Bearer ${wx.getStorageSync('token')}`
+      // "Authorization": `Bearer ${wx.getStorageSync('token')}`
     },
     method: 'GET'
   })

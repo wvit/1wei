@@ -1,3 +1,5 @@
 module.exports = {
-  tokenKey: '260817',
+  get tokenKey() {
+    return '260817'
+  }
 }

@@ -13,6 +13,7 @@ const userSchema = new Schema({
   //昵称
   nickname: {
     type: String,
+    unique: true,
     required: true
   },
   //密码

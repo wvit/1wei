@@ -1,11 +1,20 @@
 /* 重置taro-ui默认样式 */
 .at-input {
   margin-left: 0;
+  box-sizing: border-box;
+}
+
+.at-input__container {
+  height: 80px;
+  line-height: 80px;
 }
 
 .at-button {
   height: 80px;
   line-height: 80px;
+}
+
+.at-button--primary {
   border: none;
 }
 
