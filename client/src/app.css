@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.at-input::after {
+  border: none;
+}
+
 .at-input__container {
   height: 80px;
   line-height: 80px;

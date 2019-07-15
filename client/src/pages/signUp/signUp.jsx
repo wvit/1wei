@@ -1,7 +1,7 @@
 import { Component } from '@tarojs/taro'
 import { View, Text, Navigator } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-import { judgeNull, judgeEmail, post, showToast } from '../../utils/utils'
+import { judgeNull, judgeEmail, req, showToast } from '../../utils/utils'
 import './signUp.css'
 
 export default class signUp extends Component {
@@ -101,7 +101,7 @@ export default class signUp extends Component {
     if (!this.state.timerBtnOnOff) return
     this.verify().then(result => {
       if (!result) return
-      post('/app/user/sendCode', this.state.signUp).then(res => {
+      req.post('/app/user/sendCode', this.state.signUp).then(res => {
         showToast({ title: res.data.msg })
         if (res.data.code !== 0) return
         let time = 180
@@ -133,7 +133,7 @@ export default class signUp extends Component {
         showToast({ title: '请检查验证码' })
       } else {
         this.setState({ reqLoading: true })
-        post('/app/user/signUp', this.state.signUp).then(res => {
+        req.post('/app/user/signUp', this.state.signUp).then(res => {
           showToast({
             title: res.data.msg,
             data: { code: res.data.code }

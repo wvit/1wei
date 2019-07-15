@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Navigator } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-import { judgeNull, post, showToast } from '../../utils/utils'
+import { judgeNull, req, showToast } from '../../utils/utils'
 import './signIn.css'
 
 export default class SignIn extends Component {
@@ -68,18 +68,17 @@ export default class SignIn extends Component {
       showToast({ title: '请输入密码' })
     } else {
       this.setState({ reqLoading: true })
-      post('/app/user/signIn', this.state.signIn).then(res => {
-        showToast({
+      req.post('/app/user/signIn', this.state.signIn).then(res => {
+        return showToast({
           title: res.data.msg,
-          data: { code: res.data.code }
+          data: res.data
         })
-          .then(data => {
-            this.setState({ reqLoading: false })
-            if (data.code !== 0) return
-            Taro.setStorageSync('signInData', { nickname, password })
-            Taro.setStorageSync('jwt', res.data.data)
-            Taro.switchTab({ url: '/pages/user/user' })
-          })
+      }).then(data => {
+        this.setState({ reqLoading: false })
+        if (data.code !== 0) return
+        Taro.setStorageSync('signInData', { nickname, password })
+        Taro.setStorageSync('jwt', data.data)
+        Taro.switchTab({ url: '/pages/user/user' })
       })
     }
   }

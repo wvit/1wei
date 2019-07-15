@@ -27,28 +27,29 @@ function judgeEmail(string) {
   }
 }
 
-// post请求
-function post(url, data = {}) {
-  return Taro.request({
-    url: `${address}${url}`,
-    data,
-    header: {
-      'Content-Type': 'application/json',
-      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
-    },
-    method: 'POST'
-  })
-}
-
-//get请求
-function get(url) {
-  return Taro.request({
-    url: `${address}${url}`,
-    header: {
-      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
-    },
-    method: 'GET'
-  })
+const req = {
+  // post请求
+  post(url, data = {}) {
+    return Taro.request({
+      url: `${address}${url}`,
+      data,
+      header: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+      },
+      method: 'POST'
+    })
+  },
+  //get请求
+  get(url) {
+    return Taro.request({
+      url: `${address}${url}`,
+      header: {
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+      },
+      method: 'GET'
+    })
+  }
 }
 
 //时间戳转日期
@@ -86,8 +87,7 @@ export {
   judgeNull,
   judgePhoneNumber,
   judgeEmail,
-  post,
-  get,
+  req,
   getDate,
   showToast
 }

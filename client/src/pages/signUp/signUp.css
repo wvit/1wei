@@ -20,12 +20,16 @@
   position: relative;
 }
 
+.password-input input {
+  padding-right: 70px;
+}
+
 .password-btn {
   position: absolute;
   top: 50%;
   right: -10px;
   transform: translateY(-50%);
-  z-index: 99;
+  z-index: 9999;
 }
 
 .password-btn::before {
