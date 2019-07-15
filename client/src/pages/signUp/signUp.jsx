@@ -14,7 +14,7 @@ export default class signUp extends Component {
       reqLoading: false,//请求加载icon
       inputType: 'password',//密码输入框类型
       timerBtnOnOff: true,//发送按钮是否可点击
-      timerBtnText: '获取验证码',//
+      timerBtnText: '获取验证码',//验证码按钮文字
       signUp: {
         nickname: '',//昵称
         password: '',//密码
@@ -124,7 +124,6 @@ export default class signUp extends Component {
         }, 1000)
       })
     })
-
   }
   //注册账号
   signUp() {
@@ -134,9 +133,20 @@ export default class signUp extends Component {
       if (code.length < 6) {
         showToast({ title: '请检查验证码' })
       } else {
+        this.setState({ reqLoading: true })
         this.state.signUp.nickname = encodeURIComponent(nickname)
         post('/app/user/signUp', this.state.signUp).then(res => {
-          showToast({ title: res.data.msg })
+          showToast({
+            title: res.data.msg,
+            data: { code: res.data.code }
+          })
+            .then(data => {
+              this.setState({ reqLoading: false })
+              if (data.code !== 0) return
+              const { nickname, password } = this.state.signUp
+              Taro.setStorageSync('signInData', { nickname, password })
+              Taro.navigateTo({ url: '/pages/signIn/signIn' })
+            })
         })
       }
     })

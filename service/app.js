@@ -22,7 +22,8 @@ const httpsConfig = {
 };
 
 mongoose.connect(dbs, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 }, err => {
   const msg = err ? '数据库发生错误' : '数据库链接成功';
   console.log(msg, dbs)

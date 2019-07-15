@@ -9,11 +9,12 @@ export default class SignIn extends Component {
   }
   constructor(props) {
     super(props)
+    const { nickname = '', password = '' } = Taro.getStorageSync('signInData')
     this.state = {
       reqLoading: true,//请求加载icon
       signUp: {
-        nickname: '',//昵称
-        password: '',//密码
+        nickname,//昵称
+        password,//密码
       }
     }
   }

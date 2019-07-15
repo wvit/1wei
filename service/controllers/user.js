@@ -5,9 +5,7 @@ const Users = require('../models/users');
 const utils = require('../utils/util');
 const statusCode = require('../configs/statusCode');
 const serverConfig = require('../configs/serverConfig');
-const {
-  tokenKey,
-} = require('../configs/secretKey');
+const { tokenKey } = require('../configs/secretKey');
 
 const Store = new Redis().client;
 
@@ -36,11 +34,9 @@ class User {
     const { nickname, password, code } = reqData;
     const resData = {
       code: statusCode.success,
-      msg: '注册成功',
+      msg: '注册成功，正在跳转...',
     };
-    const queryUser = await Users.findOne({
-      nickname
-    });
+    const queryUser = await Users.findOne({ nickname });
     const saveCode = await Store.hget(`nodeMail:${nickname}`, 'code');
     const saveExpire = await Store.hget(`nodeMail:${nickname}`, 'expire');
     if (queryUser) {
@@ -102,11 +98,15 @@ class User {
     });
     const { nickname, email } = ctx.request.body;
     const saveExpire = await Store.hget(`nodeMail:${nickname}`, 'expire');
+    const queryUser = await Users.findOne({ nickname });
     const resData = {
       code: statusCode.success,
       msg: '验证码已发送',
     };
-    if (saveExpire && Date.now() < saveExpire) {
+    if (queryUser) {
+      resData.code = statusCode.exist;
+      resData.msg = '昵称已存在';
+    } else if (saveExpire && Date.now() < saveExpire) {
       resData.code = statusCode.frequently;
       resData.msg = '请不要频繁获取验证码';
     } else {

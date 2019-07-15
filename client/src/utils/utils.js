@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const address = 'http://10.100.115.159:1999'
+const address = 'http://10.100.115.162:1999'
 
 //判断字符串为空
 function judgeNull(string) {
@@ -67,12 +67,18 @@ function getDate(time, onOff) {
 function showToast({
   title,
   icon = 'none',
-  duration = 2000
+  duration = 2000,
+  data = {}
 }) {
-  return Taro.showToast({
+  Taro.showToast({
     title,
     icon,
     duration
+  })
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data)
+    }, duration)
   })
 }
 

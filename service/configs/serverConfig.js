@@ -47,7 +47,7 @@ module.exports = {
       return () => Date.now() + 1000 * 60 * 3
     },
     get deleteTime(){
-      return 1000 * 60 * 60 * 2
+      return  60 * 60 * 2
     }
   }
 }
