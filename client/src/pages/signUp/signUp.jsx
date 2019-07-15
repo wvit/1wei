@@ -129,12 +129,10 @@ export default class signUp extends Component {
   signUp() {
     this.verify().then(result => {
       if (!result) return;
-      const { nickname, code } = this.state.signUp;
-      if (code.length < 6) {
+      if (this.state.signUp.code.length < 6) {
         showToast({ title: '请检查验证码' })
       } else {
         this.setState({ reqLoading: true })
-        this.state.signUp.nickname = encodeURIComponent(nickname)
         post('/app/user/signUp', this.state.signUp).then(res => {
           showToast({
             title: res.data.msg,

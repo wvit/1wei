@@ -33,8 +33,8 @@ function post(url, data = {}) {
     url: `${address}${url}`,
     data,
     header: {
-      'Content-Type': 'application/json'
-      // "Authorization": `Bearer ${wx.getStorageSync('token')}`
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
     },
     method: 'POST'
   })
@@ -45,7 +45,7 @@ function get(url) {
   return Taro.request({
     url: `${address}${url}`,
     header: {
-      // "Authorization": `Bearer ${wx.getStorageSync('token')}`
+      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
     },
     method: 'GET'
   })

@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Navigator } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import { get } from '../../utils/utils'
 import { AtButton } from 'taro-ui'
 import './user.css'
 
@@ -8,7 +9,7 @@ export default class User extends Component {
     navigationBarTitleText: '用户中心'
   }
   constructor(props) {
-    super(props);
+    super(props)
   }
   render() {
     return (
@@ -22,5 +23,11 @@ export default class User extends Component {
         </AtButton>
       </View>
     )
+  }
+  //组件显示
+  componentDidShow() {
+    get(`/app/user/info`).then(res => {
+      console.log(res.data)
+    })
   }
 }

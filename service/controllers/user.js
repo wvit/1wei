@@ -10,6 +10,64 @@ const { tokenKey } = require('../configs/secretKey');
 const Store = new Redis().client;
 
 class User {
+  //发送验证码
+  async sendCode(ctx) {
+    ctx.verifyParams({
+      nickname: {
+        type: 'string',
+        required: true
+      },
+      email: {
+        type: 'string',
+        required: true
+      }
+    });
+    const { nickname, email } = ctx.request.body;
+    const saveExpire = await Store.hget(`nodeMail:${nickname}`, 'expire');
+    const queryUser = await Users.findOne({ nickname });
+    const resData = {
+      code: statusCode.success,
+      msg: '验证码已发送',
+    };
+    if (queryUser) {
+      resData.code = statusCode.exist;
+      resData.msg = '昵称已存在';
+    } else if (saveExpire && Date.now() < saveExpire) {
+      resData.code = statusCode.frequently;
+      resData.msg = '请不要频繁获取验证码';
+    } else {
+      const { host, port, user, pass, code, expire, deleteTime } = serverConfig.smtp;
+      const mailCode = code();
+      const mailExpire = expire();
+      const mailOption = {
+        from: `1wei邮箱认证 <${user}>`,
+        to: email,
+        subject: '1wei账号注册验证码',
+        html: `您的验证码是 ${mailCode} ,请在3分钟内使用`
+      };
+      const transporter = nodeMailer.createTransport({
+        host,
+        port,
+        secure: false,
+        auth: { user, pass }
+      });
+      await transporter.sendMail(mailOption, err => {
+        if (err) {
+          resData.code = statusCode.error;
+          resData.msg = '验证码发送失败';
+        } else {
+          Store.hmset(
+            `nodeMail:${nickname}`,
+            'code', mailCode,
+            'expire', mailExpire,
+            'email', email
+          );
+          Store.expire(`nodeMail:${nickname}`, deleteTime);
+        }
+      });
+    };
+    ctx.body = resData;
+  }
   //注册
   async signUp(ctx) {
     ctx.verifyParams({
@@ -76,81 +134,21 @@ class User {
       resData.code = statusCode.error;
       resData.msg = '用户名或密码错误';
     } else {
-      const { _id, nickname } = queryUser;
-      const token = jsonwebtoken.sign({ _id, nickname }, tokenKey, {
-        expiresIn: '7d'
+      const { _id } = queryUser;
+      const token = jsonwebtoken.sign({ _id }, tokenKey, {
+        expiresIn: 60 * 60 * 24
       });
       resData.data = token;
     }
     ctx.body = resData;
   }
-  //发送验证码
-  async sendCode(ctx) {
-    ctx.verifyParams({
-      nickname: {
-        type: 'string',
-        required: true
-      },
-      email: {
-        type: 'string',
-        required: true
-      }
-    });
-    const { nickname, email } = ctx.request.body;
-    const saveExpire = await Store.hget(`nodeMail:${nickname}`, 'expire');
-    const queryUser = await Users.findOne({ nickname });
-    const resData = {
-      code: statusCode.success,
-      msg: '验证码已发送',
-    };
-    if (queryUser) {
-      resData.code = statusCode.exist;
-      resData.msg = '昵称已存在';
-    } else if (saveExpire && Date.now() < saveExpire) {
-      resData.code = statusCode.frequently;
-      resData.msg = '请不要频繁获取验证码';
-    } else {
-      const { host, port, user, pass, code, expire, deleteTime } = serverConfig.smtp;
-      const mailCode = code();
-      const mailExpire = expire();
-      const mailOption = {
-        from: `1wei邮箱认证 <${user}>`,
-        to: email,
-        subject: '1wei账号注册验证码',
-        html: `您的验证码是 ${mailCode} ,请在3分钟内使用`
-      };
-      const transporter = nodeMailer.createTransport({
-        host,
-        port,
-        secure: false,
-        auth: {
-          user,
-          pass
-        }
-      });
-      await transporter.sendMail(mailOption, err => {
-        if (err) {
-          resData.code = statusCode.error;
-          resData.msg = '验证码发送失败';
-        } else {
-          Store.hmset(
-            `nodeMail:${nickname}`,
-            'code', mailCode,
-            'expire', mailExpire,
-            'email', email
-          );
-          Store.expire(`nodeMail:${nickname}`, deleteTime);
-        }
-      });
-    };
-    ctx.body = resData;
-  }
   //获取用户信息
   async getUserInfo(ctx) {
+    const queryUser = await Users.findOne({ _id: ctx.state.user._id });
     ctx.body = {
-      code: 0,
-      msg: ctx.state
-    }
+      code: statusCode.success,
+      data: queryUser
+    };
   }
 }
 
