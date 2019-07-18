@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const address = 'http://10.100.115.162:1999'
+const address = 'http://10.100.115.173:1999'
 
 //判断字符串为空
 function judgeNull(string) {

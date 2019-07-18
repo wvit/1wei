@@ -1,26 +1,20 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import { TabBer } from '../../components/tabBer/tabBer'
+import './index.css'
 
 export default class Index extends Component {
-
   config = {
     navigationBarTitleText: '首页'
   }
-
-  componentWillMount() { }
-
-  componentDidMount() { }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
-
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <View className='pd-lr30'>
-        <Text>你好，我是首页</Text>
+        我是首页
+        <TabBer current={0} />
       </View>
     )
   }

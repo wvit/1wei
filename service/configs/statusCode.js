@@ -4,6 +4,7 @@ const statusCode = {
   error: 1001, //错误
   past: 1002, //过期
   frequently: 1003, //频繁
+  authErr: 401 //授权失败
 }
 
 module.exports = statusCode;

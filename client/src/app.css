@@ -35,6 +35,18 @@
   font-size: 40px;
 }
 
+.at-tab-bar__item {
+  padding: 0;
+}
+
+.at-tab-bar__title {
+  max-width: 100%;
+}
+
+.at-tab-bar {
+  padding: 10px 0;
+}
+
 /* 公共样式 */
 
 .pd-lr30 {

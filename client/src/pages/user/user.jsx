@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { req } from '../../utils/utils'
 import { AtButton } from 'taro-ui'
+import { TabBer } from '../../components/tabBer/tabBer'
 import './user.css'
 
 export default class User extends Component {
@@ -21,6 +22,7 @@ export default class User extends Component {
         >
           您还未登录，去登录吧 ~
         </AtButton>
+        <TabBer current={3} />
       </View>
     )
   }

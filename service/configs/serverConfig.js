@@ -26,6 +26,7 @@ module.exports = {
       return `${production ? 'https' : 'http'}://${this.host}:${this.port}`
     }
   },
+  //邮箱配置
   smtp: {
     get host() {
       return 'smtp.qq.com'
@@ -46,8 +47,8 @@ module.exports = {
     get expire() {
       return () => Date.now() + 1000 * 60 * 3
     },
-    get deleteTime(){
-      return  60 * 60 * 2
+    get deleteTime() {
+      return 60 * 60 * 2
     }
   }
 }

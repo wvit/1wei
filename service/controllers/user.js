@@ -1,13 +1,18 @@
 const jsonwebtoken = require('jsonwebtoken');
 const Redis = require('koa-redis');
 const nodeMailer = require('nodemailer');
+const Axios = require('axios');
 const Users = require('../models/users');
-const utils = require('../utils/util');
 const statusCode = require('../configs/statusCode');
-const serverConfig = require('../configs/serverConfig');
-const { tokenKey } = require('../configs/secretKey');
+const { cryptoEncode } = require('../utils/util');
+const { server, smtp } = require('../configs/serverConfig');
+const { tokenKey, expiresIn } = require('../configs/tokenConfig');
 
 const Store = new Redis().client;
+const axios = Axios.create({
+  baseURL: server.address,
+  withCredentials: true
+})
 
 class User {
   //发送验证码
@@ -36,7 +41,7 @@ class User {
       resData.code = statusCode.frequently;
       resData.msg = '请不要频繁获取验证码';
     } else {
-      const { host, port, user, pass, code, expire, deleteTime } = serverConfig.smtp;
+      const { host, port, user, pass, code, expire, deleteTime } = smtp;
       const mailCode = code();
       const mailExpire = expire();
       const mailOption = {
@@ -107,7 +112,7 @@ class User {
       resData.code = statusCode.past;
       resData.msg = '验证码已过期';
     } else {
-      reqData.password = utils.cryptoEncode(password);
+      reqData.password = cryptoEncode(password);
       resData.data = await new Users(reqData).save();
     }
     ctx.body = resData;
@@ -124,7 +129,7 @@ class User {
         required: true
       }
     });
-    ctx.request.body.password = utils.cryptoEncode(ctx.request.body.password);
+    ctx.request.body.password = cryptoEncode(ctx.request.body.password);
     const queryUser = await Users.findOne(ctx.request.body);
     const resData = {
       code: statusCode.success,
@@ -135,10 +140,13 @@ class User {
       resData.msg = '用户名或密码错误';
     } else {
       const { _id } = queryUser;
-      const token = jsonwebtoken.sign({ _id }, tokenKey, {
-        expiresIn: 60 * 60 * 24
-      });
+      const token = jsonwebtoken.sign({ _id }, tokenKey, { expiresIn });
       resData.data = token;
+      axios.post('/app/cloudMusic/login', {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     }
     ctx.body = resData;
   }

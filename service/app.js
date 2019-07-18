@@ -9,6 +9,7 @@ const parameter = require('koa-parameter');
 const mongoose = require('mongoose');
 const sslify = require('koa-sslify').default;
 const routing = require('./routes/index');
+const statusCode = require('./configs/statusCode');
 const {
   dbs,
   server,
@@ -29,6 +30,17 @@ mongoose.connect(dbs, {
   console.log(msg, dbs)
 });
 
+app.use((ctx, next) => {
+  return next().catch(err => {
+    if (err.status === 401) {
+      ctx.status = 200;
+      ctx.body = {
+        code: statusCode.authErr,
+        msg: '授权认证失败'
+      };
+    }
+  });
+});
 app.use(cors());
 app.use(bodyParser());
 app.use(parameter(app));

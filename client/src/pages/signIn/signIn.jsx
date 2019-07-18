@@ -78,7 +78,7 @@ export default class SignIn extends Component {
         if (data.code !== 0) return
         Taro.setStorageSync('signInData', { nickname, password })
         Taro.setStorageSync('jwt', data.data)
-        Taro.switchTab({ url: '/pages/user/user' })
+        Taro.navigateTo({ url: '/pages/user/user' })
       })
     }
   }

@@ -1,6 +1,6 @@
 const Router = require("koa-router");
 const { signIn, signUp, sendCode, getUserInfo } = require('../controllers/user');
-const { tokenKey } = require('../configs/secretKey');
+const { tokenKey } = require('../configs/tokenConfig');
 const jwt = require('koa-jwt');
 
 const router = new Router({
