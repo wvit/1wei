@@ -1,11 +1,24 @@
 /* 重置taro-ui默认样式 */
 .at-input {
   margin-left: 0;
+  box-sizing: border-box;
+}
+
+.at-input::after {
+  border: none;
+}
+
+.at-input__container {
+  height: 80px;
+  line-height: 80px;
 }
 
 .at-button {
   height: 80px;
   line-height: 80px;
+}
+
+.at-button--primary {
   border: none;
 }
 
@@ -20,6 +33,18 @@
 
 .at-icon::before {
   font-size: 40px;
+}
+
+.at-tab-bar__item {
+  padding: 0;
+}
+
+.at-tab-bar__title {
+  max-width: 100%;
+}
+
+.at-tab-bar {
+  padding: 10px 0;
 }
 
 /* 公共样式 */

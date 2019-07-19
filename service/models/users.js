@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
-const {
-  Schema,
-  model
-} = mongoose;
+const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
   __v: {
@@ -13,6 +10,7 @@ const userSchema = new Schema({
   //昵称
   nickname: {
     type: String,
+    unique: true,
     required: true
   },
   //密码

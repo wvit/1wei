@@ -1,18 +1,17 @@
 .at-input {
   border: 2px solid #ccc;
-  padding: 20px;
+  padding:0 20px;
   border-radius: 15px;
   margin-top: 30px;
 }
 
-.go-signUp {
+.go-signIn {
   text-align: right;
   margin-top: 30px;
   color: #409eff;
   font-size: 30px;
 }
 
-.go-signUp navigator {
+.go-signIn navigator {
   display: inline-block;
-
 }

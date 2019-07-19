@@ -1,12 +1,6 @@
 const Router = require("koa-router");
-const {
-  signIn,
-  signUp,
-  getUserInfo
-} = require('../controllers/user');
-const {
-  tokenKey
-} = require('../configs/secretKey');
+const { signIn, signUp, sendCode, getUserInfo } = require('../controllers/user');
+const { tokenKey } = require('../configs/tokenConfig');
 const jwt = require('koa-jwt');
 
 const router = new Router({
@@ -15,6 +9,9 @@ const router = new Router({
 const auth = jwt({
   secret: tokenKey
 });
+
+//发送邮箱验证码
+router.post("/sendCode", sendCode);
 
 //用户注册请求
 router.post("/signUp", signUp);

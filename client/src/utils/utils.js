@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
-const address = 'http://10.100.115.157:1999'
+
+const address = 'http://192.168.1.131:1999'
 
 //判断字符串为空
 function judgeNull(string) {
@@ -26,28 +27,29 @@ function judgeEmail(string) {
   }
 }
 
-// post请求
-function post(url, data) {
-  return Taro.request({
-    url: `${address}${url}`,
-    data,
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": `Bearer ${wx.getStorageSync('token')}`
-    },
-    method: 'POST'
-  })
-}
-
-//get请求
-function get(url) {
-  Taro.request({
-    url: `${address}${url}`,
-    header: {
-      "Authorization": `Bearer ${wx.getStorageSync('token')}`
-    },
-    method: 'GET'
-  })
+const req = {
+  // post请求
+  post(url, data = {}) {
+    return Taro.request({
+      url: `${address}${url}`,
+      data,
+      header: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+      },
+      method: 'POST'
+    })
+  },
+  //get请求
+  get(url) {
+    return Taro.request({
+      url: `${address}${url}`,
+      header: {
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+      },
+      method: 'GET'
+    })
+  }
 }
 
 //时间戳转日期
@@ -66,12 +68,18 @@ function getDate(time, onOff) {
 function showToast({
   title,
   icon = 'none',
-  duration = 2000
+  duration = 2000,
+  data = {}
 }) {
-  return Taro.showToast({
+  Taro.showToast({
     title,
     icon,
     duration
+  })
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data)
+    }, duration)
   })
 }
 
@@ -79,8 +87,7 @@ export {
   judgeNull,
   judgePhoneNumber,
   judgeEmail,
-  post,
-  get,
+  req,
   getDate,
   showToast
 }

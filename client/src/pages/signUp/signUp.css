@@ -1,6 +1,6 @@
 .at-input {
   border: 2px solid #ccc;
-  padding: 20px;
+  padding: 0 20px;
   border-radius: 15px;
   margin-top: 30px;
 }
@@ -20,12 +20,16 @@
   position: relative;
 }
 
+.password-input input {
+  padding-right: 70px;
+}
+
 .password-btn {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: -10px;
   transform: translateY(-50%);
-  z-index: 9;
+  z-index: 9999;
 }
 
 .password-btn::before {
@@ -35,4 +39,15 @@
 
 .icon-watch::before {
   color: #409eff;
+}
+
+.code-input {
+  float: left;
+  width: 55%;
+}
+
+.send-code-btn {
+  float: right;
+  width: 40%;
+  margin-top: 30px;
 }

@@ -1,14 +1,11 @@
 const Axios = require('axios');
 const {
-    address
+  address
 } = require('../configs/serverConfig').server;
 
 const axios = Axios.create({
-    baseURL: address,
-    withCredentials: true,
-    headers: {
-        Authorization: '03835a5448b4f71f079f1e2c53f1ff17'
-    }
+  baseURL: address,
+  withCredentials: true
 })
 
 // axios.get(`/login/cellphone?phone=13890774972&password=wuwei19991024`).then(res => {
@@ -21,19 +18,20 @@ const axios = Axios.create({
 //     console.log(res.data)
 // })
 
-// axios.post(`/app/user/signUp`, {nickname:'wuwei5',password:'123456',email:'asdadasd'}).then(res => {
-//     console.log(res.data)
-// })
 
 axios.post(`/app/user/signIn`, {
-    nickname: 'wuwei5',
-    password: '123456'
+  nickname: 'wuwei',
+  password: '19991024'
 }).then(res => {
-    return axios.get('/app/user/info', {
-        headers: {
-            Authorization: `Bearer ${res.data.data}`
-        }
-    });
+  return axios.get('/app/cloudMusic/record', {
+    headers: {
+      Authorization: `Bearer ${res.data.data}`
+    }
+  })
 }).then(res => {
-    console.log(res.data)
+  console.log(res.data.data.allData[1])
 })
+
+// axios.get(`/app/cloudMusic/record`).then(res => {
+//   console.log(res.data.data)
+// })

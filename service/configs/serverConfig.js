@@ -23,7 +23,32 @@ module.exports = {
     },
     //远程地址
     get address() {
-      return `${production?'https':'http'}://${this.host}:${this.port}`
+      return `${production ? 'https' : 'http'}://${this.host}:${this.port}`
+    }
+  },
+  //邮箱配置
+  smtp: {
+    get host() {
+      return 'smtp.qq.com'
+    },
+    get port() {
+      return 587
+    },
+    get user() {
+      return '941765361@qq.com'
+    },
+    get pass() {
+      return 'rdpouyhapiejbfej'
+    },
+    get code() {
+      return () => Math.random().toString().slice(3, 9)
+
+    },
+    get expire() {
+      return () => Date.now() + 1000 * 60 * 3
+    },
+    get deleteTime() {
+      return 60 * 60 * 2
     }
   }
 }
