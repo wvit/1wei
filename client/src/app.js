@@ -5,6 +5,7 @@ import 'taro-ui/dist/style/components/button.scss'
 import 'taro-ui/dist/style/components/loading.scss'
 import "taro-ui/dist/style/components/icon.scss"
 import "taro-ui/dist/style/components/tab-bar.scss"
+import "taro-ui/dist/style/components/drawer.scss"
 import './assets/iconfont/iconfont.css'
 import './app.css'
 
@@ -15,6 +16,7 @@ import './app.css'
 // }
 
 class App extends Component {
+
   config = {
     pages: [
       'pages/index/index', //首页
@@ -30,34 +32,7 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    },
-    // tabBar: {
-    //   color: '#333',
-    //   selectedColor: '#409eff',
-    //   list: [{
-    //     pagePath: 'pages/index/index',
-    //     text: '首页',
-    //     iconPath: './assets/imgs/index.png',
-    //     selectedIconPath: './assets/imgs/indexOn.png'
-    //   },
-    //   {
-    //     pagePath: 'pages/learn/learn',
-    //     text: '学习',
-    //     iconPath: './assets/imgs/learn.png',
-    //     selectedIconPath: './assets/imgs/learnOn.png'
-    //   }, {
-    //     pagePath: 'pages/life/life',
-    //     text: '生活',
-    //     iconPath: './assets/imgs/life.png',
-    //     selectedIconPath: './assets/imgs/lifeOn.png'
-    //   }, {
-    //     pagePath: 'pages/user/user',
-    //     text: '用户',
-    //     iconPath: './assets/imgs/user.png',
-    //     selectedIconPath: './assets/imgs/userOn.png'
-    //   }
-    //   ]
-    // }
+    }
   }
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

@@ -1,0 +1,18 @@
+.header {
+  text-align: center;
+  line-height: 80px;
+  color: #409eff;
+}
+
+.at-icon::before {
+  line-height: 80px;
+  font-size: 70px;
+  position: fixed;
+  top: 0;
+  left: 30px;
+}
+
+.zhihu-day {
+  display: inline-block;
+  width: 100%;
+}

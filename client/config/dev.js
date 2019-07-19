@@ -1,7 +1,7 @@
+
 module.exports = {
   env: {
-    NODE_ENV: '"development"',
-    TERMINAL: '"weapp"'
+    NODE_ENV: '"development"'
   },
   defineConstants: {},
   weapp: {},

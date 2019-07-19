@@ -2,22 +2,19 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { req } from '../../utils/utils'
 import { AtButton } from 'taro-ui'
-import { TabBer } from '../../components/tabBer/tabBer'
+import TabBer from '../../components/tabBer/tabBer'
 import './user.css'
 
 export default class User extends Component {
   config = {
     navigationBarTitleText: '用户中心'
   }
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <View className='pd-lr30'>
         <AtButton
           type='primary'
-          className="mt30"
+          className='mt30'
           onClick={() => Taro.navigateTo({ url: '/pages/signInType/signInType' })}
         >
           您还未登录，去登录吧 ~
