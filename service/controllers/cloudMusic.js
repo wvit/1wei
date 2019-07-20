@@ -15,7 +15,7 @@ const axios = Axios.create({
 
 class CloudMusic {
   //网易云登录
-  async login (ctx) {
+  async login(ctx) {
     try {
       const _id = ctx.state.user._id;
       const res = await axios.get(`/login/cellphone?phone=${phone}&password=${password}`);
@@ -37,7 +37,7 @@ class CloudMusic {
     }
   }
   //获取听歌记录
-  async record (ctx) {
+  async record(ctx) {
     const {
       type = 0
     } = ctx.request.query;
