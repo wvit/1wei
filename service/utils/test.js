@@ -1,6 +1,7 @@
 const Axios = require('axios');
 const qs = require('qs');
 const CryptoJS = require('crypto-js');
+const crypto = require('crypto');
 
 const key = 'd1b964811afb40118a12068ff74a12f4';
 
@@ -10,8 +11,11 @@ const reqData = {
   timestamp: Date.now(),
   source: 'com.zhihu.web'
 }
-var signature = CryptoJS.HmacSHA1(reqData, key).toString();
-const fromdata = `captcha=&clientId=c3cef7c66a1843f8b3a9e6a1e3160e20&grantType=password&lang=cn&password=19991024&refSource=homepage&signature=${signature}&source=com.zhihu.web&timestamp=${Date.now()}&username=13890774972&utmSource=`
+
+const signature = CryptoJS.HmacSHA1(JSON.stringify(reqData), key).toString();
+// const signature2 = crypto.createHmac('sha1', key).update(`clientId=c3cef7c66a1843f8b3a9e6a1e3160e20&grantType=password&timestamp=${date}&source=com.zhihu.web`).digest('hex');
+
+const fromdata = `captcha=&clientId=c3cef7c66a1843f8b3a9e6a1e3160e20&grant_type=password&lang=cn&password=19991024&refSource=homepage&signature=${signature}&source=com.zhihu.web&timestamp=${Date.now()}&username=13890774972&utmSource=`
 
 const axios = Axios.create({
   baseURL: 'https://www.zhihu.com',
@@ -350,12 +354,13 @@ function test(module, exports, __webpack_require__) {
     return __g._encrypt(encodeURIComponent(e))
   };
 
+  let cookie = []
   axios.get(`/`).then(res => {
-    console.log(res.headers['set-cookie'])
-    
-    return axios.post(`/api/v3/oauth/sign_in`, { [b(fromdata)]: '' }, {
+    cookie = res.headers['set-cookie'];
+
+    return axios.get(`/api/v3/oauth/captcha?lang=en`, {
       headers: {
-        'cookie': res.headers['set-cookie'],
+        'cookie': cookie,
         'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
         'X-Zse-83': '3_2.0',
@@ -363,12 +368,20 @@ function test(module, exports, __webpack_require__) {
       }
     })
   }).then(res => {
-    console.log(res)
+    return axios.post(`/api/v3/oauth/sign_in`, { [b(fromdata)]: '' }, {
+      headers: {
+        'cookie': [...cookie, ...res.headers['set-cookie']],
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+        'X-Zse-83': '3_2.0',
+        'x-xsrftoken': cookie[2].split(';')[0].split('=')[1]
+      }
+    })
+  }).then(res => {
+    console.log(1)
   }).catch(err => {
     console.log(err.response.data)
   })
-
-
 
   exports.ENCRYPT_VERSION = A, exports.default = b
 }
