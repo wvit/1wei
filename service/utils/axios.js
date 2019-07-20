@@ -1,7 +1,9 @@
 const Axios = require('axios');
+const cheerio = require('cheerio');
 const {
   address
 } = require('../configs/serverConfig').server;
+
 
 const axios = Axios.create({
   baseURL: address,
@@ -19,19 +21,20 @@ const axios = Axios.create({
 // })
 
 
-axios.post(`/app/user/signIn`, {
-  nickname: 'wuwei',
-  password: '19991024'
-}).then(res => {
-  return axios.get('/app/cloudMusic/record', {
-    headers: {
-      Authorization: `Bearer ${res.data.data}`
-    }
-  })
-}).then(res => {
-  console.log(res.data.data.allData[1])
-})
-
-// axios.get(`/app/cloudMusic/record`).then(res => {
+// axios.post(`/app/user/signIn`, {
+//   nickname: 'wuwei',
+//   password: '19991024'
+// }).then(res => {
+//   return axios.get('/app/cloudMusic/record', {
+//     headers: {
+//       Authorization: `Bearer ${res.data.data}`
+//     }
+//   })
+// }).then(res => {
 //   console.log(res.data.data)
 // })
+
+axios.get(`/app/zhihu/hot`).then(res => {
+  const dom = cheerio.load(res.data);
+  console.log(dom.html())
+})

@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import TabBer from '../../components/tabBer/tabBer'
+import  TabBer  from '../../components/tabBer/tabBer'
 
 export default class Learn extends Component {
 

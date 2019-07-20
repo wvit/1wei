@@ -9,15 +9,12 @@ export default class User extends Component {
   config = {
     navigationBarTitleText: '用户中心'
   }
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <View className='pd-lr30'>
         <AtButton
           type='primary'
-          className="mt30"
+          className='mt30'
           onClick={() => Taro.navigateTo({ url: '/pages/signInType/signInType' })}
         >
           您还未登录，去登录吧 ~

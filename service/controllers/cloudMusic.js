@@ -3,19 +3,22 @@ const Redis = require('koa-redis');
 const statusCode = require('../configs/statusCode');
 const jsonwebtoken = require('jsonwebtoken');
 const { tokenKey, expiresIn } = require('../configs/tokenConfig');
+const {
+  cloudMusic: { baseURL, phone, password, uid }
+} = require('../configs/thirdPartyConfig');
 
 const Store = new Redis().client;
 const axios = Axios.create({
-  baseURL: 'http://127.0.0.1:3000',
+  baseURL,
   withCredentials: true
 })
 
 class CloudMusic {
   //网易云登录
-  async login(ctx) {
+  async login (ctx) {
     try {
       const _id = ctx.state.user._id;
-      const res = await axios.get(`/login/cellphone?phone=13890774972&password=wuwei19991024`);
+      const res = await axios.get(`/login/cellphone?phone=${phone}&password=${password}`);
       Store.hmset(
         `cloudMusic:${_id}`,
         'uid', res.data.account.id,
@@ -34,8 +37,10 @@ class CloudMusic {
     }
   }
   //获取听歌记录
-  async record(ctx) {
-    const { type = 0 } = ctx.request.query;
+  async record (ctx) {
+    const {
+      type = 0
+    } = ctx.request.query;
     const resData = {
       code: statusCode.success
     }
@@ -44,10 +49,14 @@ class CloudMusic {
       const _id = await jsonwebtoken.verify(token, tokenKey)._id;
       const uid = await Store.hget(`cloudMusic:${_id}`, 'uid');
       const cookie = await Store.hget(`cloudMusic:${_id}`, 'cookie');
-      const res = await axios.get(`/user/record?uid=${uid}&type=${type}`, { headers: { cookie } });
+      const res = await axios.get(`/user/record?uid=${uid}&type=${type}`, {
+        headers: {
+          cookie
+        }
+      });
       resData.data = res.data;
     } catch (err) {
-      const res = await axios.get(`/user/record?uid=303276336&type=${type}`);
+      const res = await axios.get(`/user/record?uid=${uid}&type=${type}`);
       resData.data = res.data;
     }
     ctx.body = resData;

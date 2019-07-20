@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "client",
   "description": "1wei客户端",
-  "appid": "touristappid",
+  "appid": "wxc8df1b6903823009",
   "setting": {
     "urlCheck": true,
     "es6": false,

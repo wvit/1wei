@@ -8,6 +8,7 @@ for (let devName in interfaces) {
     }
   })
 }
+
 const config = {
   projectName: 'client',
   date: '2019-7-3',
@@ -34,7 +35,9 @@ const config = {
       ]
     }
   },
-  defineConstants: {},
+  defineConstants: {
+    reqAddress: `http://${host}:1999`
+  },
   copy: {
     patterns: [],
     options: {}
@@ -110,5 +113,6 @@ module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
+  config.defineConstants.reqAddress = `https://1wei.cc`
   return merge({}, config, require('./prod'))
 }

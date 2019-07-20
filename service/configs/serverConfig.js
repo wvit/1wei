@@ -26,7 +26,7 @@ module.exports = {
       return `${production ? 'https' : 'http'}://${this.host}:${this.port}`
     }
   },
-  //邮箱配置
+  //qq邮箱配置
   smtp: {
     get host() {
       return 'smtp.qq.com'
