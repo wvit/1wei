@@ -28,19 +28,23 @@ class App extends Component {
       'pages/signInType/signInType', //登录方式
       'pages/learn/learn', //学习
       'pages/life/life', //生活
+      'pages/webView/webView'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    }
+    },
+    "navigateToMiniProgramAppIdList": [
+      "wxeb39b10e39bf6b54"
+    ]
   }
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render() {
-    return ( < Index / > )
+  render () {
+    return (< Index />)
   }
 }
 
-Taro.render( < App / > , document.getElementById('app'))
+Taro.render(< App />, document.getElementById('app'))

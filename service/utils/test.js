@@ -12,7 +12,7 @@ const reqData = {
   source: 'com.zhihu.web'
 }
 
-const signature = CryptoJS.HmacSHA1(JSON.stringify(reqData), key).toString();
+const signature = CryptoJS.HmacSHA1(reqData.grantType + reqData.clientId + reqData.source + reqData.timestamp, key).toString();
 // const signature2 = crypto.createHmac('sha1', key).update(`clientId=c3cef7c66a1843f8b3a9e6a1e3160e20&grantType=password&timestamp=${date}&source=com.zhihu.web`).digest('hex');
 
 const fromdata = `captcha=&clientId=c3cef7c66a1843f8b3a9e6a1e3160e20&grant_type=password&lang=cn&password=19991024&refSource=homepage&signature=${signature}&source=com.zhihu.web&timestamp=${Date.now()}&username=13890774972&utmSource=`
@@ -22,9 +22,9 @@ const axios = Axios.create({
   withCredentials: true
 })
 
-function test(module, exports, __webpack_require__) {
+function test (module, exports, __webpack_require__) {
   "use strict";
-  function t(e) {
+  function t (e) {
     return (t = "function" == typeof Symbol && "symbol" == typeof Symbol.A ? function (e) {
       return typeof e
     } : function (e) {
@@ -37,35 +37,35 @@ function test(module, exports, __webpack_require__) {
   var A = "2.0",
     __g = {};
 
-  function s() { }
+  function s () { }
 
-  function i(e) {
+  function i (e) {
     this.t = (2048 & e) >> 11, this.s = (1536 & e) >> 9, this.i = 511 & e, this.h = 511 & e
   }
 
-  function h(e) {
+  function h (e) {
     this.s = (3072 & e) >> 10, this.h = 1023 & e
   }
 
-  function a(e) {
+  function a (e) {
     this.a = (3072 & e) >> 10, this.c = (768 & e) >> 8, this.n = (192 & e) >> 6, this.t = 63 & e
   }
 
-  function c(e) {
+  function c (e) {
     this.s = e >> 10 & 3, this.i = 1023 & e
   }
 
-  function n() { }
+  function n () { }
 
-  function e(e) {
+  function e (e) {
     this.a = (3072 & e) >> 10, this.c = (768 & e) >> 8, this.n = (192 & e) >> 6, this.t = 63 & e
   }
 
-  function o(e) {
+  function o (e) {
     this.h = (4095 & e) >> 2, this.t = 3 & e
   }
 
-  function r(e) {
+  function r (e) {
     this.s = e >> 10 & 3, this.i = e >> 2 & 255, this.t = 3 & e
   }
   s.prototype.e = function (e) {
@@ -215,35 +215,35 @@ function test(module, exports, __webpack_require__) {
     return n.join("")
   };
 
-  function Q(e) {
+  function Q (e) {
     this.t = (4095 & e) >> 10, this.s = (1023 & e) >> 8, this.i = 1023 & e, this.h = 63 & e
   }
 
-  function C(e) {
+  function C (e) {
     this.t = (4095 & e) >> 10, this.a = (1023 & e) >> 8, this.c = (255 & e) >> 6
   }
 
-  function B(e) {
+  function B (e) {
     this.s = (3072 & e) >> 10, this.h = 1023 & e
   }
 
-  function f(e) {
+  function f (e) {
     this.h = 4095 & e
   }
 
-  function g(e) {
+  function g (e) {
     this.s = (3072 & e) >> 10
   }
 
-  function u(e) {
+  function u (e) {
     this.h = 4095 & e
   }
 
-  function w(e) {
+  function w (e) {
     this.t = (3840 & e) >> 8, this.s = (192 & e) >> 6, this.i = 63 & e
   }
 
-  function G() {
+  function G () {
     this.r = [0, 0, 0, 0], this.C = 0, this.Q = [], this.k = [], this.B = [], this.f = [], this.g = [], this.u = !1, this.G = [], this.b = [], this.o = !1, this.w = null, this.U = null, this.F = [], this.R = 0, this.J = {
       0: s,
       1: i,
@@ -361,22 +361,34 @@ function test(module, exports, __webpack_require__) {
     return axios.get(`/api/v3/oauth/captcha?lang=en`, {
       headers: {
         'cookie': cookie,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
         'X-Zse-83': '3_2.0',
         'x-xsrftoken': res.headers['set-cookie'][2].split(';')[0].split('=')[1]
       }
     })
   }).then(res => {
-    return axios.post(`/api/v3/oauth/sign_in`, { [b(fromdata)]: '' }, {
+    console.log(cookie, res.headers['set-cookie'])
+    return axios.post(`/api/v3/oauth/captcha?lang=en`, { input_text: 'fgd5' }, {
       headers: {
-        'cookie': [...cookie, ...res.headers['set-cookie']],
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Cookie': [...cookie, ...res.headers['set-cookie']],
+        // 'Content-Type': 'multipart/form-data',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
         'X-Zse-83': '3_2.0',
-        'x-xsrftoken': cookie[2].split(';')[0].split('=')[1]
+        'if-none-match': "7eb4ebdc523b46e04c7fa978993f57f559d7ed8b"
+        // 'x-xsrftoken': cookie[2].split(';')[0].split('=')[1]
       }
     })
+    // return axios.post(`/api/v3/oauth/sign_in`, { [b(fromdata)]: '' }, {
+    //   headers: {
+    //     'Authorization': 'Bearer c3cef7c66a1843f8b3a9e6a1e3160e20',
+    //     'cookie': [...cookie, ...res.headers['set-cookie']],
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+    //     'X-Zse-83': '3_2.0',
+    //     'x-xsrftoken': cookie[2].split(';')[0].split('=')[1]
+    //   }
+    // })
   }).then(res => {
     console.log(1)
   }).catch(err => {

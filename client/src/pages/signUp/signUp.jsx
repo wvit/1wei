@@ -23,7 +23,7 @@ export default class signUp extends Component {
       }
     }
   }
-  render() {
+  render () {
     const {
       reqLoading, inputType, timerBtnText, timerBtnOnOff,
       signUp: { nickname, password, email, code }
@@ -83,7 +83,7 @@ export default class signUp extends Component {
     )
   }
   //输入改变
-  inputChange(key, value) {
+  inputChange (key, value) {
     const signUp = this.state.signUp;
     signUp[key] = value;
     this.setState({
@@ -91,13 +91,13 @@ export default class signUp extends Component {
     })
   }
   //查看密码
-  watchPassword(inputType) {
+  watchPassword (inputType) {
     this.setState({
       inputType: inputType === 'text' ? 'password' : 'text'
     })
   }
   //发送验证码
-  sendCode() {
+  sendCode () {
     if (!this.state.timerBtnOnOff) return
     this.verify().then(result => {
       if (!result) return
@@ -126,7 +126,7 @@ export default class signUp extends Component {
     })
   }
   //注册账号
-  signUp() {
+  signUp () {
     this.verify().then(result => {
       if (!result) return;
       if (this.state.signUp.code.length < 6) {
@@ -150,7 +150,7 @@ export default class signUp extends Component {
     })
   }
   //验证数据
-  verify() {
+  verify () {
     return new Promise(resolve => {
       const { nickname, password, email } = this.state.signUp
       if (!judgeNull(nickname)) {

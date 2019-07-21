@@ -1,28 +1,28 @@
 module.exports = {
   //网易云音乐
   cloudMusic: {
-    get baseURL() {
+    get baseURL () {
       return `http://127.0.0.1:3000`
     },
-    get phone() {
+    get phone () {
       return 13890774972
     },
-    get password() {
+    get password () {
       return 'wuwei19991024'
     },
-    get uid() {
+    get uid () {
       return 303276336
     }
   },
   //知乎
   zhihu: {
-    get baseURL() {
+    get baseURL () {
       return `https://www.zhihu.com`
     },
-    get userName() {
+    get userName () {
       return 'Enterprise'
     },
-    cookie: `_zap=6a83c494-10c9-4c60-857b-f72df8a2eb04; _xsrf=91rSILnEpo31ZA2fE6iS26RX9373vydo; d_c0="AGCuZr2ynw-PTvz6UGynPCcVz4uIUO98bEA=|1561195202"; q_c1=6ed7d04fb6d04bc1b6407a0e7e1cae60|1561195555000|1561195555000; __gads=ID=0cdee959de7eccd8:T=1561195772:S=ALNI_MZWuzPgtxY_ydP86Lu3SjVP0A-VwA; __utmv=51854390.100--|2=registration_date=20161006=1^3=entry_date=20161006=1; __utma=51854390.857395358.1561198799.1561198799.1561201226.2; __utmz=51854390.1561201226.2.2.utmcsr=zhihu.com|utmccn=(referral)|utmcmd=referral|utmcct=/people/wuwei-62-35/collections; _ga=GA1.2.857395358.1561198799; _gid=GA1.2.1778587938.1563527886; tshl=; tgw_l7_route=66cb16bc7f45da64562a077714739c11; capsion_ticket="2|1:0|10:1563590416|14:capsion_ticket|44:MWVhMTc2NzY2ZjYzNGMzZWFmMmZlYjg4N2U2NGRhOTY=|d7643745d69f6746013d58b8311e61f6ca67a38306f0872f805a929859a6a0e1"; z_c0="2|1:0|10:1563590418|4:z_c0|92:Mi4xTUhhSkF3QUFBQUFBWUs1bXZiS2ZEeVlBQUFCZ0FsVk5FczBmWGdBQVotbjVFaEZtV1R0WlRxWjhiMlJtY1NYUEJR|289b768145d683aedaf292dde4cff636eb35c9e38150cfe96d3afbfca392a9b2"; tst=h`
+    cookie: `_zap=c6e1d641-d496-42bd-a404-cbfa99828e01; _xsrf=01eabaed-64d4-4ca3-9135-1b31d15f4b9a; d_c0="AJDib4Tvww-PToZp_enGM1bkR2e1qk-RhaI=|1563627054"; tshl=; q_c1=0eabc53320724ad7ab935ae84252da12|1563627198000|1563627198000; tgw_l7_route=f2979fdd289e2265b2f12e4f4a478330; capsion_ticket="2|1:0|10:1563691430|14:capsion_ticket|44:NjY2NGRiMDdiNTkzNDEyN2E0MmM5YzRmNDI3ODJiMTk=|7d2d23dc9c03f87f8bebefcfcbe480f76de61a2030413e507a4f9a8251881f1d"; z_c0="2|1:0|10:1563691434|4:z_c0|92:Mi4xTUhhSkF3QUFBQUFBa09KdmhPX0REeVlBQUFCZ0FsVk5xbGNoWGdBUmhYSHo4N3hQS3lIZXdBWGxsbkwwdzlqME9n|84810331900e9ce714938ca4e51ab5fe737beeeb935d753c01fa9520da2f7255"; tst=h`
   }
 
 }

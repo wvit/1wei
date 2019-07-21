@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Navigator, WebView } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'
@@ -15,20 +15,23 @@ export default class Index extends Component {
       menuOnOff: false
     }
   }
-  render() {
+  render () {
     const { menuOnOff } = this.state
     return (
       <View className='pd-lr30'>
         <View className="header">
           <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
-          知乎日报
+          知乎热门
         </View>
         <AtDrawer
           show={menuOnOff}
+          onClose={this.menuShowHide.bind(this)}
           mask
         >
+          <Navigator target="miniProgram" app-id="wxeb39b10e39bf6b54">知乎</Navigator>
+          <Navigator url="/pages/webView/webView">1wei.cc</Navigator>
           <View>他的知乎</View>
-
+          <View>他的网易云</View>
         </AtDrawer>
         <View className="zhihu">
 
@@ -38,13 +41,13 @@ export default class Index extends Component {
     )
   }
   //组件挂载完毕
-  componentDidMount() {
+  componentDidMount () {
     req.get(`/app/zhihu/hot`).then(res => {
       console.log(res.data)
     })
   }
   //菜单显示隐藏
-  menuShowHide() {
+  menuShowHide () {
     const menuOnOff = !this.state.menuOnOff
     this.setState({ menuOnOff })
   }
