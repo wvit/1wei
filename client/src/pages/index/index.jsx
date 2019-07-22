@@ -19,7 +19,7 @@ export default class Index extends Component {
     const { menuOnOff } = this.state
     return (
       <View className='pd-lr30'>
-        <View className="header">
+        <View className="header clearfix">
           <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
           知乎热门
         </View>

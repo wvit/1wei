@@ -19,7 +19,7 @@ export default class TabBer extends Component {
       <AtTabBar
         fixed
         tabList={[
-          { title: '首页', iconPrefixClass: 'icon', iconType: 'home' },
+          { title: '首页', iconPrefixClass: 'icon', iconType: 'home', text: 'new' },
           { title: '学习', iconPrefixClass: 'icon', iconType: 'xuexi1' },
           { title: '生活', iconPrefixClass: 'icon', iconType: 'java' },
           { title: '用户', iconPrefixClass: 'icon', iconType: 'yonghu' }

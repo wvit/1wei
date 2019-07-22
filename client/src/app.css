@@ -44,7 +44,12 @@
 }
 
 .at-tab-bar {
-  padding: 10px 0;
+  padding: 15px 0 10px;
+}
+
+.at-badge__num{
+  top:-5px;
+  right:-20px;
 }
 
 /* 公共样式 */
