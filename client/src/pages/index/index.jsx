@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Navigator, WebView } from '@tarojs/components'
+import { View, Navigator } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'

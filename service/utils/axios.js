@@ -4,7 +4,6 @@ const {
   address
 } = require('../configs/serverConfig').server;
 
-
 const axios = Axios.create({
   baseURL: address,
   withCredentials: true

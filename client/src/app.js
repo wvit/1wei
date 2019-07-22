@@ -1,6 +1,8 @@
 import Taro, {
   Component
 } from '@tarojs/taro'
+import { Provider } from '@tarojs/redux'
+import store from './redux'
 import Index from './pages/index/index'
 import 'taro-ui/dist/style/components/input.scss'
 import 'taro-ui/dist/style/components/button.scss'
@@ -18,7 +20,6 @@ import './app.css'
 // }
 
 class App extends Component {
-
   config = {
     pages: [
       'pages/index/index', //首页
@@ -36,14 +37,18 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    "navigateToMiniProgramAppIdList": [
+    navigateToMiniProgramAppIdList: [
       "wxeb39b10e39bf6b54"
     ]
   }
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
-    return (< Index />)
+  render() {
+    return (
+      <Provider store={store()}>
+        < Index />
+      </Provider>
+    )
   }
 }
 

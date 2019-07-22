@@ -36,7 +36,7 @@ const config = {
     }
   },
   defineConstants: {
-    reqAddress: `http://${host}:1999`
+    reqAddress: JSON.stringify(`http://${host}:1999`)
   },
   copy: {
     patterns: [],
@@ -113,6 +113,6 @@ module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
-  config.defineConstants.reqAddress = `https://1wei.cc`
+  config.defineConstants.reqAddress = '"https://1wei.cc"'
   return merge({}, config, require('./prod'))
 }
