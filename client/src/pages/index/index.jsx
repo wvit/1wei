@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Navigator } from '@tarojs/components'
+import { View, Text, Navigator } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'
@@ -12,11 +12,12 @@ export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      menuOnOff: false
+      menuOnOff: false,// 侧边栏开关
+      questionList: []// 问题列表
     }
   }
   render () {
-    const { menuOnOff } = this.state
+    const { menuOnOff, questionList } = this.state
     return (
       <View className='pd-lr30'>
         <View className="header clearfix">
@@ -34,7 +35,22 @@ export default class Index extends Component {
           <View>他的网易云</View>
         </AtDrawer>
         <View className="zhihu">
-
+          {
+            questionList.map((item, index) => {
+              return (
+                <View className="zhihu-hot-item clearfix" key={index}>
+                  <Text style={`width:${item.children[0].thumbnail ? '62%' : '100%'}`}>
+                    {item.target.title}
+                  </Text>
+                  {
+                    item.children[0].thumbnail ?
+                      <View style={`background:url(${item.children[0].thumbnail}) no-repeat 50% 50%/100%`}>
+                      </View> : ''
+                  }
+                </View>
+              )
+            })
+          }
         </View>
         <TabBer current={0} />
       </View>
@@ -44,6 +60,12 @@ export default class Index extends Component {
   componentDidMount () {
     req.get(`/app/zhihu/hot`).then(res => {
       console.log(res.data)
+      if (!res.data.code) {
+        this.setState({
+          questionList: res.data.data.data
+        })
+      }
+
     })
   }
   //菜单显示隐藏

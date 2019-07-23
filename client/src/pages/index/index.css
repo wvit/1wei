@@ -12,7 +12,25 @@
   left: 30px;
 }
 
-.zhihu-day {
-  display: inline-block;
-  width: 100%;
+.zhihu-hot-item {
+  padding: 20px 0;
+}
+
+.zhihu-hot-item Text {
+  float: left;
+  width: 62%;
+  font-size: 32px;
+  height: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.zhihu-hot-item View {
+  float: right;
+  width: 35%;
+  border-radius: 10px;
+  height: 140px;
 }
