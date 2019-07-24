@@ -1,6 +1,4 @@
-import Taro, {
-  Component
-} from '@tarojs/taro'
+import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import store from './redux'
 import Index from './pages/index/index'
@@ -33,10 +31,9 @@ class App extends Component {
       'pages/webView/webView'
     ],
     window: {
-      backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTitleText: '1wei',
+      navigationBarTextStyle: 'black',
     },
     navigateToMiniProgramAppIdList: [
       "wxeb39b10e39bf6b54"
