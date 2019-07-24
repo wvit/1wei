@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
+import { View } from '@tarojs/components'
 
 export default class TabBer extends Component {
   constructor(props) {
@@ -16,17 +17,19 @@ export default class TabBer extends Component {
   }
   render () {
     return (
-      <AtTabBar
-        fixed
-        tabList={[
-          { title: '首页', iconPrefixClass: 'icon', iconType: 'home' },
-          { title: '学习', iconPrefixClass: 'icon', iconType: 'xuexi1' },
-          { title: '生活', iconPrefixClass: 'icon', iconType: 'java' },
-          { title: '用户', iconPrefixClass: 'icon', iconType: 'yonghu' }
-        ]}
-        onClick={this.handleClick.bind(this)}
-        current={this.state.current}
-      />
+      <View style="height:56px;">
+        <AtTabBar
+          fixed
+          tabList={[
+            { title: '首页', iconPrefixClass: 'icon', iconType: 'home', text: 'new' },
+            { title: '学习', iconPrefixClass: 'icon', iconType: 'xuexi1' },
+            { title: '生活', iconPrefixClass: 'icon', iconType: 'java' },
+            { title: '用户', iconPrefixClass: 'icon', iconType: 'yonghu' }
+          ]}
+          onClick={this.handleClick.bind(this)}
+          current={this.state.current}
+        />
+      </View>
     )
   }
   handleClick (current) {

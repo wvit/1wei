@@ -1,7 +1,12 @@
+.index-wrap {
+  background: #f2f2f2;
+}
+
 .header {
   text-align: center;
   line-height: 80px;
   color: #409eff;
+  background: #fff;
 }
 
 .at-icon::before {
@@ -12,7 +17,41 @@
   left: 30px;
 }
 
-.zhihu-day {
+.zhihu-hot-item {
+  padding: 20px 30px;
+  margin: 20px 0;
+  background: #fff;
+}
+
+.zhihu-hot-item .text {
+  float: left;
+  font-size: 32px;
+  height: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.zhihu-hot-item .image {
+  float: right;
+  width: 30%;
+  border-radius: 10px;
+  height: 140px;
+}
+
+.heat {
+  font-size: 22px;
+  color: #8590a6;
+  margin-bottom: 10px;
+}
+
+.heat View {
   display: inline-block;
-  width: 100%;
+  margin-right: 20px;
+  width: 40px;
+  border-radius: 7px;
+  text-align: center;
+  color: #fff;
 }
