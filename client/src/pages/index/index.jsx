@@ -15,7 +15,7 @@ export default class Index extends Component {
       menuOnOff: false
     }
   }
-  render () {
+  render() {
     const { menuOnOff } = this.state
     return (
       <View className='pd-lr30'>
@@ -41,13 +41,13 @@ export default class Index extends Component {
     )
   }
   //组件挂载完毕
-  componentDidMount () {
+  componentDidMount() {
     req.get(`/app/zhihu/hot`).then(res => {
       console.log(res.data)
     })
   }
   //菜单显示隐藏
-  menuShowHide () {
+  menuShowHide() {
     const menuOnOff = !this.state.menuOnOff
     this.setState({ menuOnOff })
   }
