@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
   "projectname": "client",
-  "description": "1wei微信小程序端",
-  "appid": "wx6e179782a302b7c0",
+  "description": "1wei",
+  "appid": "1109619105",
   "setting": {
     "urlCheck": true,
     "es6": false,

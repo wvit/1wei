@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Navigator } from '@tarojs/components'
+import { View, Text, Navigator, Image } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'
@@ -10,7 +10,7 @@ let questionList = [] // 热门列表
 
 export default class Index extends Component {
   config = {
-    defaultTitle: '1wei',
+    navigationBarTitleText: '1wei',
     backgroundColor: '#fff',
     navigationStyle: "custom"
   }
@@ -50,7 +50,7 @@ export default class Index extends Component {
               return (
                 <Navigator className="zhihu-hot-item clearfix" key={index} target="miniProgram" app-id="wxeb39b10e39bf6b54">
                   <View className="heat">
-                    <View style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
+                    <View className="number" style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
                     {item.detail_text}
                   </View>
                   <Text className="text" style={`width:${item.children[0].thumbnail ? '68%' : '100%'}`}>
@@ -58,7 +58,7 @@ export default class Index extends Component {
                   </Text>
                   {
                     item.children[0].thumbnail ?
-                      <View className="image" style={`background:url(${item.children[0].thumbnail}) no-repeat 50% 50%/100%`}>
+                      <View className="image" style={`background:url(${item.children[0].thumbnail}) no-repeat 50% 50%/100%;`}>
                       </View> : ''
                   }
                 </Navigator>
