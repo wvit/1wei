@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Navigator } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
+import Title from '../../components/title/title'
 import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'
 import './index.css'
@@ -10,9 +11,9 @@ let questionList = [] // 热门列表
 
 export default class Index extends Component {
   config = {
-    defaultTitle: '1wei',
+    navigationBarTitleText: '1wei',
     backgroundColor: '#fff',
-    navigationStyle: "custom"
+    navigationStyle: 'custom'
   }
   constructor(props) {
     super(props)
@@ -25,40 +26,41 @@ export default class Index extends Component {
   render() {
     const { menuOnOff, questionList, statusBarHeight } = this.state
     return (
-      <View className="index-wrap">
-        <View className="header">
+      <View className='index-wrap'>
+        <Title title='知乎热门'></Title>
+        {/* <View className='header'>
           <View style={`height:${statusBarHeight}px;`}></View>
-          <View className="clearfix">
+          <View className='clearfix'>
             <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
-            <Text className="title-text">知乎热门</Text>
+            <Text className='title-text'>知乎热门</Text>
           </View>
         </View>
-        <View style={`height:${45 + statusBarHeight}px`}></View>
+        <View style={`height:${45 + statusBarHeight}px`}></View> */}
         <AtDrawer
           show={menuOnOff}
           onClose={this.menuShowHide.bind(this)}
           mask
         >
           <View style={`height:${statusBarHeight}px`}></View>
-          <Navigator url="/pages/webView/webView">1wei.cc</Navigator>
+          <Navigator url='/pages/webView/webView'>1wei.cc</Navigator>
           <View>他的知乎</View>
           <View>他的网易云</View>
         </AtDrawer>
-        <View className="zhihu">
+        <View className='zhihu'>
           {
             questionList.map((item, index) => {
               return (
-                <Navigator className="zhihu-hot-item clearfix" key={index} target="miniProgram" app-id="wxeb39b10e39bf6b54">
-                  <View className="heat">
-                    <View style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
+                <Navigator className='zhihu-hot-item clearfix' key={index} target='miniProgram' app-id='wxeb39b10e39bf6b54'>
+                  <View className='heat'>
+                    <View className='number' style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
                     {item.detail_text}
                   </View>
-                  <Text className="text" style={`width:${item.children[0].thumbnail ? '68%' : '100%'}`}>
+                  <Text className='text' style={`width:${item.children[0].thumbnail ? '68%' : '100%'}`}>
                     {item.target.title}
                   </Text>
                   {
                     item.children[0].thumbnail ?
-                      <View className="image" style={`background:url(${item.children[0].thumbnail}) no-repeat 50% 50%/100%`}>
+                      <View className='image' style={`background:url(${item.children[0].thumbnail}) no-repeat 50% 50%/100%;`}>
                       </View> : ''
                   }
                 </Navigator>

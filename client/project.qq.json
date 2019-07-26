@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
   "projectname": "client",
-  "description": "1wei客户端",
+  "description": "1wei",
   "appid": "1109619105",
   "setting": {
     "urlCheck": true,

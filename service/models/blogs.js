@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const blog = new mongoose.Schema({
+const { Schema, model } = require('mongoose');
+
+const blog = new Schema({
   title: String, //标题
   content: String, //内容
   addTime: String, //发布时间
@@ -13,4 +14,4 @@ const blog = new mongoose.Schema({
   pageView: Number //浏览量
 });
 
-module.exports = mongoose.model('blog', blog);
+module.exports = model('blog', blog);

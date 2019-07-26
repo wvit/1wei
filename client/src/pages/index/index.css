@@ -18,6 +18,7 @@
   left: 50%;
   line-height: 90px;
   transform: translateX(-50%);
+  font-size: 36px;
 }
 
 .at-icon {
@@ -60,7 +61,7 @@
   margin-bottom: 5px;
 }
 
-.heat View {
+.heat .number {
   display: inline-block;
   margin-right: 20px;
   width: 40px;

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema, model } = mongoose;
 
-const userSchema = new Schema({
+const user = new Schema({
   __v: {
     type: Number,
     select: false,
@@ -26,4 +26,4 @@ const userSchema = new Schema({
   }
 });
 
-module.exports = model('User', userSchema);
+module.exports = model('user', user);
