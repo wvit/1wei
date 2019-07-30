@@ -1,11 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import  TabBer  from '../../components/tabBer/tabBer'
+import { View } from '@tarojs/components'
+import TabBer from '../../components/tabBer/tabBer'
+import Title from '../../components/title/title'
 
 export default class Life extends Component {
 
   config = {
-    navigationBarTitleText: '生活记录'
+    navigationStyle: 'custom',
   }
 
   componentWillMount() { }
@@ -21,7 +22,7 @@ export default class Life extends Component {
   render() {
     return (
       <View className='pd-lr30'>
-        <Text>你好，我是生活</Text>
+        <Title title='生活记录' />
         <TabBer current={2} />
       </View>
     )

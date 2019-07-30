@@ -11,8 +11,7 @@ let questionList = [] // 热门列表
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '1wei',
-    backgroundColor: '#fff',
+    // navigationBarTitleText: '1wei',
     navigationStyle: 'custom'
   }
   constructor(props) {
@@ -27,15 +26,9 @@ export default class Index extends Component {
     const { menuOnOff, questionList, statusBarHeight } = this.state
     return (
       <View className='index-wrap'>
-        <Title title='知乎热门'></Title>
-        {/* <View className='header'>
-          <View style={`height:${statusBarHeight}px;`}></View>
-          <View className='clearfix'>
-            <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
-            <Text className='title-text'>知乎热门</Text>
-          </View>
-        </View>
-        <View style={`height:${45 + statusBarHeight}px`}></View> */}
+        <Title title='知乎热门'>
+          <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
+        </Title>
         <AtDrawer
           show={menuOnOff}
           onClose={this.menuShowHide.bind(this)}
