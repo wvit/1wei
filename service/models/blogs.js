@@ -5,8 +5,7 @@ const blog = new Schema({
   content: String, //内容
   addTime: String, //发布时间
   model: Number, //类型 1工作 2生活
-  tags: Array, //标签 model=1
-  classId: String, //分类 model=2
+  tags: Array, //标签
   isShow: {
     type: Boolean,
     default: true //是否显示
@@ -14,4 +13,4 @@ const blog = new Schema({
   pageView: Number //浏览量
 });
 
-module.exports = model('blog', blog);
+module.exports = model('blog', blog)

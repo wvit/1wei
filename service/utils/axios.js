@@ -1,5 +1,4 @@
 const Axios = require('axios');
-const cheerio = require('cheerio');
 const {
   address
 } = require('../configs/serverConfig').server;
@@ -19,7 +18,6 @@ const axios = Axios.create({
 //     console.log(res.data)
 // })
 
-
 // axios.post(`/app/user/signIn`, {
 //   nickname: 'wuwei',
 //   password: '19991024'
@@ -32,8 +30,3 @@ const axios = Axios.create({
 // }).then(res => {
 //   console.log(res.data.data)
 // })
-
-axios.get(`/app/zhihu/hot`).then(res => {
-  const dom = cheerio.load(res.data);
-  console.log(dom.html())
-})

@@ -1,7 +1,11 @@
-const { Schema, tag } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const tag = new Schema({
-  name: String, //标签名
+  //标签名
+  name: {
+    type: 'string',
+    required: true
+  },
 });
 
 module.exports = model('tag', tag);
