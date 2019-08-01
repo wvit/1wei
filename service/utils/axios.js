@@ -30,3 +30,7 @@ const axios = Axios.create({
 // }).then(res => {
 //   console.log(res.data.data)
 // })
+
+axios.delete('/admin/blog/delete').then(res => {
+  console.log(res.data)
+})

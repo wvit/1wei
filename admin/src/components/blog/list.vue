@@ -8,12 +8,10 @@ export default {
   data() {
     return {
       tabsListConfig: {
-        deleteUrl: "/admin/blog", //删除的请求地址
-        deleteKey: "type", //删除的参数键名
-        deleteType: 2, //删除请求的类型参数
+        deleteUrl: "/admin/blog/delete", //删除的请求地址
         editBtnName: "修改", //修改按钮名字
         editUrl: "/home/blog/list/edit", //修改内容跳转的页面
-        getListUrl: "/admin/getBlogs", //请求分页数据地址
+        getListUrl: "/admin/blog/list", //请求分页数据地址
         //表格的每项数据
         tabItem: [
           {

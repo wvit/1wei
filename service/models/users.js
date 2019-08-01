@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const user = new Schema({
-  __v: {
-    type: Number,
-    select: false,
-  },
   //昵称
   nickname: {
     type: String,

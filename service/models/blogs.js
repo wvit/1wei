@@ -4,11 +4,12 @@ const blog = new Schema({
   title: String, //标题
   content: String, //内容
   addTime: String, //发布时间
-  model: Number, //类型 1工作 2生活
+  type: Number, //类型 1工作 2生活
   tags: Array, //标签
   isShow: {
     type: Boolean,
-    default: true //是否显示
+    default: true, //是否显示
+    select: false
   },
   pageView: Number //浏览量
 });

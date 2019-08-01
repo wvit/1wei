@@ -10,7 +10,7 @@
       >
         <template slot-scope="scope">
           <p v-if="!item.type&&!item.select">{{scope.row[item.prop]}}</p>
-          <img v-if="item.type==='img'" :src="scope.row[item.prop]">
+          <img v-if="item.type==='img'" :src="scope.row[item.prop]" />
           <p v-if="item.select">{{item.select[scope.row[item.prop]]}}</p>
         </template>
       </el-table-column>
@@ -25,7 +25,7 @@
             type="text"
             size="small"
             v-if="config.deleteUrl"
-            @click="deleteItem(scope.$index)"
+            @click="deleteItem(scope.row)"
           >删除</el-button>
           <el-button
             type="text"
@@ -62,8 +62,6 @@ export default {
       default: {
         dialogBtn: Array, //对话框按钮
         deleteUrl: String, //删除的请求地址
-        deleteKey: String, //删除的参数键名
-        deleteType: Number, //删除请求的类型参数
         editUrl: String, //修改内容跳转的页面
         editBtnName: String, //修改按钮名字
         getListUrl: String, //请求分页数据地址
@@ -100,20 +98,17 @@ export default {
       });
     },
     //删除条目
-    deleteItem(index) {
+    deleteItem({ _id }) {
       this.$confirm(`此操作将永久删除该条目, 是否继续?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       })
         .then(() => {
-          return this.$axios.post(this.config.deleteUrl, {
-            id: this.list[index]._id,
-            [this.config.deleteKey]: this.config.deleteType
-          });
+          return this.$axios.delete(`${this.config.deleteUrl}/${_id}`);
         })
         .then(res => {
-          if (res.data.code !== 0) return;
+          if (res.data.code) return;
           this.$message({
             type: "success",
             message: "删除成功!"

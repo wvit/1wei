@@ -10,18 +10,13 @@
       <li class="clearfix">
         <span>博客类型：</span>
         <div>
-          <el-select
-            v-model="blogData.model"
-            @change="modelChange"
-            placeholder="请选择博客类型"
-            class="w300"
-          >
+          <el-select v-model="blogData.type" placeholder="请选择博客类型" class="w300">
             <el-option label="工作" :value="1"></el-option>
             <el-option label="生活" :value="2"></el-option>
           </el-select>
         </div>
       </li>
-      <li class="clearfix" v-show="blogData.model===1">
+      <li class="clearfix" v-show="blogData.type===1">
         <span>博客标签：</span>
         <div>
           <el-checkbox-group v-model="blogData.tags">
@@ -34,7 +29,7 @@
           </el-checkbox-group>
         </div>
       </li>
-      <li class="clearfix" v-show="blogData.model===1">
+      <li class="clearfix" v-show="blogData.type===1">
         <span>添加标签：</span>
         <div>
           <el-input v-model="tagData.name" placeholder="请输入标签名" class="w300"></el-input>
@@ -44,7 +39,7 @@
       <li class="clearfix">
         <span>博客内容：</span>
         <div class="content-wrap">
-          <el-input type="textarea" v-model="tagData.content" placeholder="请输入博客内容" :rows="10"></el-input>
+          <el-input type="textarea" v-model="blogData.content" placeholder="请输入博客内容" :rows="10"></el-input>
           <div>
             <el-upload class="upload-file" action="/file/upload" multiple :file-list="fileList">
               <el-button type="primary">点击上传文件</el-button>
@@ -72,7 +67,7 @@ export default {
       blogData: {
         title: "",
         content: "",
-        model: 1, //1工作 2生活
+        type: 1, //1工作 2生活
         tags: [] //标签
       },
       editOnOff: false //是否是修改
@@ -88,30 +83,23 @@ export default {
       for (let key in this.blogData) {
         this.blogData[key] = editData[key];
       }
-      this.blogData.type = 1;
       this.blogData.id = editData._id;
     }
   },
   methods: {
-    //博客类型改变
-    modelChange(model) {
-      this.tagData.status = model;
-    },
     //添加新闻
     addBlog() {
       const utils = this.$utils;
       if (!utils.judgeNull(this.blogData.title)) {
         utils.showToast({ text: "请输入标题" });
-      } else if (this.blogData.model === 1 && this.blogData.tags.length === 0) {
+      } else if (this.blogData.type === 1 && this.blogData.tags.length === 0) {
         utils.showToast({ text: "请至少勾选一个标签" });
-      } else if (this.blogData.model === 2 && this.blogData.classId === "") {
-        utils.showToast({ text: "请选择一个分类" });
       } else if (!utils.judgeNull(this.blogData.content)) {
         utils.showToast({ text: "请输入博客内容" });
       } else {
-        this.$axios.post("/admin/blog", this.blogData).then(res => {
-          this.$utils.showToast({ text: res.data.data });
+        this.$axios.post("/admin/blog/add", this.blogData).then(res => {
           if (res.data.code !== 0) return;
+          utils.showToast({ text: res.data.msg });
           this.blogData = this.$utils.store.get("defaultData");
           if (this.editOnOff) this.$router.replace("/home/blog/list");
         });
@@ -120,7 +108,6 @@ export default {
     //获取标签
     getTags() {
       this.$axios.get(`/admin/tag/list`).then(res => {
-        console.log(res.data);
         if (!res.data.code) this.tagList = res.data.data;
       });
     },
@@ -131,7 +118,7 @@ export default {
       } else {
         this.$axios.post("/admin/tag/add", this.tagData).then(res => {
           if (res.data.code) return;
-          this.$utils.showToast({ text: "添加成功" });
+          this.$utils.showToast({ text: res.data.msg });
           this.tagData.name = "";
           this.getTags();
         });
