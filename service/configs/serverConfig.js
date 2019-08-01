@@ -1,5 +1,5 @@
 const interfaces = require('os').networkInterfaces();
-const production = true;
+const production =true;
 
 module.exports = {
   dbs: 'mongodb://localhost/1weiDB',
@@ -19,7 +19,7 @@ module.exports = {
     },
     //端口
     get port() {
-      return 2001
+      return 1999
     },
     //远程地址
     get address() {
