@@ -31,6 +31,25 @@ const axios = Axios.create({
 //   console.log(res.data.data)
 // })
 
-axios.delete('/admin/blog/delete').then(res => {
-  console.log(res.data)
+// Axios.get('https://1wei.cc:1999/admin/getBlogs?pageSize=10&key=&page=1').then(res => {
+//   res.data.data.list.forEach(item => {
+//     axios.post('/admin/blog/add', {
+//       title: item.title,
+//       tags: item.tags,
+//       type: item.model,
+//       content: item.content
+//     }).then(res => {
+//       console.log(res.data.msg)
+//     })
+//   })
+// })
+
+Axios.get('https://1wei.cc:1999/admin/getTags?status=1').then(res => {
+  res.data.data.forEach(item => {
+    axios.post('/admin/tag/add', {
+      name:item.tag
+    }).then(res => {
+      console.log(res.data.msg)
+    })
+  })
 })
