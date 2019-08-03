@@ -3,15 +3,18 @@ import { View } from '@tarojs/components'
 import { req } from '../../utils/utils'
 import { AtButton } from 'taro-ui'
 import TabBer from '../../components/tabBer/tabBer'
+import Title from '../../components/title/title'
 import './user.css'
 
 export default class User extends Component {
   config = {
-    navigationBarTitleText: '用户中心'
+    navigationStyle: 'custom',
   }
+
   render() {
     return (
       <View className='pd-lr30'>
+        <Title title='用户中心' />
         <AtButton
           type='primary'
           className='mt30'

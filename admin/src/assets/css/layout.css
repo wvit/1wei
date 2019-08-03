@@ -1,0 +1,364 @@
+body,
+div,
+dl,
+dt,
+h1,
+h2,
+h3,
+ul,
+ol,
+li,
+p,
+form,
+input,
+textarea,
+cite,
+span,
+strong {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Microsoft YaHei', 'Arial', 'Helvetica', 'sans-serif';
+  font-size: 12px;
+  color: #333;
+  min-width: 1300px;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul,
+ol {
+  list-style: none outside none;
+}
+
+legend {
+  display: none;
+}
+
+fieldset,
+img {
+  border: none;
+  vertical-align: middle;
+}
+
+input,
+button,
+select,
+textarea {
+  outline: none;
+  font-family: 'Microsoft YaHei', 'Arial', 'Helvetica', 'sans-serif';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+img {
+  max-width: 100%;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.fr {
+  float: right;
+
+}
+
+.fl {
+  float: left;
+}
+
+.w1200 {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.input-error {
+  border: 1px solid rgba(255, 0, 0, 0.2) !important;
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.text-overflow2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+a {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+em {
+  font-style: normal;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 15px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.mt35 {
+  margin-top: 35px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mt50 {
+  margin-top: 50px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.color-red {
+  color: red !important;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w200 {
+  width: 200px;
+}
+
+.w300 {
+  width: 300px;
+}
+
+.w400 {
+  width: 400px;
+}
+
+.w500 {
+  width: 1000px;
+}
+
+.w600 {
+  width: 600px;
+}
+
+.w700 {
+  width: 700px;
+}
+
+.w800 {
+  width: 800px;
+}
+
+.w900 {
+  width: 900px;
+}
+
+.w1000 {
+  width: 1000px;
+}
+
+.btn-wrap {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  width: 300px;
+  margin: 30px auto;
+}
+
+.agrms-list {
+  width: 900px;
+  margin: 30px auto;
+}
+
+.agrms-list>li {
+  margin-top: 15px;
+}
+
+.agrms-list>li>span {
+  float: left;
+  width: 150px;
+  text-align: center;
+
+}
+
+.agrms-list>li>div {
+  width: 500px;
+  float: left;
+}
+
+.upload-img {
+  width: 100%;
+}
+
+.agrms-list .upload {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  overflow: hidden;
+}
+
+.agrms-list .upload1 {
+  width: 100px;
+  height: 100px;
+}
+
+.hint-text {
+  float: left;
+  margin-left: 30px;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 2px;
+}
+
+.agrms-list .quill-editor-wrap {
+  width: 750px;
+}
+
+/* 重置外部组件样式 */
+.area-select-wrap {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.area-select {
+  height: 40px;
+}
+
+.area-select-wrap .area-select {
+  margin-left: 0 !important;
+  margin-right: 5px;
+}
+
+.area-select .area-selected-trigger {
+  padding: 0 20px;
+  line-height: 40px;
+}
+
+.area-selectable-list .area-select-option.selected {
+  color: #3296e6;
+}
+
+.progressTabs {
+  display: block;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.progressTabs .el-radio-button__inner {
+  width: 150px;
+  line-height: 40px;
+  padding: 0;
+  font-size: 16px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.el-radio-button:last-child .el-radio-button__inner {
+  border-radius: 0 6px 6px 0;
+}
+
+.el-radio-button:first-child .el-radio-button__inner {
+  border-radius: 6px 0 0 6px;
+}
+
+.el-upload {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+}
+
+.el-upload i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+
+.el-upload--picture-card {
+  border: none;
+}
+
+.el-upload-list--picture-card,
+.el-upload-list--picture-card .el-upload-list__item {
+  width: 100%;
+  height: 100%;
+}
+
+.el-upload__tip {
+  margin-top: 0;
+}
+
+.ql-editor {
+  min-height: 200px;
+}
+
+.el-checkbox-group {
+  width: 100%;
+}
+
+.ql-snow .ql-picker {
+  line-height: 24px;
+}

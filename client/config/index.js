@@ -57,9 +57,7 @@ const config = {
         },
         pxtransform: {
           enable: true,
-          config: {
-
-          }
+          config: {}
         },
         url: {
           enable: true,
@@ -113,6 +111,6 @@ module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
-  config.defineConstants.reqAddress = '"https://1wei.cc"'
+  config.defineConstants.reqAddress = '"https://1wei.cc:1999"'
   return merge({}, config, require('./prod'))
 }

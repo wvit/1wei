@@ -35,12 +35,20 @@ const req = {
   },
   //get请求
   get(url) {
+    Taro.showLoading({
+      title: '加载中...'
+    })
     return Taro.request({
       url: `${reqAddress}${url}`,
       header: {
         "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
       },
       method: 'GET'
+    }).then(res => {
+      Taro.hideLoading()
+      return new Promise(resolve => {
+        resolve(res)
+      })
     })
   }
 }

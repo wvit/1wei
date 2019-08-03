@@ -1,5 +1,6 @@
 const interfaces = require('os').networkInterfaces();
-const production =true;
+
+const production = process.env.NODE_ENV === 'production' ? true : false;
 
 module.exports = {
   dbs: 'mongodb://localhost/1weiDB',

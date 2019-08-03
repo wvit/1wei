@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema, model } = mongoose;
 
-const userSchema = new Schema({
-  __v: {
-    type: Number,
-    select: false,
-  },
+const user = new Schema({
   //昵称
   nickname: {
     type: String,
@@ -26,4 +22,4 @@ const userSchema = new Schema({
   }
 });
 
-module.exports = model('User', userSchema);
+module.exports = model('user', user);

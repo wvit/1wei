@@ -1,0 +1,21 @@
+.title-wrap {
+  text-align: center;
+  color: #409eff;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.title {
+  height: 90px;
+}
+
+.title-text {
+  position: absolute;
+  left: 50%;
+  line-height: 90px;
+  transform: translateX(-50%);
+  font-size: 36px;
+}
