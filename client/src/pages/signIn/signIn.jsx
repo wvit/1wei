@@ -9,8 +9,8 @@ export default class SignIn extends Component {
     navigationBarTitleText: '登录'
   }
   constructor(props) {
-    super(props)
-    const { nickname = '', password = '' } = Taro.getStorageSync('signInData')
+    super(props);
+    const { nickname = '', password = '' } = Taro.getStorageSync('signInData');
     this.state = {
       reqLoading: false,//请求加载icon
       signIn: {
@@ -53,11 +53,11 @@ export default class SignIn extends Component {
   }
   //输入改变
   inputChange(key, value) {
-    const signIn = this.state.signIn
-    signIn[key] = value
+    const signIn = this.state.signIn;
+    signIn[key] = value;
     this.setState({
       signIn
-    })
+    });
   }
   //登录
   signIn() {
@@ -67,18 +67,18 @@ export default class SignIn extends Component {
     } else if (!judgeNull(password)) {
       showToast({ title: '请输入密码' })
     } else {
-      this.setState({ reqLoading: true })
+      this.setState({ reqLoading: true });
       req.post('/app/user/signIn', this.state.signIn).then(res => {
         return showToast({
           title: res.data.msg,
           data: res.data
         })
       }).then(data => {
-        this.setState({ reqLoading: false })
-        if (data.code !== 0) return
-        Taro.setStorageSync('signInData', { nickname, password })
-        Taro.setStorageSync('jwt', data.data)
-        Taro.navigateTo({ url: '/pages/user/user' })
+        this.setState({ reqLoading: false });
+        if (data.code !== 0) return;
+        Taro.setStorageSync('signInData', { nickname, password });
+        Taro.setStorageSync('jwt', data.data);
+        Taro.navigateTo({ url: '/pages/user/user' });
       })
     }
   }

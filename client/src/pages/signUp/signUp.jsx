@@ -9,7 +9,7 @@ export default class signUp extends Component {
     navigationBarTitleText: '注册'
   }
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       reqLoading: false,//请求加载icon
       inputType: 'password',//密码输入框类型
@@ -27,7 +27,7 @@ export default class signUp extends Component {
     const {
       reqLoading, inputType, timerBtnText, timerBtnOnOff,
       signUp: { nickname, password, email, code }
-    } = this.state
+    } = this.state;
     return (
       <View className='pd-lr30'>
         <AtInput
@@ -94,7 +94,7 @@ export default class signUp extends Component {
   watchPassword (inputType) {
     this.setState({
       inputType: inputType === 'text' ? 'password' : 'text'
-    })
+    });
   }
   //发送验证码
   sendCode () {
@@ -130,20 +130,20 @@ export default class signUp extends Component {
     this.verify().then(result => {
       if (!result) return;
       if (this.state.signUp.code.length < 6) {
-        showToast({ title: '请检查验证码' })
+        showToast({ title: '请检查验证码' });
       } else {
-        this.setState({ reqLoading: true })
+        this.setState({ reqLoading: true });
         req.post('/app/user/signUp', this.state.signUp).then(res => {
           showToast({
             title: res.data.msg,
             data: { code: res.data.code }
           })
             .then(data => {
-              this.setState({ reqLoading: false })
-              if (data.code !== 0) return
-              const { nickname, password } = this.state.signUp
-              Taro.setStorageSync('signInData', { nickname, password })
-              Taro.navigateTo({ url: '/pages/signIn/signIn' })
+              this.setState({ reqLoading: false });
+              if (data.code !== 0) return;
+              const { nickname, password } = this.state.signUp;
+              Taro.setStorageSync('signInData', { nickname, password });
+              Taro.navigateTo({ url: '/pages/signIn/signIn' });
             })
         })
       }
@@ -152,15 +152,15 @@ export default class signUp extends Component {
   //验证数据
   verify () {
     return new Promise(resolve => {
-      const { nickname, password, email } = this.state.signUp
+      const { nickname, password, email } = this.state.signUp;
       if (!judgeNull(nickname)) {
-        showToast({ title: '请输入昵称' })
+        showToast({ title: '请输入昵称' });
       } else if (!judgeNull(password)) {
-        showToast({ title: '请输入密码' })
+        showToast({ title: '请输入密码' });
       } else if (!judgeEmail(email)) {
-        showToast({ title: '邮箱地址不正确' })
+        showToast({ title: '邮箱地址不正确' });
       } else {
-        resolve(true)
+        resolve(true);
       }
     })
   }

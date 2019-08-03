@@ -10,8 +10,7 @@ class Blog {
       content: { type: 'string', required: true },
       type: { type: 'number', required: true },
       tags: { type: 'array', required: true },
-      intro: { type: 'string', required: true },
-      cover: { type: 'string', required: true }
+      intro: { type: 'string', required: true }
     });
     const reqData = ctx.request.body;
     const resData = {

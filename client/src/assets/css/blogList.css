@@ -5,7 +5,7 @@
 .item {
   background: #fff;
   padding: 30px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .item-title {
@@ -41,4 +41,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+}
+
+.item-cover{
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
 }

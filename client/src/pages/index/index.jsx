@@ -6,8 +6,8 @@ import { req } from '../../utils/utils'
 import { AtDrawer, AtIcon } from 'taro-ui'
 import './index.css'
 
-let reqOnOff = true //是否允许请求
-let questionList = [] // 热门列表
+let reqOnOff = true; //是否允许请求
+let questionList = []; // 热门列表
 
 export default class Index extends Component {
   config = {
@@ -15,7 +15,7 @@ export default class Index extends Component {
     navigationStyle: 'custom'
   }
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       menuOnOff: false,// 侧边栏开关
       questionList,// 热门列表
@@ -23,7 +23,7 @@ export default class Index extends Component {
     }
   }
   render() {
-    const { menuOnOff, questionList, statusBarHeight } = this.state
+    const { menuOnOff, questionList, statusBarHeight } = this.state;
     return (
       <View className='index-wrap'>
         <Title title='知乎热门'>
@@ -35,9 +35,17 @@ export default class Index extends Component {
           mask
         >
           <View style={`height:${statusBarHeight}px`}></View>
-          <Navigator url='/pages/webView/webView'>1wei.cc</Navigator>
-          <View>他的知乎</View>
-          <View>他的网易云</View>
+          {/* <Navigator url='/pages/webView/webView'>1wei.cc</Navigator> */}
+          <View className="menu-list">
+            <View className="menu-item icon icon-zhihu clearfix">
+              他的知乎
+               <AtIcon value='chevron-right'></AtIcon>
+            </View>
+            <View className="menu-item icon icon-music clearfix">
+              他的网易云
+              <AtIcon value='chevron-right'></AtIcon>
+            </View>
+          </View>
         </AtDrawer>
         <View className='zhihu'>
           {
@@ -67,21 +75,21 @@ export default class Index extends Component {
   }
   //组件挂载完毕
   componentWillMount() {
-    if (!reqOnOff) return
+    if (!reqOnOff) return;
     req.get(`/app/zhihu/hot`).then(res => {
       console.log(res.data)
       if (!res.data.code) {
         questionList = res.data.data.data
         this.setState({
           questionList
-        })
-        reqOnOff = false
+        });
+        reqOnOff = false;
       }
     })
   }
   //菜单显示隐藏
   menuShowHide() {
-    const menuOnOff = !this.state.menuOnOff
-    this.setState({ menuOnOff })
+    const menuOnOff = !this.state.menuOnOff;
+    this.setState({ menuOnOff });
   }
 }

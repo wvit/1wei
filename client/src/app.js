@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import store from './redux'
+import configStore from './redux'
 import Index from './pages/index/index'
 import 'taro-ui/dist/style/components/input.scss'
 import 'taro-ui/dist/style/components/button.scss'
@@ -12,6 +12,8 @@ import "taro-ui/dist/style/components/badge.scss"
 import './assets/iconfont/iconfont.css'
 import './app.css'
 
+const store = configStore();
+
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -21,8 +23,8 @@ import './app.css'
 class App extends Component {
   config = {
     pages: [
-      'pages/learn/learn', //学习
       'pages/index/index', //首页
+      'pages/learn/learn', //学习
       'pages/user/user', //用户
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp', //注册
@@ -43,7 +45,7 @@ class App extends Component {
   // 请勿修改此函数
   render() {
     return (
-      <Provider store={store()}>
+      <Provider store={store}>
         < Index />
       </Provider>
     )

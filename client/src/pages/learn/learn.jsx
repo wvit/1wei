@@ -1,36 +1,42 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { req } from '../../utils/utils'
+import { connect } from '@tarojs/redux'
 import TabBer from '../../components/tabBer/tabBer'
 import Title from '../../components/title/title'
-import './learn.css'
+import '../../assets/css/blogList.css'
 
-let reqOnOff = true
-let blogList = [] // 博客列表
+let reqOnOff = true;
+let blogList = [];// 博客列表
+let page = 0; // 列表分页
+let listScrollTop = 0; //ScrollView的scrollTop
+
+@connect(({ appData }) => ({
+  appData
+}))
 
 export default class Learn extends Component {
   config = {
     navigationStyle: 'custom',
   }
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      scrollHeight: 0,// 页面被卷去的高
-      menuOnOff: false,// 侧边栏开关
-      blogList// 热门列表
-    }
+      blogList// 博客列表
+    };
   }
   render() {
-    const { blogList, scrollHeight } = this.state
+    const { blogList } = this.state;
+    const { appData } = this.props;
     return (
       <View className='blog-wrap'>
-        <View className="title-height">
-          <Title title='学习日志' />
-        </View>
+        <Title title='学习日志' />
         <ScrollView
-          className="blog-list"
+          class="blog-list"
+          onScroll={this.listScroll}
           scrollY={true}
-          style={`height:calc(100vh - ${scrollHeight}px)`}
+          scrollTop={listScrollTop}
+          style={`height:calc(100vh - ${appData.scrollHeight}px)`}
           onScrollToLower={this.getPageData.bind(this)}>
           {
             blogList.map((item, index) => {
@@ -46,7 +52,9 @@ export default class Learn extends Component {
                     {item.tags}
                   </View>
                   <Text className="item-intro">{item.intro}</Text>
-                  {/* <Image src={item.cover} mode="widthFix"></Image> */}
+                  {
+                    item.cover ? <Image className="item-cover" lazyLoad={true} src={item.cover} mode="widthFix"></Image> : ''
+                  }
                 </View>
               )
             })
@@ -57,28 +65,28 @@ export default class Learn extends Component {
     )
   }
   //组件挂载完毕
-  componentDidMount() {
-    const query = Taro.createSelectorQuery()
-    query.select('.title-height')
-      .boundingClientRect(rect => {
-        this.setState({
-          scrollHeight: rect.height + 56
-        })
-      }).exec()
-    if (!reqOnOff) return
-    req.get(`/app/blog/list?page=1&pageSize=10&type=1`).then(res => {
-      console.log(res.data)
-      if (!res.data.code) {
-        blogList = res.data.data.list
-        this.setState({
-          blogList
-        })
-        reqOnOff = false
-      }
-    })
+  componentWillMount() {
+    if (reqOnOff) this.getPageData();
   }
   // 获取分页数据
   getPageData() {
-    console.log(1)
+    page++;
+    req.get(`/app/blog/list?page=${page}&pageSize=10&type=1`).then(res => {
+      console.log(res.data)
+      if (!res.data.code) {
+        blogList = this.state.blogList;
+        res.data.data.list.forEach(item => {
+          blogList.push(item);
+        });
+        this.setState({
+          blogList
+        });
+        reqOnOff = false;
+      }
+    })
+  }
+  //列表滚动
+  listScroll(ev) {
+    listScrollTop = ev.detail.scrollTop;
   }
 }

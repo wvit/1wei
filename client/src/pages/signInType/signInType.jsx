@@ -27,6 +27,6 @@ export default class SignInType extends Component {
   }
   //微信登录
   wechatSignIn () {
-    showToast({ title: '正在考虑是否添加...' })
+    showToast({ title: '未添加...' });
   }
 }

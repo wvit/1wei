@@ -4,16 +4,16 @@ import { View } from '@tarojs/components'
 
 export default class TabBer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.routers = [
       '/pages/index/index',
       '/pages/learn/learn',
       '/pages/life/life',
       '/pages/user/user'
-    ]
+    ];
     this.state = {
       current: props.current || 0
-    }
+    };
   }
   render () {
     return (
@@ -37,7 +37,7 @@ export default class TabBer extends Component {
       Taro.redirectTo({ url: this.routers[current] });
       this.setState({
         current
-      })
+      });
     }
   }
 }
