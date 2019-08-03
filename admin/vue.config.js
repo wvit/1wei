@@ -1,5 +1,5 @@
 const interfaces = require('os').networkInterfaces();
-const production = false;
+const production = true;
 let ip = '';
 
 //获取本机ip

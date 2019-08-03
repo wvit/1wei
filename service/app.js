@@ -44,7 +44,7 @@ app.use((ctx, next) => {
 app.use(cors());
 app.use(bodyParser());
 app.use(parameter(app));
-app.use(static(path.join(__dirname, './static')));
+app.use(static(path.join(__dirname, './statics')));
 routing(app);
 
 if (production) {
