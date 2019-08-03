@@ -50,7 +50,11 @@ export default class Life extends Component {
                       {item.addTime}
                     </Text>
                   </View>
-                  <Text className="item-intro">{item.intro}</Text>
+                  <Text
+                    className="item-intro"
+                    style="-webkit-box-orient: vertical;">
+                    {item.intro}
+                  </Text>
                   {
                     item.cover ? <Image className="item-cover" lazyLoad={true} src={item.cover} mode="widthFix"></Image> : ''
                   }
