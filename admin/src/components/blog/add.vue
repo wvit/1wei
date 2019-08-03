@@ -68,7 +68,9 @@ export default {
         title: "",
         content: "",
         type: 1, //1工作 2生活
-        tags: [] //标签
+        tags: [], //标签
+        intro: "", // 前言
+        cover: "" // 封面
       },
       editOnOff: false //是否是修改
     };
@@ -83,7 +85,7 @@ export default {
       for (let key in this.blogData) {
         this.blogData[key] = editData[key];
       }
-      this.blogData.id = editData._id;
+      this.blogData._id = editData._id;
     }
   },
   methods: {
@@ -97,13 +99,27 @@ export default {
       } else if (!utils.judgeNull(this.blogData.content)) {
         utils.showToast({ text: "请输入博客内容" });
       } else {
-        this.$axios.post("/admin/blog/add", this.blogData).then(res => {
-          if (res.data.code !== 0) return;
+        const editOnOff = this.editOnOff;
+        const content = this.getDom(this.blogData.content);
+        const img = content.querySelector("img");
+        this.blogData.intro = content.innerText;
+        this.blogData.cover = img ? img.src : "";
+        this.$axios[editOnOff ? "put" : "post"](
+          `/admin/blog/${editOnOff ? "edit" : "add"}`,
+          this.blogData
+        ).then(res => {
+          if (res.data.code) return;
           utils.showToast({ text: res.data.msg });
           this.blogData = this.$utils.store.get("defaultData");
-          if (this.editOnOff) this.$router.replace("/home/blog/list");
+          if (editOnOff) this.$router.replace("/home/blog/list");
         });
       }
+    },
+    // 获取html节点
+    getDom(content) {
+      const wrap = document.createElement("div");
+      wrap.innerHTML = content;
+      return wrap;
     },
     //获取标签
     getTags() {

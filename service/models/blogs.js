@@ -6,6 +6,8 @@ const blog = new Schema({
   addTime: String, //发布时间
   type: Number, //类型 1工作 2生活
   tags: Array, //标签
+  intro: String, // 前言
+  cover: String, // 封面
   isShow: {
     type: Boolean,
     default: true, //是否显示

@@ -21,7 +21,8 @@ export default class Title extends Component {
             <Text className="title-text">{title}</Text>
           </View>
         </View>
-        <View style={`height:${45 + statusBarHeight}px`}></View>
+        <View style={`height:${statusBarHeight}px`}></View>
+        <View className="title-padding-box" ></View>
       </View>
     )
   }

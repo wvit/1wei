@@ -47,15 +47,27 @@
   padding: 15px 0 10px;
 }
 
-.at-badge__num{
-  top:-5px;
-  right:-20px;
+.at-badge__num {
+  top: -5px;
+  right: -20px;
 }
 
 /* 公共样式 */
 
 .pd-lr30 {
   padding: 0 30px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
 }
 
 .mt30 {

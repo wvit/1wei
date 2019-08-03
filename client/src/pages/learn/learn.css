@@ -1,0 +1,44 @@
+.blog-wrap {
+  background: #f2f2f2;
+}
+
+.item {
+  background: #fff;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.item-title {
+  font-size: 32px;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.add-time {
+  float: left;
+  font-size: 24px;
+  color: #999;
+}
+
+.item .icon::before {
+  color: #999;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.item-tag {
+  font-size: 24px;
+  color: #999;
+}
+
+.item-intro {
+  margin-top: 15px;
+  font-size: 30px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
