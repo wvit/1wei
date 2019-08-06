@@ -14,7 +14,7 @@ export default class User extends Component {
   render() {
     return (
       <View className='pd-lr30'>
-        <Title title='用户中心' />
+        <Title title='用户中心' back={false} />
         <AtButton
           type='primary'
           className='mt30'

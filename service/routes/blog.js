@@ -1,5 +1,5 @@
 const Router = require("koa-router");
-const { add, list, del, edit } = require('../controllers/blog');
+const { add, list, del, edit, detail } = require('../controllers/blog');
 
 const router = new Router();
 
@@ -17,5 +17,8 @@ router.get("/admin/blog/list", list);
 
 //前端获取博客
 router.get("/app/blog/list", list);
+
+//前端获取博客详情
+router.get("/app/blog/detail/:_id", detail);
 
 module.exports = router;

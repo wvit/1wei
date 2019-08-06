@@ -1,0 +1,56 @@
+.detail {
+  padding: 0 30px;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.info {
+  margin-top: 20px;
+}
+
+.add-time {
+  float: left;
+  line-height: 40px;
+  font-size: 26px;
+  color: #999;
+}
+
+.add-time::before {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.tags {
+  font-size: 26px;
+  line-height: 40px;
+  color: #999;
+  margin-top: 20px;
+}
+
+.tags::before {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.content {
+  font-size: 30px;
+  margin-top: 20px;
+  line-height: 50px;
+}
+
+.content img {
+  text-align: center;
+}
+
+.ql-indent-1 {
+  text-indent: 60px;
+}
+
+.ql-align-center {
+  text-align: center;
+  color: #ccc;
+}

@@ -21,8 +21,7 @@ class Tag {
   //标签列表
   async list(ctx) {
     const resData = {
-      code: statusCode.success,
-      msg: '获取成功',
+      code: statusCode.success
     };
     resData.data = await Tags.find();
     ctx.body = resData;

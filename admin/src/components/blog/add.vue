@@ -102,8 +102,10 @@ export default {
         const editOnOff = this.editOnOff;
         const content = this.getDom(this.blogData.content);
         const img = content.querySelector("img");
-        this.blogData.intro = content.innerText;
+        const text = content.innerText;
+        this.blogData.intro = text.replace(/\r?\n/g, "").slice(0, 100);
         this.blogData.cover = img ? img.src : "";
+        this.blogData.content = content.innerHTML;
         this.$axios[editOnOff ? "put" : "post"](
           `/admin/blog/${editOnOff ? "edit" : "add"}`,
           this.blogData
@@ -119,6 +121,10 @@ export default {
     getDom(content) {
       const wrap = document.createElement("div");
       wrap.innerHTML = content;
+      const nodes = wrap.querySelectorAll("*");
+      nodes.forEach(item => {
+        item.style.maxWidth = `100%`;
+      });
       return wrap;
     },
     //获取标签

@@ -82,6 +82,16 @@ class Blog {
     resData.data = await Blogs.updateOne({ _id: reqData._id }, reqData);
     ctx.body = resData;
   }
+  // 博客详情
+  async detail(ctx) {
+    const _id = ctx.params._id;
+    const resData = {
+      code: statusCode.success
+    };
+    resData.data = await Blogs.findOne({ _id });
+    Blogs.updateOne({ _id }, { pageView: resData.data.pageView + 1 });
+    ctx.body = resData;
+  }
 }
 
 module.exports = new Blog();

@@ -44,12 +44,6 @@ const axios = Axios.create({
 //   })
 // })
 
-Axios.get('https://1wei.cc:1999/admin/getTags?status=1').then(res => {
-  res.data.data.forEach(item => {
-    axios.post('/admin/tag/add', {
-      name:item.tag
-    }).then(res => {
-      console.log(res.data.msg)
-    })
-  })
+axios.get('/app/blog/detail/5d43a65e61dbaa1a18011191').then(res => {
+  console.log(res.data)
 })

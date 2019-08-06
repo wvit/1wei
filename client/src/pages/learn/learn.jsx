@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, ScrollView } from '@tarojs/components'
+import { View, Text, Image, ScrollView, Navigator } from '@tarojs/components'
 import { req } from '../../utils/utils'
 import { connect } from '@tarojs/redux'
 import TabBer from '../../components/tabBer/tabBer'
@@ -30,7 +30,7 @@ export default class Learn extends Component {
     const { appData } = this.props;
     return (
       <View className='blog-wrap'>
-        <Title title='学习日志' />
+        <Title title='学习日志' back={false} />
         <ScrollView
           class="blog-list"
           onScroll={this.listScroll}
@@ -41,7 +41,7 @@ export default class Learn extends Component {
           {
             blogList.map((item, index) => {
               return (
-                <View className="item" key={index}>
+                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={index}>
                   <Text className="item-title">{item.title}</Text>
                   <View className='clearfix mt15'>
                     <Text className="add-time icon icon-shijian">
@@ -59,7 +59,7 @@ export default class Learn extends Component {
                   {
                     item.cover ? <Image className="item-cover" lazyLoad={true} src={item.cover} mode="widthFix"></Image> : ''
                   }
-                </View>
+                </Navigator>
               )
             })
           }

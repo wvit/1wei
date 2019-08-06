@@ -25,6 +25,7 @@ class App extends Component {
     pages: [
       'pages/index/index', //首页
       'pages/learn/learn', //学习
+      'pages/blogDetail/blogDetail', //博客详情
       'pages/user/user', //用户
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp', //注册

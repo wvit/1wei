@@ -26,7 +26,7 @@ export default class Index extends Component {
     const { menuOnOff, questionList, statusBarHeight } = this.state;
     return (
       <View className='index-wrap'>
-        <Title title='知乎热门'>
+        <Title title='知乎热门' back={false}>
           <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
         </Title>
         <AtDrawer
@@ -35,7 +35,6 @@ export default class Index extends Component {
           mask
         >
           <View style={`height:${statusBarHeight}px`}></View>
-          {/* <Navigator url='/pages/webView/webView'>1wei.cc</Navigator> */}
           <View className="menu-list">
             <View className="menu-item icon icon-zhihu clearfix">
               他的知乎
