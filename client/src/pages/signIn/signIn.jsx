@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Navigator } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 import { judgeNull, req, showToast } from '../../utils/utils'
+import Title from '../../components/title/title'
 import './signIn.css'
 
 export default class SignIn extends Component {
@@ -23,6 +24,7 @@ export default class SignIn extends Component {
     const { reqLoading, signIn: { nickname, password } } = this.state;
     return (
       <View className='pd-lr30'>
+        <Title title='登录' />
         <AtInput
           clear
           type='text'

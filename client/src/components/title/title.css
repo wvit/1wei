@@ -9,10 +9,12 @@
   z-index: 99;
 }
 
-.title,
-.title-padding-box {
+.title-container .title,
+.title-container .title-padding-box {
+  margin-top: 0;
   height: 90px;
   position: relative;
+  font-weight: normal;
 }
 
 .title-text {
@@ -28,4 +30,9 @@
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
+}
+
+.title-container .at-icon-chevron-left::before {
+  font-size: 56px;
+  line-height: 90px;
 }

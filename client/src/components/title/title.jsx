@@ -32,7 +32,7 @@ export default class Title extends Component {
             {
               back ?
                 <View className="back" onClick={() => Taro.navigateBack({ delta: 1 })}>
-                  <AtIcon value="chevron-left"/>
+                  <AtIcon value="chevron-left" />
                 </View> : ''
             }
             <Text className="title-text">{title}</Text>

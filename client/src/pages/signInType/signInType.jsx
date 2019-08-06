@@ -2,12 +2,14 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import { showToast } from '../../utils/utils'
+import Title from '../../components/title/title'
 import './signInType.css'
 
 export default class SignInType extends Component {
-  render () {
+  render() {
     return (
       <View className="pd-lr30">
+        <Title title="选择登录方式" />
         <AtButton type='primary' className="wechat-signIn mt30" onClick={this.wechatSignIn}>微信登录</AtButton>
         <AtButton
           type='primary'
@@ -26,7 +28,7 @@ export default class SignInType extends Component {
     )
   }
   //微信登录
-  wechatSignIn () {
+  wechatSignIn() {
     showToast({ title: '未添加...' });
   }
 }

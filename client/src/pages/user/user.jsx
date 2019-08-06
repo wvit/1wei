@@ -22,6 +22,9 @@ export default class User extends Component {
         >
           您还未登录，去登录吧 ~
         </AtButton>
+        <View style="font-size:14px;margin-top:30px;">
+          目前未添加需要登录的特殊权限，可不必登录。
+        </View>
         <TabBer current={3} />
       </View>
     )

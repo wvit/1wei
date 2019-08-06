@@ -12,7 +12,7 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogDetail: {}// 博客详情
+      blogDetail: { tags: [] }// 博客详情
     }
   }
   render() {
@@ -30,7 +30,13 @@ export default class Index extends Component {
           {
             blogDetail.tags.length > 0 ?
               <View className="tags icon icon-tag">
-                {blogDetail.tags}
+                {
+                  blogDetail.tags.map((tagItem, tagIndex) => {
+                    return (
+                      <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
+                    )
+                  })
+                }
               </View> : ''
           }
           <View className="content">

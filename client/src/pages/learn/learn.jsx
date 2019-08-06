@@ -49,7 +49,13 @@ export default class Learn extends Component {
                     </Text>
                   </View>
                   <View className='item-tag mt15 icon icon-tag'>
-                    {item.tags}
+                    {
+                      item.tags.map((tagItem, tagIndex) => {
+                        return (
+                          <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
+                        )
+                      })
+                    }
                   </View>
                   <Text
                     className="item-intro"

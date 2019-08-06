@@ -37,6 +37,11 @@
   color: #999;
 }
 
+.tag-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .item-intro {
   margin-top: 15px;
   font-size: 30px;
