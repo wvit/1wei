@@ -44,6 +44,9 @@ const axios = Axios.create({
 //   })
 // })
 
+// Axios.get('https://1wei.cc:1999/ip').then(res => {
+//   console.log(res.data)
+// })
 axios.get('/ip').then(res => {
   console.log(res.data)
 })
