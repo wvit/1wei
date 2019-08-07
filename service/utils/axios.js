@@ -44,6 +44,6 @@ const axios = Axios.create({
 //   })
 // })
 
-axios.get('/app/blog/detail/5d43a65e61dbaa1a18011191').then(res => {
+axios.get('/ip').then(res => {
   console.log(res.data)
 })
