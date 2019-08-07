@@ -9,7 +9,7 @@ class Ip {
     ip = ip.split(':')[ip.split(':').length - 1];
     const resData = {
       code: statusCode.success,
-      ip: [req.headers['x-forwarded-for'], req.connection.remoteAddress],
+      ip: [req.headers['x-forwarded-for'], req.headers['x-real-ip'], req.connection.remoteAddress],
     }
     ctx.body = resData;
   }
