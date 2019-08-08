@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { change } from '../../redux/actions/appData'
-import { AtIcon } from 'taro-ui'
+import '../../assets/iconfont/iconfont.css'
 import './title.css'
 
 @connect(({ appData }) => ({
@@ -31,9 +31,10 @@ export default class Title extends Component {
             {this.props.children}
             {
               back ?
-                <View className="back" onClick={() => Taro.navigateBack({ delta: 1 })}>
-                  <AtIcon value="chevron-left" />
-                </View> : ''
+                <View
+                  className="back icon icon-Left"
+                  onClick={() => Taro.navigateBack({ delta: 1 })}
+                /> : ''
             }
             <Text className="title-text">{title}</Text>
           </View>

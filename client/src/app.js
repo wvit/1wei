@@ -24,6 +24,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index', //首页
+      'pages/signInType/signInType', //登录方式
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //介绍
       'pages/learn/learn', //学习
@@ -31,7 +32,6 @@ class App extends Component {
       'pages/user/user', //用户
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp', //注册
-      'pages/signInType/signInType', //登录方式
       'pages/life/life', //生活
       'pages/webView/webView'
     ],
@@ -39,6 +39,7 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '1wei',
       navigationBarTextStyle: 'black',
+      navigationStyle: 'custom',
     },
     navigateToMiniProgramAppIdList: [
       "wxeb39b10e39bf6b54"

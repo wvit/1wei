@@ -6,9 +6,6 @@ import Title from '../../components/title/title'
 import './signIn.css'
 
 export default class SignIn extends Component {
-  config = {
-    navigationBarTitleText: '登录'
-  }
   constructor(props) {
     super(props);
     const { nickname = '', password = '' } = Taro.getStorageSync('signInData');

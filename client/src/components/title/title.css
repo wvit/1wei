@@ -30,9 +30,7 @@
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
-}
-
-.title-container .at-icon-chevron-left::before {
-  font-size: 56px;
+  font-size: 40px;
   line-height: 90px;
+  font-weight: bold;
 }

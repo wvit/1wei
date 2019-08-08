@@ -16,9 +16,6 @@ let listScrollTop = 0; //ScrollView的scrollTop
 }))
 
 export default class Learn extends Component {
-  config = {
-    navigationStyle: 'custom',
-  }
   constructor(props) {
     super(props);
     this.state = {

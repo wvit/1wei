@@ -5,10 +5,6 @@ import { req } from '../../utils/utils'
 import './blogDetail.css'
 
 export default class Index extends Component {
-  config = {
-    // navigationBarTitleText: '1wei',
-    navigationStyle: 'custom'
-  }
   constructor(props) {
     super(props);
     this.state = {

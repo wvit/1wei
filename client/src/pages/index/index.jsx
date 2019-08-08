@@ -12,7 +12,6 @@ let questionList = []; // 热门列表
 export default class Index extends Component {
   config = {
     // navigationBarTitleText: '1wei',
-    navigationStyle: 'custom'
   }
   constructor(props) {
     super(props);

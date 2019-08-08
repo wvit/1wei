@@ -5,7 +5,7 @@ export default class Webview extends Component {
   config = {
     navigationBarTitleText: '1wei.cc'
   }
-  render () {
+  render() {
     return (
       <View className='pd-lr30'>
         <WebView src="https://1wei.cc"></WebView>

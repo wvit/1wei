@@ -7,10 +7,6 @@ import Title from '../../components/title/title'
 import './user.css'
 
 export default class User extends Component {
-  config = {
-    navigationStyle: 'custom',
-  }
-
   render() {
     return (
       <View className='pd-lr30'>

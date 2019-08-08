@@ -6,9 +6,6 @@ import Title from '../../components/title/title'
 import './signUp.css'
 
 export default class signUp extends Component {
-  config = {
-    navigationBarTitleText: '注册'
-  }
   constructor(props) {
     super(props);
     this.state = {

@@ -5,8 +5,6 @@ import { req } from '../../utils/utils'
 import './introduce.css'
 
 export default class Introduce extends Component {
-
-
   render() {
     return (
       <View>
