@@ -1,0 +1,13 @@
+.introduce-wrap {
+  padding: 0 30px;
+}
+
+.introduce-text-wrap {
+  margin-top: 30px;
+}
+
+.introduce-wrap .text {
+  display: block;
+  text-indent: 60px;
+  font-size: 30px;
+}

@@ -9,6 +9,7 @@ import "taro-ui/dist/style/components/icon.scss"
 import "taro-ui/dist/style/components/tab-bar.scss"
 import "taro-ui/dist/style/components/drawer.scss"
 import "taro-ui/dist/style/components/badge.scss"
+import "taro-ui/dist/style/components/divider.scss"
 import './assets/iconfont/iconfont.css'
 import './app.css'
 
@@ -24,9 +25,9 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index', //首页
-      'pages/signInType/signInType', //登录方式
       'pages/introduce/introduce', //介绍
-      'pages/contact/contact', //介绍
+      'pages/signInType/signInType', //登录方式
+      'pages/contact/contact', //联系
       'pages/learn/learn', //学习
       'pages/blogDetail/blogDetail', //博客详情
       'pages/user/user', //用户

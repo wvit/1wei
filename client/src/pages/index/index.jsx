@@ -43,10 +43,10 @@ export default class Index extends Component {
               他的网易云
               <AtIcon value='chevron-right'></AtIcon>
             </View>
-            <View className="menu-item icon icon-jieshao clearfix">
+            <Navigator url='/pages/introduce/introduce' className="menu-item icon icon-jieshao clearfix">
               应用介绍
               <AtIcon value='chevron-right'></AtIcon>
-            </View>
+            </Navigator>
             <Navigator url='/pages/contact/contact' className="menu-item icon icon-email clearfix">
               撩他
               <AtIcon value='chevron-right'></AtIcon>
