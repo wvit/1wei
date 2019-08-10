@@ -25,7 +25,7 @@ export default class Introduce extends Component {
           </Text>
           <AtDivider content='分割' fontColor='#3296e6' lineColor='#3296e6' />
           <Text className="text">
-            后端：框架 - koa2 ， 数据库 - mongoDB，resdis;
+            后端：框架 - koa2 ， 数据库 - mongoDB，redis;
           </Text>
           <AtDivider content='分割' fontColor='#3296e6' lineColor='#3296e6' />
           <Text className="text">

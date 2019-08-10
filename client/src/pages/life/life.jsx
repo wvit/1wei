@@ -64,7 +64,7 @@ export default class Life extends Component {
       </View>
     )
   }
-  //组件挂载完毕
+  //组件即将挂载
   componentWillMount() {
     if (reqOnOff) this.getPageData();
   }
