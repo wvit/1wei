@@ -1,23 +1,23 @@
 .skill-wrap {
-  padding: 0 0 30px 30px;
+  padding: 0 30px;
 }
 
 .echarts {
   margin-bottom: 50px;
 }
 
-#echarts1 {
+.skill-echarts1 {
   height: 600px;
 }
 
 .skill-echarts2 {
-  height: 500px;
+  height: 1000px;
 }
 
 .skill-echarts3 {
-  height: 300px;
+  height: 800px;
 }
 
 .skill-echarts4 {
-  height: 320px;
+  height: 640px;
 }

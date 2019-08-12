@@ -24,8 +24,8 @@ const store = configStore();
 class App extends Component {
   config = {
     pages: [
-      'pages/skill/skill', //首页
       'pages/index/index', //首页
+      'pages/skill/skill', //技能页面
       'pages/introduce/introduce', //介绍
       'pages/signInType/signInType', //登录方式
       'pages/contact/contact', //联系

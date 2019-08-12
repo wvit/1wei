@@ -13,7 +13,7 @@ export default class Introduce extends Component {
         <View className="introduce-text-wrap">
           <Text className="text">
             “1wei”是一个个人应用，目的是记录个人生活/学习和新技术的试验场。
-            应用可在两个平台运行，微信小程序/qq小程序（搜索“1wei”）和web平台（https://1wei.cc）。
+            应用可在两个平台运行，微信小程序（搜索“1wei”）和web平台（https://1wei.cc）。
           </Text>
           <AtDivider content='分割' fontColor='#3296e6' lineColor='#3296e6' />
           <Text className="text">

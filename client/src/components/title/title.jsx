@@ -22,10 +22,10 @@ export default class Title extends Component {
   }
   render() {
     const { statusBarHeight } = this.state;
-    const { title, back = true } = this.props;
+    const { title, back = true, fixed = true, backLeft = '15px' } = this.props;
     return (
       <View className="title-container">
-        <View className="title-wrap">
+        <View className="title-wrap" style={`position:${fixed ? 'fixed' : ''}`}>
           <View style={`height:${statusBarHeight}px;`}></View>
           <View className="clearfix title">
             {this.props.children}
@@ -33,17 +33,19 @@ export default class Title extends Component {
               back ?
                 <View
                   className="back icon icon-Left"
+                  style={`left:${backLeft}`}
                   onClick={() => Taro.navigateBack({ delta: 1 })}
                 /> : ''
             }
             <Text className="title-text">{title}</Text>
           </View>
         </View>
-        <View style={`height:${statusBarHeight}px`}></View>
-        <View className="title-padding-box" ></View>
+        <View style={`height:${statusBarHeight}px;display:${fixed ? 'block' : 'none'}`}></View>
+        <View className="title-padding-box" style={`display:${fixed ? 'block' : 'none'}`}></View>
       </View>
     )
   }
+  // 组件挂载完毕
   componentDidMount() {
     const query = Taro.createSelectorQuery().in(this.$scope);
     query.select('.title-container')

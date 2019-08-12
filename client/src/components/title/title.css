@@ -1,8 +1,10 @@
 .title-wrap {
+  background: #fff;
+}
+
+.title-wrap {
   text-align: center;
   color: #409eff;
-  background: #fff;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,9 +30,9 @@
 .back {
   position: absolute;
   top: 50%;
-  left: 20px;
   transform: translateY(-50%);
   font-size: 40px;
   line-height: 90px;
   font-weight: bold;
+  z-index: 99;
 }
