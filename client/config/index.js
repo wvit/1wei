@@ -39,12 +39,7 @@ const config = {
     reqAddress: JSON.stringify(`http://${host}:1999`)
   },
   copy: {
-    patterns: [
-      {
-        from: 'src/components/ec-canvas/echarts.js',
-        to: 'dist/components/ec-canvas/echarts.js'
-      },
-    ],
+    patterns: [],
     options: {}
   },
   weapp: {

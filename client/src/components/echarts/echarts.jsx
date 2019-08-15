@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import * as echarts from '../ec-canvas/echarts'
+import echarts from '../ec-canvas/echarts'
 
 const TARO_ENV = process.env.TARO_ENV;
 
