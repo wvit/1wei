@@ -1,0 +1,20 @@
+.upload-imgs {
+  width: 300px;
+  display: inline-block;
+  background: #67c23a;
+}
+
+.upload-imgs .at-button__text,
+.upload-imgs::before {
+  display: inline-block;
+  line-height: 80px;
+  vertical-align: top;
+}
+
+.upload-imgs::before {
+  margin-right: 10px;
+}
+
+.content {
+  margin: 30px 0;
+}

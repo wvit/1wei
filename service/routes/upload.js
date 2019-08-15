@@ -15,7 +15,10 @@ const storage = multer.diskStorage({
 })
 const file = multer({ storage });
 
-//上传
-router.post("/file/upload", file.single('file'), upload);
+//后台文件上传
+router.post("/admin/upload", file.single('file'), upload);
+
+//前台文件上传
+router.post("/app/upload", file.single('file'), upload);
 
 module.exports = router;

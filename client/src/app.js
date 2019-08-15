@@ -10,6 +10,8 @@ import "taro-ui/dist/style/components/tab-bar.scss"
 import "taro-ui/dist/style/components/drawer.scss"
 import "taro-ui/dist/style/components/badge.scss"
 import "taro-ui/dist/style/components/divider.scss"
+import "taro-ui/dist/style/components/image-picker.scss";
+import "taro-ui/dist/style/components/textarea.scss";
 import './assets/iconfont/iconfont.css'
 import './app.css'
 
@@ -24,6 +26,7 @@ const store = configStore();
 class App extends Component {
   config = {
     pages: [
+      'pages/publishLife/publishLife', //发布生活
       'pages/index/index', //首页
       'pages/skill/skill', //技能页面
       'pages/introduce/introduce', //介绍

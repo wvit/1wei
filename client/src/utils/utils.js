@@ -84,6 +84,23 @@ const showToast = ({
   })
 }
 
+// 上传文件
+const uploadFile = ({
+  filePath,
+  name = 'file',
+  url = '/app/uploadFile',
+  formData = {}
+}) => {
+  return Taro.uploadFile({
+    url: `${reqAddress}${url}`,
+    filePath,
+    name,
+    header: {
+      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+    },
+    formData
+  });
+}
 
 export {
   judgeNull,
@@ -92,5 +109,6 @@ export {
   req,
   getDate,
   showToast,
+  uploadFile
 }
 

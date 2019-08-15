@@ -52,6 +52,10 @@
   right: -20px;
 }
 
+.at-image-picker__flex-box {
+  padding:10px 0 0;
+}
+
 /* 公共样式 */
 
 .pd-lr30 {
