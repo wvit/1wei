@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import configStore from './redux'
 import Index from './pages/index/index'
@@ -24,8 +24,9 @@ const store = configStore();
 // }
 
 class App extends Component {
-  config = {
+  config: Config = {
     pages: [
+      'pages/user/user', //用户
       'pages/publishLife/publishLife', //发布生活
       'pages/index/index', //首页
       'pages/skill/skill', //技能页面
@@ -34,7 +35,6 @@ class App extends Component {
       'pages/contact/contact', //联系
       'pages/learn/learn', //学习
       'pages/blogDetail/blogDetail', //博客详情
-      'pages/user/user', //用户
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp', //注册
       'pages/life/life', //生活

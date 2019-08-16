@@ -15,11 +15,11 @@ export default class Index extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = {
-      menuOnOff: false,// 侧边栏开关
-      questionList,// 热门列表
-      statusBarHeight: Taro.getSystemInfoSync().statusBarHeight// 标题栏高
-    }
+  }
+  state = {
+    menuOnOff: false,// 侧边栏开关
+    questionList,// 热门列表
+    statusBarHeight: Taro.getSystemInfoSync().statusBarHeight// 标题栏高
   }
   render() {
     const { menuOnOff, questionList, statusBarHeight } = this.state;
@@ -59,7 +59,7 @@ export default class Index extends Component {
         </AtDrawer>
         <View className='zhihu'>
           {
-            questionList.map((item, index) => {
+            questionList.map((item: any, index: number) => {
               return (
                 <Navigator className='zhihu-hot-item clearfix' key={index} target='miniProgram' app-id='wxeb39b10e39bf6b54'>
                   <View className='heat'>

@@ -29,7 +29,6 @@ export default class Learn extends Component {
       <View className='blog-wrap'>
         <Title title='学习日志' back={false} />
         <ScrollView
-          class="blog-list"
           onScroll={this.listScroll}
           scrollY={true}
           scrollTop={listScrollTop}

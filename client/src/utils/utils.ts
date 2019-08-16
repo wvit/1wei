@@ -1,28 +1,28 @@
 import Taro from '@tarojs/taro'
 
-//判断字符串为空
-const judgeNull = string => {
+// //判断字符串为空
+const judgeNull = (string: string) => {
   for (let item of string.split('')) {
     if (item !== " ") return true
   }
 }
 
 //判断是否为电话号码
-const judgePhoneNumber = string => {
+const judgePhoneNumber = (string: string) => {
   const phoneNumberReg = /^1(3|4|5|7|8)\d{9}$/
   if (phoneNumberReg.test(string)) return true
 }
 
 //判断是否为邮箱
-const judgeEmail = string => {
+const judgeEmail = (string: string) => {
   const emailReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/
   if (emailReg.test(string)) return true
 }
 
 //request请求
-const req = {
+const req: any = {
   // post请求
-  post(url, data = {}) {
+  post(url: string, data: object = {}) {
     return Taro.request({
       url: `${reqAddress}${url}`,
       data,
@@ -34,7 +34,7 @@ const req = {
     })
   },
   //get请求
-  get(url) {
+  get(url: string) {
     Taro.showLoading({
       title: '加载中...'
     })
@@ -54,14 +54,14 @@ const req = {
 }
 
 //时间戳转日期
-const getDate = (time, onOff) => {
-  function judge(number) {
-    return date[number]() < 10 ? `0${date[number]()}` : date[number]()
+const getDate = (time: number, onOff?: boolean) => {
+  function judge(key: string) {
+    return date[key]() < 10 ? `0${date[key]()}` : date[key]()
   }
-  const date = new Date(time)
-  const month = Number(judge('getMonth')) + 1
-  const transfromDate1 = `${judge('getFullYear')}-${month < 10 ? `0${month}` : month}-${judge('getDate')}`
-  const transfromDate2 = `${transfromDate1} ${judge('getHours')}:${judge('getMinutes')}:${judge('getSeconds')}`
+  const date: object = new Date(time)
+  const month: number = Number(judge('getMonth')) + 1
+  const transfromDate1: string = `${judge('getFullYear')}-${month < 10 ? `0${month}` : month}-${judge('getDate')}`
+  const transfromDate2: string = `${transfromDate1} ${judge('getHours')}:${judge('getMinutes')}:${judge('getSeconds')}`
   return onOff ? transfromDate2 : transfromDate1
 }
 
@@ -71,6 +71,11 @@ const showToast = ({
   icon = 'none',
   duration = 2000,
   data = {}
+}: {
+  title: string,
+  icon?: string,
+  duration?: number,
+  data?: object
 }) => {
   Taro.showToast({
     title,
@@ -85,21 +90,34 @@ const showToast = ({
 }
 
 // 上传文件
-const uploadFile = ({
-  filePath,
+const uploadFiles = ({
+  filesPath,
   name = 'file',
-  url = '/app/uploadFile',
+  url = '/app/upload',
   formData = {}
+}: {
+  filesPath: Array<object>,
+  name?: string,
+  url?: string,
+  formData?: object
 }) => {
-  return Taro.uploadFile({
-    url: `${reqAddress}${url}`,
-    filePath,
-    name,
-    header: {
-      "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
-    },
-    formData
-  });
+  const files: Array<object> = [];
+  return new Promise(resolve => {
+    filesPath.forEach((item: any) => {
+      Taro.uploadFile({
+        url: `${reqAddress}${url}`,
+        filePath: item.url,
+        name,
+        header: {
+          "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+        },
+        formData
+      }).then((res: any) => {
+        files.push(JSON.parse(res.data).data);
+        if (files.length === filesPath.length) resolve(files);
+      })
+    })
+  })
 }
 
 export {
@@ -109,6 +127,6 @@ export {
   req,
   getDate,
   showToast,
-  uploadFile
+  uploadFiles
 }
 

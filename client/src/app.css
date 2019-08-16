@@ -53,7 +53,7 @@
 }
 
 .at-image-picker__flex-box {
-  padding:10px 0 0;
+  padding: 10px 0 0;
 }
 
 /* 公共样式 */
@@ -89,4 +89,10 @@
 
 .icon::before {
   font-size: 40px;
+}
+
+.hint {
+  font-size: 28px;
+  margin-top: 40px;
+  color: #999;
 }
