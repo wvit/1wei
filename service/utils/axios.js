@@ -1,4 +1,5 @@
 const Axios = require('axios');
+const cheerio = require('cheerio');
 const {
   address
 } = require('../configs/serverConfig').server;
@@ -18,18 +19,28 @@ const axios = Axios.create({
 //     console.log(res.data)
 // })
 
+
 // axios.post(`/app/user/signIn`, {
-//   nickname: 'wuwei',
+//   nickname: 'wv',
 //   password: '19991024'
 // }).then(res => {
-//   return axios.get('/app/cloudMusic/record', {
-//     headers: {
-//       Authorization: `Bearer ${res.data.data}`
-//     }
-//   })
+//   return axios.post('/app/life/add',
+//     { content: 'hello 123', imgs: [] },
+//     {
+//       headers: {
+//         Authorization: `Bearer ${res.data.data}`
+//       }
+//     })
 // }).then(res => {
-//   console.log(res.data.data)
+//   console.log(res.data)
 // })
+
+// axios.post(
+//   '/app/life/add', { content: 'hello', imgs: [] }
+// ).then(res => {
+//   console.log(res.data)
+// })
+
 
 // Axios.get('https://1wei.cc:1999/admin/getBlogs?pageSize=10&key=&page=1').then(res => {
 //   res.data.data.list.forEach(item => {
@@ -44,7 +55,7 @@ const axios = Axios.create({
 //   })
 // })
 
-Axios.get('https://1wei.cc:1999/ip').then(res => {
-  console.log(res.data)
+Axios.get('https://s.weibo.com/top/summary?cate=realtimehot').then(res => {
+  const $ = cheerio.load(res.data);
+  console.log($('.td-02')[0].html())
 })
-

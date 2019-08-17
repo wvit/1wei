@@ -1,8 +1,13 @@
 const Router = require("koa-router");
 const { add, list, del, edit } = require('../controllers/life');
-const whileList= require('../middleware/whiteList');
+const whileList = require('../middleware/whiteList');
+const { tokenKey } = require('../configs/tokenConfig');
+const jwt = require('koa-jwt');
 
 const router = new Router();
+const auth = jwt({
+  secret: tokenKey
+});
 
 //后台删除生活
 router.delete("/admin/life/delete/:_id", del);
@@ -14,7 +19,7 @@ router.put("/admin/life/edit", edit);
 router.get("/admin/life/list", list);
 
 //前台添加生活
-router.post("/app/life/add", add);
+router.post("/app/life/add", auth, whileList(['wv']), add);
 
 //前台获取生活
 router.get("/app/life/list", list);

@@ -3,9 +3,10 @@ import { View, Text, Navigator } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import Title from '../../components/title/title'
 import { req } from '../../utils/utils'
-import { AtDrawer, AtIcon } from 'taro-ui'
+import { AtDrawer, AtIcon, AtButton } from 'taro-ui'
 import './index.css'
 
+const TARO_ENV: string = process.env.TARO_ENV;
 let reqOnOff = true; //是否允许请求
 let questionList = []; // 热门列表
 
@@ -19,10 +20,13 @@ export default class Index extends Component {
   state = {
     menuOnOff: false,// 侧边栏开关
     questionList,// 热门列表
-    statusBarHeight: Taro.getSystemInfoSync().statusBarHeight// 标题栏高
+    statusBarHeight: Taro.getSystemInfoSync().statusBarHeight,// 标题栏高
+    wxUserInfo: Taro.getStorageSync('wxUserInfo')// 微信用户数据
   }
   render() {
-    const { menuOnOff, questionList, statusBarHeight } = this.state;
+    const {
+      menuOnOff, questionList, statusBarHeight, wxUserInfo
+    } = this.state;
     return (
       <View className='index-wrap'>
         <Title title='知乎热门' back={false}>
@@ -57,6 +61,23 @@ export default class Index extends Component {
             </Navigator>
           </View>
         </AtDrawer>
+        {TARO_ENV !== 'h5' && !wxUserInfo && (
+          <View className="shadow">
+            <View className="shadow-wrap">
+              <View className="shadow-hint">
+                您还未微信登录，登录后有更好的浏览体验
+              </View>
+              <AtButton
+                type='primary'
+                lang='zh_CN'
+                openType='getUserInfo'
+                onGetUserInfo={ev => this.saveUserInfo(ev.detail)}
+              >
+                微信登录
+              </AtButton>
+            </View>
+          </View>
+        )}
         <View className='zhihu'>
           {
             questionList.map((item: any, index: number) => {
@@ -85,21 +106,36 @@ export default class Index extends Component {
   }
   //组件挂载完毕
   componentWillMount() {
+    Taro.getSetting().then(res => {
+      if (res.authSetting['scope.userInfo'] && !this.state.wxUserInfo) {
+        return Taro.getUserInfo({ lang: 'zh_CN' });
+      }
+      return new Promise(resolve => { resolve() });
+    }).then(res => {
+      if (res) this.saveUserInfo(res);
+    })
     if (!reqOnOff) return;
     req.get(`/app/zhihu/hot`).then(res => {
-      console.log(res.data)
-      if (!res.data.code) {
-        questionList = res.data.data.data
-        this.setState({
-          questionList
-        });
-        reqOnOff = false;
-      }
+      if (res.data.code) return;
+      questionList = res.data.data.data
+      this.setState({ questionList });
+      reqOnOff = false;
     })
   }
   //菜单显示隐藏
   menuShowHide() {
     const menuOnOff = !this.state.menuOnOff;
     this.setState({ menuOnOff });
+  }
+  // 保存用户数据
+  saveUserInfo(data) {
+    const { userInfo, encryptedData, iv } = data;
+    Taro.setStorageSync('wxUserInfo', userInfo);
+    this.setState({
+      wxUserInfo: userInfo
+    })
+    Taro.login().then(res => {
+      return req.post('/app/wechat/signIn', { js_code: res.code, encryptedData, iv })
+    });
   }
 }

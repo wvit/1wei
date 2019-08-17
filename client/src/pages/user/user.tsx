@@ -7,6 +7,9 @@ import Title from '../../components/title/title'
 import './user.css'
 
 export default class User extends Component {
+  state = {
+    wxUserInfo: Taro.getStorageSync('wxUserInfo') //微信用户信息
+  }
   render() {
     return (
       <View className='pd-lr30'>
@@ -14,9 +17,9 @@ export default class User extends Component {
         <AtButton
           type='primary'
           className='mt30'
-          onClick={() => Taro.navigateTo({ url: '/pages/signInType/signInType' })}
+          onClick={() => Taro.navigateTo({ url: '/pages/signIn/signIn' })}
         >
-          您还未登录，去登录吧 ~
+          您还未登录1wei，去登录吧 ~
         </AtButton>
         <View className="hint">
           目前未添加需要登录的特殊权限，可不必登录。
@@ -31,8 +34,8 @@ export default class User extends Component {
       </View>
     )
   }
-  //组件显示
-  componentDidShow() {
+  //组件挂载完毕
+  componentDidMount() {
     req.get(`/app/user/info`).then(res => {
       console.log(res.data)
     })

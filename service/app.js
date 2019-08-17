@@ -35,8 +35,8 @@ app.use((ctx, next) => {
     if (err.status === 401) {
       ctx.status = 200;
       ctx.body = {
-        code: statusCode.authErr,
-        msg: '授权认证失败'
+        code: statusCode.signInErr,
+        msg: '未登录'
       };
     }
   });
