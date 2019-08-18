@@ -8,7 +8,7 @@ import './title.css'
 @connect(({ appData }) => ({
   appData
 }), (dispatch) => ({
-  setAppData(data) {
+  setAppData (data) {
     dispatch(change(data))
   }
 }))
@@ -20,7 +20,7 @@ export default class Title extends Component {
       statusBarHeight: Taro.getSystemInfoSync().statusBarHeight// 标题栏高
     }
   }
-  render() {
+  render () {
     const { statusBarHeight } = this.state;
     const { title, back = true, fixed = true, backLeft = '15px' } = this.props;
     return (
@@ -46,7 +46,7 @@ export default class Title extends Component {
     )
   }
   // 组件挂载完毕
-  componentDidMount() {
+  componentDidMount () {
     const query = Taro.createSelectorQuery().in(this.$scope);
     query.select('.title-container')
       .boundingClientRect(rect => {

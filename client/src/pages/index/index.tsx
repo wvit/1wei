@@ -1,9 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Navigator } from '@tarojs/components'
+import { View, Text, Navigator, Button } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import Title from '../../components/title/title'
 import { req } from '../../utils/utils'
-import { AtDrawer, AtIcon, AtButton } from 'taro-ui'
+import { AtDrawer, AtIcon } from 'taro-ui'
 import './index.css'
 
 const TARO_ENV: string = process.env.TARO_ENV;
@@ -11,7 +11,7 @@ let reqOnOff = true; //是否允许请求
 let questionList = []; // 热门列表
 
 export default class Index extends Component {
-  config = {
+  static config = {
     // navigationBarTitleText: '1wei',
   }
   constructor(props) {
@@ -21,16 +21,16 @@ export default class Index extends Component {
     menuOnOff: false,// 侧边栏开关
     questionList,// 热门列表
     statusBarHeight: Taro.getSystemInfoSync().statusBarHeight,// 标题栏高
-    wxUserInfo: Taro.getStorageSync('wxUserInfo')// 微信用户数据
+    tencentUserInfo: Taro.getStorageSync('tencentUserInfo')// 微信用户数据
   }
   render() {
     const {
-      menuOnOff, questionList, statusBarHeight, wxUserInfo
+      menuOnOff, questionList, statusBarHeight, tencentUserInfo
     } = this.state;
     return (
       <View className='index-wrap'>
         <Title title='知乎热门' back={false}>
-          <AtIcon value='menu' color='#409eff' onClick={this.menuShowHide.bind(this)}></AtIcon>
+          <View className='menu at-icon at-icon-menu' onClick={this.menuShowHide.bind(this)}></View>
         </Title>
         <AtDrawer
           show={menuOnOff}
@@ -61,20 +61,20 @@ export default class Index extends Component {
             </Navigator>
           </View>
         </AtDrawer>
-        {TARO_ENV !== 'h5' && !wxUserInfo && (
+        {TARO_ENV !== 'h5' && !tencentUserInfo && (
           <View className="shadow">
             <View className="shadow-wrap">
               <View className="shadow-hint">
-                您还未微信登录，登录后有更好的浏览体验
+                您还未{TARO_ENV === 'qq' ? 'qq' : '微信'}登录，登录后有更好的浏览体验
               </View>
-              <AtButton
+              <Button
                 type='primary'
                 lang='zh_CN'
                 openType='getUserInfo'
                 onGetUserInfo={ev => this.saveUserInfo(ev.detail)}
               >
-                微信登录
-              </AtButton>
+                {TARO_ENV === 'qq' ? 'qq' : '微信'}登录
+                </Button>
             </View>
           </View>
         )}
@@ -106,14 +106,16 @@ export default class Index extends Component {
   }
   //组件挂载完毕
   componentWillMount() {
-    Taro.getSetting().then(res => {
-      if (res.authSetting['scope.userInfo'] && !this.state.wxUserInfo) {
-        return Taro.getUserInfo({ lang: 'zh_CN' });
-      }
-      return new Promise(resolve => { resolve() });
-    }).then(res => {
-      if (res) this.saveUserInfo(res);
-    })
+    if (TARO_ENV !== 'h5') {
+      Taro.getSetting().then(res => {
+        if (res.authSetting['scope.userInfo'] && !this.state.tencentUserInfo) {
+          return Taro.getUserInfo({ lang: 'zh_CN' });
+        }
+        return new Promise(resolve => { resolve() });
+      }).then(res => {
+        if (res) this.saveUserInfo(res);
+      })
+    }
     if (!reqOnOff) return;
     req.get(`/app/zhihu/hot`).then(res => {
       if (res.data.code) return;
@@ -124,18 +126,22 @@ export default class Index extends Component {
   }
   //菜单显示隐藏
   menuShowHide() {
+    console.log(1)
     const menuOnOff = !this.state.menuOnOff;
     this.setState({ menuOnOff });
   }
   // 保存用户数据
   saveUserInfo(data) {
+    console.log(data)
     const { userInfo, encryptedData, iv } = data;
-    Taro.setStorageSync('wxUserInfo', userInfo);
+    const url = TARO_ENV === 'weapp' ? 'wxSignIn' : 'qqSignIn';
+    if (!userInfo) return;
+    Taro.setStorageSync('tencentUserInfo', userInfo);
     this.setState({
-      wxUserInfo: userInfo
+      tencentUserInfo: userInfo
     })
     Taro.login().then(res => {
-      return req.post('/app/wechat/signIn', { js_code: res.code, encryptedData, iv })
+      return req.post(`/app/tencent/${url}`, { js_code: res.code, encryptedData, iv })
     });
   }
 }

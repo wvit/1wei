@@ -1,6 +1,6 @@
 var crypto = require('crypto')
 
-function WXBizDataCrypt(appId, sessionKey) {
+function WXBizDataCrypt (appId, sessionKey) {
   this.appId = appId
   this.sessionKey = sessionKey
 }

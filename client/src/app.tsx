@@ -31,7 +31,6 @@ class App extends Component {
       'pages/publishLife/publishLife', //发布生活
       'pages/skill/skill', //技能页面
       'pages/introduce/introduce', //介绍
-      'pages/signInType/signInType', //登录方式
       'pages/contact/contact', //联系
       'pages/learn/learn', //学习
       'pages/blogDetail/blogDetail', //博客详情
