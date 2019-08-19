@@ -26,16 +26,16 @@ export default class Echarts extends Component {
   echartsRef = node => this.echarts = node
 
   render() {
-    const { } = this.state;
+    const { ec } = this.state;
     const { className, id } = this.props;
     if (TARO_ENV === 'h5') {
       return (
         <View id={id} className={className}></View>
       )
-    } else if (TARO_ENV === 'weapp' || TARO_ENV === 'qq') {
+    } else if (TARO_ENV === 'weapp') {
       return (
         <View className={className}>
-          <ec-canvas ref={this.echartsRef}></ec-canvas>
+          <ec-canvas ref={this.echartsRef} ec={ec}></ec-canvas>
         </View>
       )
     }
@@ -48,7 +48,7 @@ export default class Echarts extends Component {
         const myChart = echarts.init(document.querySelector(`#${id}`));
         myChart.setOption(option);
       }, 20)
-    } else if (TARO_ENV === 'weapp' || TARO_ENV === 'qq') {
+    } else if (TARO_ENV === 'weapp') {
       this.echarts.init((canvas, width, height) => {
         const myChart = echarts.init(canvas, null, { width, height });
         myChart.setOption(option);

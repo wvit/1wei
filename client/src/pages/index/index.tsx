@@ -107,8 +107,9 @@ export default class Index extends Component {
   //组件挂载完毕
   componentWillMount() {
     if (TARO_ENV !== 'h5') {
+      Taro.checkSession().catch(() => Taro.login());
       Taro.getSetting().then(res => {
-        if (res.authSetting['scope.userInfo'] && !this.state.tencentUserInfo) {
+        if (res.authSetting['scope.userInfo']) {
           return Taro.getUserInfo({ lang: 'zh_CN' });
         }
         return new Promise(resolve => { resolve() });
@@ -126,13 +127,11 @@ export default class Index extends Component {
   }
   //菜单显示隐藏
   menuShowHide() {
-    console.log(1)
     const menuOnOff = !this.state.menuOnOff;
     this.setState({ menuOnOff });
   }
   // 保存用户数据
   saveUserInfo(data) {
-    console.log(data)
     const { userInfo, encryptedData, iv } = data;
     const url = TARO_ENV === 'weapp' ? 'wxSignIn' : 'qqSignIn';
     if (!userInfo) return;

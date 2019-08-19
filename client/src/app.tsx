@@ -27,9 +27,9 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index', //首页
+      'pages/skill/skill', //技能页面
       'pages/user/user', //用户
       'pages/publishLife/publishLife', //发布生活
-      'pages/skill/skill', //技能页面
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系
       'pages/learn/learn', //学习

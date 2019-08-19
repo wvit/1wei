@@ -93,6 +93,8 @@
 
 .hint {
   font-size: 28px;
+  text-indent: 56px;
+  line-height: 50px;
   margin-top: 40px;
   color: #999;
 }

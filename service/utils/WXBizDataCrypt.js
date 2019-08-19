@@ -1,6 +1,6 @@
 var crypto = require('crypto')
 
-function WXBizDataCrypt (appId, sessionKey) {
+function WXBizDataCrypt(appId, sessionKey) {
   this.appId = appId
   this.sessionKey = sessionKey
 }
@@ -18,7 +18,6 @@ WXBizDataCrypt.prototype.decryptData = function (encryptedData, iv) {
     decipher.setAutoPadding(true)
     var decoded = decipher.update(encryptedData, 'binary', 'utf8')
     decoded += decipher.final('utf8')
-
     decoded = JSON.parse(decoded)
 
   } catch (err) {
