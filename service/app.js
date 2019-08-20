@@ -10,12 +10,10 @@ const mongoose = require('mongoose');
 const sslify = require('koa-sslify').default;
 const routing = require('./routes/index');
 const statusCode = require('./configs/statusCode');
-const {
-  dbs,
-  server,
-  production
-} = require('./configs/serverConfig');
+const { dbs, server, production } = require('./configs/serverConfig');
+const cron = require('./cron');
 
+cron();
 const app = new Koa();
 const httpsConfig = {
   key: fs.readFileSync(path.join(__dirname, './ssl/1wei.cc.key')),

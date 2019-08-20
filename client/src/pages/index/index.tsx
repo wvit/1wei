@@ -43,10 +43,10 @@ export default class Index extends Component {
               他的知乎
                <AtIcon value='chevron-right'></AtIcon>
             </View>
-            <View className="menu-item icon icon-music clearfix">
+            <Navigator url='/pages/cloudMusic/cloudMusic' className="menu-item icon icon-music clearfix">
               他的网易云
               <AtIcon value='chevron-right'></AtIcon>
-            </View>
+            </Navigator>
             <Navigator url='/pages/skill/skill' className="menu-item icon icon-tubiao clearfix">
               他的技能
               <AtIcon value='chevron-right'></AtIcon>
@@ -138,7 +138,7 @@ export default class Index extends Component {
     Taro.setStorageSync('tencentUserInfo', userInfo);
     this.setState({
       tencentUserInfo: userInfo
-    })
+    });
     Taro.login().then(res => {
       return req.post(`/app/tencent/${url}`, { js_code: res.code, encryptedData, iv })
     });

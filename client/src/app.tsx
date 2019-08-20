@@ -26,8 +26,9 @@ const store = configStore();
 class App extends Component {
   config: Config = {
     pages: [
+      'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/index/index', //首页
-      'pages/skill/skill', //技能页面
+      'pages/skill/skill', //技能
       'pages/user/user', //用户
       'pages/publishLife/publishLife', //发布生活
       'pages/introduce/introduce', //介绍
@@ -36,8 +37,7 @@ class App extends Component {
       'pages/blogDetail/blogDetail', //博客详情
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp', //注册
-      'pages/life/life', //生活
-      'pages/webView/webView'
+      'pages/life/life'//生活
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

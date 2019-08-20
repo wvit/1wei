@@ -18,14 +18,8 @@ class User {
   //发送验证码
   async sendCode(ctx) {
     ctx.verifyParams({
-      nickname: {
-        type: 'string',
-        required: true
-      },
-      email: {
-        type: 'string',
-        required: true
-      }
+      nickname: { type: 'string', required: true },
+      email: { type: 'string', required: true }
     });
     const { nickname, email } = ctx.request.body;
     const saveExpire = await Store.hget(`nodeMail:${nickname}`, 'expire');
@@ -76,22 +70,10 @@ class User {
   //注册
   async signUp(ctx) {
     ctx.verifyParams({
-      nickname: {
-        type: 'string',
-        required: true
-      },
-      password: {
-        type: 'string',
-        required: true
-      },
-      email: {
-        type: 'string',
-        required: true
-      },
-      code: {
-        type: 'string',
-        required: true
-      }
+      nickname: { type: 'string', required: true },
+      password: { type: 'string', required: true },
+      email: { type: 'string', required: true },
+      code: { type: 'string', required: true }
     });
     const reqData = ctx.request.body;
     const { nickname, password, code } = reqData;
@@ -120,14 +102,8 @@ class User {
   //登录
   async signIn(ctx) {
     ctx.verifyParams({
-      nickname: {
-        type: 'string',
-        required: true
-      },
-      password: {
-        type: 'string',
-        required: true
-      }
+      nickname: { type: 'string', required: true },
+      password: { type: 'string', required: true }
     });
     ctx.request.body.password = cryptoEncode(ctx.request.body.password);
     const queryUser = await Users.findOne(ctx.request.body);
@@ -142,11 +118,6 @@ class User {
       const { _id } = queryUser;
       const token = jsonwebtoken.sign({ _id }, tokenKey, { expiresIn });
       resData.data = token;
-      axios.post('/app/cloudMusic/login', {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
     }
     ctx.body = resData;
   }

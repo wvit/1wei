@@ -10,16 +10,19 @@ const axios = Axios.create({
   withCredentials: true
 })
 
-// axios.get(`/login/cellphone?phone=13890774972&password=wuwei19991024`).then(res => {
-//     return axios.get(`/user/record?uid=${res.data.account.id}&type=0`, {
-//         headers: {
-//             Cookie: res.headers['set-cookie']
-//         }
-//     })
-// }).then(res => {
-//     console.log(res.data)
-// })
-
+axios.post(`/app/user/signIn`, {
+  nickname: 'wv',
+  password: '19991024'
+}).then(res => {
+  return axios.get('/app/cloudMusic/wvRecord?type=weekData',
+    {
+      headers: {
+        Authorization: `Bearer ${res.data.data}`
+      }
+    })
+}).then(res => {
+  console.log(res.data)
+})
 
 // axios.post(`/app/user/signIn`, {
 //   nickname: 'wv',
@@ -56,14 +59,15 @@ const axios = Axios.create({
 //   })
 // })
 
-Axios.get('https://s.weibo.com/top/summary?cate=realtimehot').then(res => {
-  const $ = cheerio.load(res.data);
-  const hotList = $('.list_a li');
-  for (let i = 0; i < hotList.length; i++) {
-    const href = `https://s.weibo.com${$('a', hotList[i]).attr('href')}`;
-    const keywrod = $('span', hotList[i])['0'].children[0].data;
-    const hot = $('em', hotList[i]).text();
-    const weiboHot = { href, keywrod, hot };
-    console.log(weiboHot);
-  }
-})
+// Axios.get('https://s.weibo.com/top/summary?cate=realtimehot').then(res => {
+//   const $ = cheerio.load(res.data);
+//   const hotList = $('.list_a li');
+//   for (let i = 0; i < hotList.length; i++) {
+//     const href = `https://s.weibo.com${$('a', hotList[i]).attr('href')}`;
+//     const keywrod = $('span', hotList[i])['0'].children[0].data;
+//     const hot = $('em', hotList[i]).text();
+//     const weiboHot = { href, keywrod, hot };
+//     console.log(weiboHot);
+//   }
+// })
+
