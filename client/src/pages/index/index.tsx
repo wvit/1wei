@@ -82,7 +82,7 @@ export default class Index extends Component {
           {
             questionList.map((item: any, index: number) => {
               return (
-                <Navigator className='zhihu-hot-item clearfix' key={index} target='miniProgram' app-id='wxeb39b10e39bf6b54'>
+                <Navigator className='zhihu-hot-item clearfix' key={Math.random()} target='miniProgram' app-id='wxeb39b10e39bf6b54'>
                   <View className='heat'>
                     <View className='number' style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
                     {item.detail_text}
@@ -120,7 +120,7 @@ export default class Index extends Component {
     if (!reqOnOff) return;
     req.get(`/app/zhihu/hot`).then(res => {
       if (res.data.code) return;
-      questionList = res.data.data.data
+      questionList = res.data.data.data;
       this.setState({ questionList });
       reqOnOff = false;
     })

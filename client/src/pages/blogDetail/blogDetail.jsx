@@ -29,7 +29,7 @@ export default class Index extends Component {
                 {
                   blogDetail.tags.map((tagItem, tagIndex) => {
                     return (
-                      <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
+                      <Text className="tag-item" key={Math.random()}>{tagItem}</Text>
                     )
                   })
                 }

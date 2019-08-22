@@ -1,0 +1,15 @@
+.tabs-wrap {
+  text-align: center;
+}
+
+.btns-wrap {
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.tabs-btn {
+  float: left;
+  font-size: 30px;
+  line-height: 70px;
+  padding: 0 50px;
+}

@@ -40,7 +40,7 @@ export default class Life extends Component {
           {
             blogList.map((item, index) => {
               return (
-                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={index}>
+                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={Math.random()}>
                   <Text className="item-title">{item.title}</Text>
                   <View className='clearfix mt15'>
                     <Text className="add-time icon icon-shijian">

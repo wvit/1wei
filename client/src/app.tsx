@@ -28,8 +28,8 @@ class App extends Component {
     pages: [
       'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/index/index', //首页
-      'pages/skill/skill', //技能
       'pages/user/user', //用户
+      'pages/skill/skill', //技能
       'pages/publishLife/publishLife', //发布生活
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系

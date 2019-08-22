@@ -1,5 +1,5 @@
 .nav-list {
-  margin: 30px 0;
+  margin: 50px 0;
   color: #333;
 }
 
@@ -23,9 +23,33 @@
   line-height: 80px;
 }
 
-.userAvatarUrl {
-  display: inline-block;
-  width: 200px;
-  height: 200px;
+.avatarUrl {
+  float: left;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+}
+
+.nickName {
+  float: left;
+  line-height: 150px;
+  font-size: 40px;
+  margin-left: 40px;
+  padding-right: 100px;
+  position: relative;
+}
+
+.nickName.icon::before {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+}
+
+.nickName.icon-nan {
+  color: #3296e6;
+}
+
+.nickName.icon-nv {
+  color: #ff7171;
 }

@@ -38,6 +38,7 @@ const req: any = {
     Taro.showLoading({
       title: '加载中...'
     })
+    setTimeout(Taro.hideLoading, 10000);
     return Taro.request({
       url: `${reqAddress}${url}`,
       header: {
@@ -50,6 +51,7 @@ const req: any = {
         resolve(res)
       })
     })
+
   }
 }
 
@@ -120,10 +122,14 @@ const uploadFiles = ({
   })
 }
 
+// 全局变量
+const map = new Map();
+
 export {
   judgeNull,
   judgePhoneNumber,
   judgeEmail,
+  map,
   req,
   getDate,
   showToast,

@@ -37,7 +37,7 @@ export default class Learn extends Component {
           {
             blogList.map((item, index) => {
               return (
-                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={index}>
+                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={Math.random()}>
                   <Text className="item-title">{item.title}</Text>
                   <View className='clearfix mt15'>
                     <Text className="add-time icon icon-shijian">
@@ -48,7 +48,7 @@ export default class Learn extends Component {
                     {
                       item.tags.map((tagItem, tagIndex) => {
                         return (
-                          <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
+                          <Text className="tag-item" key={Math.random()}>{tagItem}</Text>
                         )
                       })
                     }

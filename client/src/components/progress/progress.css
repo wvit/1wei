@@ -1,0 +1,9 @@
+.progress-wrap {
+  width: 100%;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0;
+}
