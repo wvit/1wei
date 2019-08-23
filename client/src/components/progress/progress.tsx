@@ -20,8 +20,10 @@ export default class Progress extends Component<{ height?: number, color?: strin
   }
   // 组件挂载完毕
   componentDidMount() {
-    this.setState({
-      width: this.props.progress
-    })
+    setTimeout(() => {
+      this.setState({
+        width: this.props.progress
+      })
+    }, 10);
   }
 }

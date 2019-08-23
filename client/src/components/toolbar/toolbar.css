@@ -1,0 +1,36 @@
+.toolbar-wrap {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 5px 8px 0 #ccc;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.toolbar-wrap .show-btn {
+  float: left;
+  font-size: 24px;
+  height: 100%;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.toolbar-list {
+  float: left;
+  overflow-x: scroll;
+}
+
+.toolbar-list::-webkit-scrollbar {
+  display: none
+}
+
+.toolbar-btns-wrap {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.toolbar-btn-item {
+  padding: 0 50px;
+  font-size: 30px;
+  border-radius: 10px;
+  white-space: nowrap;
+}

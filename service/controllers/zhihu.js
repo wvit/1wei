@@ -1,6 +1,7 @@
 const Axios = require('axios');
+const zhihu = require('zhihu');
 const statusCode = require('../configs/statusCode');
-const { zhihu: { baseURL, cookie } } = require('../configs/thirdPartyConfig');
+const { zhihu: { baseURL, cookie, userName } } = require('../configs/thirdPartyConfig');
 
 const axios = Axios.create({
   baseURL,
@@ -8,13 +9,11 @@ const axios = Axios.create({
 })
 
 class Zhihu {
-  //网易云登录
+  // 知乎热门话题
   async hot(ctx) {
     try {
       const res = await axios.get(`/api/v3/feed/topstory/hot-lists/total?limit=50&desktop=true`, {
-        headers: {
-          cookie
-        }
+        headers: { cookie }
       });
       ctx.body = {
         code: statusCode.success,
@@ -27,6 +26,15 @@ class Zhihu {
       }
     }
   }
+  // 收藏
+  async collections(ctx) {
+    const { data } = await axios.get(`/api/v4/members/${userName}/favlists?offset=0&limit=100`);
+    ctx.body = {
+      code: statusCode.success,
+      data: data
+    }
+  }
+
 }
 
 module.exports = new Zhihu();

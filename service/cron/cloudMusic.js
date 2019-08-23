@@ -12,7 +12,7 @@ const axios = Axios.create({
 
 class CloudMusic {
   constructor() {
-    this.getCookie(2)
+    this.getCookie(24)
     this.getRecord(0.5);
   }
   //获取cookie

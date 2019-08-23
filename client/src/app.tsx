@@ -27,6 +27,7 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index', //首页
+      'pages/zhihu/zhihu', //知乎列表
       'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/user/user', //用户
       'pages/skill/skill', //技能
@@ -54,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        < Index />
+        <Index />
       </Provider>
     )
   }

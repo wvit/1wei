@@ -23,7 +23,7 @@ export default class CloudMusic extends Component {
     return (
       <View className='pd-lr30'>
         <Title title="云音乐记录" color='red' />
-        <View className="btns-wrap">
+        <View className="logs-type">
           <Tabs btns={['所有记录', '最近记录']} color='red' onClick={this.changeTabs.bind(this)} active={active} />
         </View>
         <View className="music-list">
