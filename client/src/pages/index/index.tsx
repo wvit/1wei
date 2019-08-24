@@ -39,10 +39,10 @@ export default class Index extends Component {
         >
           <View style={`height:${statusBarHeight}px`}></View>
           <View className="menu-list">
-            <View className="menu-item icon icon-zhihu clearfix">
+            <Navigator url='/pages/zhihu/zhihu' className="menu-item icon icon-zhihu clearfix">
               他的知乎
                <AtIcon value='chevron-right'></AtIcon>
-            </View>
+            </Navigator>
             <Navigator url='/pages/cloudMusic/cloudMusic' className="menu-item icon icon-music clearfix">
               他的网易云
               <AtIcon value='chevron-right'></AtIcon>

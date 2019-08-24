@@ -8,9 +8,9 @@ const Store = new Redis().client;
 class Zhihu {
   // 知乎热门话题
   async hot(ctx) {
-    const data = await Store.hget(`zhihu:hot`, 'data');
+    const data = JSON.parse(await Store.hget(`zhihu:hot`, 'data'));
     ctx.body = {
-      code: statusCode.error,
+      code: statusCode.success,
       data
     }
   }

@@ -14,7 +14,7 @@ const Store = new Redis().client;
 // 知乎定时任务
 class Zhihu {
   constructor() {
-    this.getCollections(24);
+    this.getCollections(1);
     this.getHot(0.5);
   }
 
