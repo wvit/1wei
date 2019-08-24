@@ -4,6 +4,7 @@
   box-shadow: 0 5px 8px 0 #ccc;
   background: #fff;
   transition: 0.3s;
+  z-index: 99;
 }
 
 .toolbar-wrap .show-btn {

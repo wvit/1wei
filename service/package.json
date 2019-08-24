@@ -30,7 +30,6 @@
     "koa2-cors": "^2.0.6",
     "mongoose": "^5.6.2",
     "nodemailer": "^6.2.1",
-    "nodemon": "^1.19.1",
-    "zhihu": "^1.4.3"
+    "nodemon": "^1.19.1"
   }
 }

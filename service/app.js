@@ -10,11 +10,13 @@ const mongoose = require('mongoose');
 const sslify = require('koa-sslify').default;
 const routing = require('./routes/index');
 const statusCode = require('./configs/statusCode');
+const Redis = require('koa-redis');
 const { dbs, server, production } = require('./configs/serverConfig');
 const cron = require('./cron');
 
 cron();
 const app = new Koa();
+const Store = new Redis().client;
 const httpsConfig = {
   key: fs.readFileSync(path.join(__dirname, './ssl/1wei.cc.key')),
   cert: fs.readFileSync(path.join(__dirname, './ssl/1wei.cc.pem'))
@@ -54,4 +56,9 @@ if (production) {
   app.listen(server.port, server.host, () => {
     console.log('服务已启动', `${server.address}`)
   });
+}
+
+module.exports = {
+  mongoose,
+  Store
 }

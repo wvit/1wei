@@ -5,5 +5,5 @@ const stateDefault = {
 // 应用数据
 export default function appData(state = stateDefault, action) {
   state.scrollHeight = action.scrollHeight || state.scrollHeight;
-  return state
+  return state;
 }

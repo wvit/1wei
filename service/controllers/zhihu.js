@@ -1,40 +1,51 @@
-const Axios = require('axios');
-const zhihu = require('zhihu');
+const Redis = require('koa-redis');
 const statusCode = require('../configs/statusCode');
-const { zhihu: { baseURL, cookie, userName } } = require('../configs/thirdPartyConfig');
+const ZhihuCollections = require('../models/zhihuCollections');
+const ZhihuCollectionAnswer = require('../models/zhihuCollectionAnswers');
 
-const axios = Axios.create({
-  baseURL,
-  withCredentials: true
-})
+const Store = new Redis().client;
 
 class Zhihu {
   // 知乎热门话题
   async hot(ctx) {
-    try {
-      const res = await axios.get(`/api/v3/feed/topstory/hot-lists/total?limit=50&desktop=true`, {
-        headers: { cookie }
-      });
-      ctx.body = {
-        code: statusCode.success,
-        data: res.data
-      }
-    } catch (err) {
-      ctx.body = {
-        code: statusCode.error,
-        msg: '获取失败'
-      }
-    }
-  }
-  // 收藏
-  async collections(ctx) {
-    const { data } = await axios.get(`/api/v4/members/${userName}/favlists?offset=0&limit=100`);
+    const data = await Store.hget(`zhihu:hot`, 'data');
     ctx.body = {
-      code: statusCode.success,
-      data: data
+      code: statusCode.error,
+      data
     }
   }
 
+  // 收藏
+  async collections(ctx) {
+    const data = await ZhihuCollections.find();
+    ctx.body = {
+      code: statusCode.success,
+      data
+    }
+  }
+
+  // 收藏夹的回答
+  async collectionAnswers(ctx) {
+    ctx.verifyParams({
+      id: { type: 'string', required: true },
+      page: { type: 'string', required: true },
+      pageSize: { type: 'string', required: true }
+    });
+
+    const { pageSize, page, id } = ctx.request.query;
+    const queryRule = { id };
+    const resData = {
+      code: statusCode.success,
+      data: {}
+    };
+
+    resData.data.count = await ZhihuCollectionAnswer.countDocuments(queryRule);
+    resData.data.list = await ZhihuCollectionAnswer
+      .find(queryRule)
+      .skip((Number(page) - 1) * 10)
+      .limit(Number(pageSize));
+    ctx.body = resData;
+  }
 }
 
 module.exports = new Zhihu();

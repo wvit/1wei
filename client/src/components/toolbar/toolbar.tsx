@@ -8,6 +8,7 @@ interface ToolbarProps {
   onVisible: any;
   onChange: any;
   active: number;
+  label?: string,
   top?: number;
   height?: number;
   color?: string;
@@ -22,7 +23,7 @@ export default class Toolbar extends Component<ToolbarProps> {
   }
   render() {
     const {
-      visible, active, onVisible, onChange,
+      visible, active, onVisible, onChange, label = 'text',
       btns = [], top = 100, height = 50, color = "#3296e6"
     } = this.props;
     const style = `
@@ -57,7 +58,7 @@ export default class Toolbar extends Component<ToolbarProps> {
                     className="toolbar-btn-item"
                     onClick={() => onChange(index, item)}
                   >
-                    {item.text}
+                    {item[label]}
                   </Text>
                 )
               })

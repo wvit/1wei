@@ -1,0 +1,43 @@
+.item {
+  padding: 30px;
+  margin-top: 20px;
+  background: #fff;
+}
+
+.item-summary {
+  display: inline-block;
+  text-indent: 60px;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.item-author {
+  float: left;
+  font-size: 24px;
+  color: #999;
+  margin-right: 50px;
+}
+
+.answer-info {
+  margin-top: 20px;
+  line-height: 50px;
+  color: #666;
+}
+
+.answer-star.icon,
+.answer-comment.icon {
+  font-size: 26px;
+}
+
+.answer-star.icon::before {
+  color: #3296e6;
+  font-size: 38px;
+}
+
+.answer-star {
+  float: left;
+}
+
+.answer-comment {
+  float: right;
+}

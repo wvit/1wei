@@ -1,5 +1,5 @@
 const Axios = require('axios');
-const TencentUsers = require('../models/tencentUser');
+const TencentUsers = require('../models/tencentUsers');
 const statusCode = require('../configs/statusCode');
 const WXBizDataCrypt = require('../utils/WXBizDataCrypt');
 const { getDate } = require('../utils/util');

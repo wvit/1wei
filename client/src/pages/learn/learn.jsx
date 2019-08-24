@@ -19,7 +19,7 @@ export default class Learn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogList// 博客列表
+      blogList // 博客列表
     };
   }
   render() {

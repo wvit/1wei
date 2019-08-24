@@ -1,18 +1,13 @@
 const jsonwebtoken = require('jsonwebtoken');
 const Redis = require('koa-redis');
 const nodeMailer = require('nodemailer');
-const Axios = require('axios');
 const Users = require('../models/users');
 const statusCode = require('../configs/statusCode');
 const { cryptoEncode } = require('../utils/util');
-const { server, smtp } = require('../configs/serverConfig');
+const {  smtp } = require('../configs/serverConfig');
 const { tokenKey, expiresIn } = require('../configs/tokenConfig');
 
 const Store = new Redis().client;
-const axios = Axios.create({
-  baseURL: server.address,
-  withCredentials: true
-})
 
 class User {
   //发送验证码

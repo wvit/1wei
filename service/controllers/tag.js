@@ -5,10 +5,7 @@ class Tag {
   //添加标签
   async add(ctx) {
     ctx.verifyParams({
-      name: {
-        type: 'string',
-        required: true
-      }
+      name: { type: 'string', required: true }
     });
     const reqData = ctx.request.body;
     const resData = {
@@ -39,14 +36,8 @@ class Tag {
   //修改标签
   async edit(ctx) {
     ctx.verifyParams({
-      _id: {
-        type: 'string',
-        required: true
-      },
-      name: {
-        type: 'string',
-        required: true
-      },
+      _id: { type: 'string', required: true },
+      name: { type: 'string', required: true },
     });
     const { _id, name } = ctx.request.body;
     const resData = {
