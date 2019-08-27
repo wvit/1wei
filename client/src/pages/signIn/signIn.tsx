@@ -5,20 +5,21 @@ import { judgeNull, req, showToast } from '../../utils/utils'
 import Title from '../../components/title/title'
 import './signIn.css'
 
+const { nickname = '', password = '' } = Taro.getStorageSync('signInData');
+
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
-    const { nickname = '', password = '' } = Taro.getStorageSync('signInData');
-    this.state = {
-      reqLoading: false,//请求加载icon
-      signIn: {
-        nickname,//昵称
-        password,//密码
-      }
+  }
+  state = {
+    reqLoading: false,//请求加载icon
+    signIn: {
+      nickname,//昵称
+      password,//密码
     }
   }
   render() {
-    const { reqLoading, signIn: { nickname, password } } = this.state;
+    const { reqLoading, signIn: { nickname, password } }: any = this.state;
     return (
       <View className='pd-lr30'>
         <Title title='登录' />
@@ -27,6 +28,7 @@ export default class SignIn extends Component {
           type='text'
           placeholder='请输入昵称'
           value={nickname}
+          name=''
           onChange={this.inputChange.bind(this, 'nickname')}
         />
         <AtInput
@@ -34,6 +36,7 @@ export default class SignIn extends Component {
           type='password'
           placeholder='请输入密码'
           value={password}
+          name=''
           onChange={this.inputChange.bind(this, 'password')}
         />
         <View className="go-signIn">
