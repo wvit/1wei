@@ -1,7 +1,7 @@
 const statusCode = require('../configs/statusCode');
 
 class Ip {
-  //添加博客
+  //获取ip
   async ip(ctx) {
     const { req } = ctx;
     let ip = req.headers['x-forwarded-for'] || // 判断是否有反向代理 IP

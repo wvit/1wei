@@ -7,7 +7,7 @@ import Toolbar from '../../components/toolbar/toolbar'
 import '../../assets/css/blogList.css'
 import './zhihu.css'
 
-let answerData: any = [] //回答数据
+let answerData: any = []; //回答数据
 
 @connect(({ appData }) => ({
   appData
@@ -19,7 +19,7 @@ export default class Zhihu extends Component<any> {
   }
 
   state = {
-    visible: true, // 工具条开关
+    visible: Taro.getStorageSync('zhihuToolbarVisible') === false ? false : true, // 工具条开关
     toolbarBtns: [],  // 工具条按钮
     list: [],// 列表
     toolbarActive: 0, // 工具条选中index
@@ -82,6 +82,7 @@ export default class Zhihu extends Component<any> {
   }
   // 组件即将挂载
   componentWillMount() {
+    Taro.setStorageSync('zhihuToolbarVisible', false);
     req.get('/app/zhihu/collections').then(res => {
       if (res.data.code) return;
       const data = res.data.data;

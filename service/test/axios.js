@@ -88,6 +88,6 @@ const axios = Axios.create({
 //   }
 // })
 
-axios.get('/app/zhihu/collections').then(res => {
+axios.get('/ip').then(res => {
   console.log(res.data)
 })

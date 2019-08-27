@@ -6,6 +6,8 @@ import TabBer from '../../components/tabBer/tabBer'
 import Title from '../../components/title/title'
 import './user.css'
 
+const TARO_ENV: string = process.env.TARO_ENV;
+
 export default class User extends Component {
   state = {
     tencentUserInfo: Taro.getStorageSync('tencentUserInfo'), //微信用户信息
@@ -36,10 +38,13 @@ export default class User extends Component {
         </AtButton>
         }
         <View className="nav-list">
-          <Navigator url='/pages/publishLife/publishLife' className="nav-item icon icon-java clearfix">
-            发布生活记录
+          {
+            TARO_ENV === 'h5' && (
+              <Navigator url='/pages/publishLife/publishLife' className="nav-item icon icon-java clearfix">
+                发布生活记录
               <AtIcon value='chevron-right'></AtIcon>
-          </Navigator>
+              </Navigator>)
+          }
         </View>
         <TabBer current={3} />
       </View>

@@ -107,7 +107,7 @@ export default class Index extends Component {
   //组件挂载完毕
   componentWillMount() {
     if (TARO_ENV !== 'h5') {
-      Taro.checkSession().catch(() => Taro.login());
+      Taro.checkSession().then(() => Taro.login()).catch(() => Taro.login());
       Taro.getSetting().then(res => {
         if (res.authSetting['scope.userInfo']) {
           return Taro.getUserInfo({ lang: 'zh_CN' });

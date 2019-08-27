@@ -15,7 +15,7 @@ const qqAxios = Axios.create({
 //腾讯接口
 class Tencent {
   // 腾讯产品的登录
-  async tencentSignIn (ctx, type) {
+  async tencentSignIn(ctx, type) {
     ctx.verifyParams({
       js_code: { type: 'string', required: true },
       encryptedData: { type: 'string', required: true },
