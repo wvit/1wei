@@ -7,7 +7,11 @@ const zhihuCollectionAnswer = new Schema({
   author: String, //作者
   star: Number, //点赞
   summary: String, // 简介
-  content: String,//内容
+  //内容
+  content: {
+    type: String,
+    select: false
+  },
   date: String,//日期
   comment: String,//评论数
 });

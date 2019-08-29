@@ -11,10 +11,12 @@
 .item-title {
   font-size: 32px;
   font-weight: bold;
+  line-height: 50px;
+  display: inline-block;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  /*! autoprefixer: ignore next
+  /*! autoprefixer: ignore next;
    这是如果是在react脚手架下加上这句应该是没问题的，但是taro下失效
   */
   -webkit-box-orient: vertical;

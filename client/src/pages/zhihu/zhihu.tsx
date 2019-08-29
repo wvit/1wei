@@ -108,8 +108,10 @@ export default class Zhihu extends Component<any> {
   }
   // 工具条显示/隐藏变化
   visibleChange() {
+    const { toolbarActive } = this.state;
     this.setState({
-      visible: !this.state.visible
+      visible: !this.state.visible,
+      scrollTop: answerData[toolbarActive].scrollTop
     })
   }
   // 工具条点击
@@ -142,9 +144,9 @@ export default class Zhihu extends Component<any> {
         answerData[active].list.push(item);
       })
       this.setState({
-        list: answerData[active].list
+        list: answerData[active].list,
+        scrollTop: answerData[active].scrollTop
       });
-      console.log(answerData)
     })
   }
 }

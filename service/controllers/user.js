@@ -4,7 +4,7 @@ const nodeMailer = require('nodemailer');
 const Users = require('../models/users');
 const statusCode = require('../configs/statusCode');
 const { cryptoEncode } = require('../utils/util');
-const {  smtp } = require('../configs/serverConfig');
+const { smtp } = require('../configs/serverConfig');
 const { tokenKey, expiresIn } = require('../configs/tokenConfig');
 
 const Store = new Redis().client;
@@ -126,4 +126,4 @@ class User {
   }
 }
 
-module.exports = new User()
+module.exports = new User();
