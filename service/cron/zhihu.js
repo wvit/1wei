@@ -78,7 +78,6 @@ class Zhihu {
         console.log(item.title, item.count, 'done')
       })
     }, time);
-
   }
 }
 

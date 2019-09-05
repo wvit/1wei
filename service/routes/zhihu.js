@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const { hot, collections, collectionAnswers } = require('../controllers/zhihu');
+const { hot, collections, collectionAnswers, answersDetail } = require('../controllers/zhihu');
 
 const router = new Router({
   prefix: '/app/zhihu'
@@ -13,5 +13,8 @@ router.get('/collections', collections);
 
 //收藏的回答
 router.get('/collectionAnswers', collectionAnswers);
+
+//获取回答详情
+router.get("/answersDetail/:id", answersDetail);
 
 module.exports = router;

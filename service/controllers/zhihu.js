@@ -14,7 +14,6 @@ class Zhihu {
       data
     }
   }
-
   // 收藏
   async collections(ctx) {
     const data = await ZhihuCollections.find();
@@ -23,7 +22,6 @@ class Zhihu {
       data
     }
   }
-
   // 收藏夹的回答
   async collectionAnswers(ctx) {
     ctx.verifyParams({
@@ -44,6 +42,15 @@ class Zhihu {
       .find(queryRule)
       .skip((Number(page) - 1) * 10)
       .limit(Number(pageSize));
+    ctx.body = resData;
+  }
+  // 知乎回答详情
+  async answersDetail(ctx) {
+    const id = ctx.params.id;
+    const resData = {
+      code: statusCode.success
+    };
+    resData.data = await ZhihuCollectionAnswer.findOne({ id }).select('+content');
     ctx.body = resData;
   }
 }

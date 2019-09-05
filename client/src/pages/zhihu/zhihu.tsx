@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Text } from '@tarojs/components'
+import { View, ScrollView, Text, Navigator } from '@tarojs/components'
 import { req } from '../../utils/utils'
 import { connect } from '@tarojs/redux'
 import Title from '../../components/title/title'
@@ -51,7 +51,10 @@ export default class Zhihu extends Component<any> {
           {
             list.map((item: any) => {
               return (
-                <View className="item" key={Math.random()}>
+                <Navigator
+                  className="item"
+                  key={Math.random()}
+                  url={`/pages/zhihuDetail/zhihuDetail?id=${item.id}`}>
                   <Text className="item-title">{item.quesition}</Text>
                   <View className='clearfix mt15'>
                     <Text className="item-author">
@@ -72,7 +75,7 @@ export default class Zhihu extends Component<any> {
                       {item.comment}
                     </View>
                   </View>
-                </View>
+                </Navigator>
               )
             })
           }
