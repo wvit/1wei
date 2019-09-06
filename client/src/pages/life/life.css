@@ -1,0 +1,12 @@
+.add-time {
+  float: right;
+}
+
+.item-content {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.life-wrap .at-image-picker__remove-btn {
+  display: none;
+}

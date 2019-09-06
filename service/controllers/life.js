@@ -13,7 +13,7 @@ class Life {
     const resData = {
       code: statusCode.success,
       msg: '发布成功',
-    }
+    };
     reqData.addTime = getDate(Date.now(), true);
     reqData.pageView = 0;
     resData.data = await new Lifes(reqData).save();
@@ -29,7 +29,7 @@ class Life {
     const queryRule = {
       isShow: true,
       $or: [{
-        title: {
+        content: {
           $regex: new RegExp(key, 'i')
         }
       }]

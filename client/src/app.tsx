@@ -27,6 +27,7 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index', //首页
+      'pages/life/life',//生活
       'pages/zhihu/zhihu', //知乎列表
       'pages/zhihuDetail/zhihuDetail', //知乎回答详情
       'pages/cloudMusic/cloudMusic', //网易云音乐
@@ -38,8 +39,8 @@ class App extends Component {
       'pages/learn/learn', //学习
       'pages/blogDetail/blogDetail', //博客详情
       'pages/signIn/signIn', //登录
-      'pages/signUp/signUp', //注册
-      'pages/life/life'//生活
+      'pages/signUp/signUp' //注册
+
     ],
     window: {
       navigationBarBackgroundColor: '#fff',
