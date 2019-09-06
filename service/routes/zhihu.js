@@ -15,6 +15,6 @@ router.get('/collections', collections);
 router.get('/collectionAnswers', collectionAnswers);
 
 //获取回答详情
-router.get("/answersDetail/:id", answersDetail);
+router.get("/answersDetail/:_id", answersDetail);
 
 module.exports = router;

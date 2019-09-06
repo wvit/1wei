@@ -61,15 +61,21 @@ class Zhihu {
           const $ = cheerio.load(collectionPage.data);
           const answer = $('.zm-item');
           for (let j = 0; j < answer.length; j++) {
+            let answerLink = '';
+            const dataType = $(answer[j]).attr('data-type');
+            if (dataType === 'Answer') {
+              answerLink = `${baseURL}${$('.zm-item-rich-text', answer[j]).attr('data-entry-url')}`;
+            } else if (dataType === 'Post') {
+              answerLink = $('.post-link', answer[j]).attr('href');
+            }
             const quesition = $('.zm-item-title a', answer[j]).text();
-            const answerLink = `https://www.zhihu.com${$('.zm-item-rich-text', answer[j]).attr('data-entry-url')}`;
-            const author = $('.zm-item-answer-author-info .author-link', answer[j]).text();
+            const author = $('.author-link', answer[j]).text();
             const star = $('.zm-item-vote-info .js-voteCount', answer[j]).text();
             const summary = $('.zm-item-rich-text .summary', answer[j]).text();
             const content = $('.zm-item-rich-text .content', answer[j]).text();
             const date = $('.answer-date-link', answer[j]).text();
             const comment = $('.zm-item-meta .toggle-comment', answer[j]).text();
-            const answerData = { id: item.id, quesition, answerLink, author, star, summary, content, date, comment };
+            const answerData = { id: item.id, quesition, dataType, answerLink, author, star, summary, content, date, comment };
             item.count++;
             new ZhihuCollectionAnswers(answerData).save();
           };

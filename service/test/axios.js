@@ -88,6 +88,12 @@ const axios = Axios.create({
 //   }
 // })
 
-axios.get('/ip').then(res => {
-  console.log(res.data)
-})
+// axios.get('/ip').then(res => {
+//   console.log(res.data)
+// })
+
+// Axios.get('https://www.zhihu.com/collection/409100948').then(res => {
+//   fs.writeFileSync('zhihu.html', res.data, () => {
+//     console.log('完成')
+//   });
+// })

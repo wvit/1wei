@@ -46,11 +46,11 @@ class Zhihu {
   }
   // 知乎回答详情
   async answersDetail(ctx) {
-    const id = ctx.params.id;
+    const _id = ctx.params._id;
     const resData = {
       code: statusCode.success
     };
-    resData.data = await ZhihuCollectionAnswer.findOne({ id }).select('+content');
+    resData.data = await ZhihuCollectionAnswer.findOne({ _id }).select('+content');
     ctx.body = resData;
   }
 }

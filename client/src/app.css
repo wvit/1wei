@@ -98,3 +98,8 @@
   margin-top: 40px;
   color: #999;
 }
+
+img,
+image {
+  max-width: 100%;
+}
