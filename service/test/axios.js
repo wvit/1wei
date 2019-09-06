@@ -92,8 +92,12 @@ const axios = Axios.create({
 //   console.log(res.data)
 // })
 
-// Axios.get('https://www.zhihu.com/collection/409100948').then(res => {
+// Axios.get('https://1wei.cc/app/life/list?page=1&pageSize=10').then(res => {
 //   fs.writeFileSync('zhihu.html', res.data, () => {
 //     console.log('完成')
 //   });
 // })
+
+Axios.delete('https://1wei.cc:1999/admin/life/delete/5d61e47288617c3e10cee8d5').then(res => {
+  console.log(res.data)
+})
