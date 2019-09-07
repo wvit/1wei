@@ -82,12 +82,21 @@ export default class Index extends Component {
           {
             questionList.map((item: any, index: number) => {
               return (
-                <Navigator className='zhihu-hot-item clearfix' key={Math.random()} target='miniProgram' app-id='wxeb39b10e39bf6b54'>
+                <Navigator
+                  className='zhihu-hot-item clearfix'
+                  key={Math.random()}
+                  target='miniProgram'
+                  app-id='wxeb39b10e39bf6b54'
+                >
                   <View className='heat'>
                     <View className='number' style={`background:${index < 3 ? 'red' : '#6190e8'}`}>{index + 1}</View>
                     {item.detail_text}
                   </View>
-                  <Text className='text' style={`width:${item.children[0].thumbnail ? '68%' : '100%'}`}>
+                  <Text
+                    className='text'
+                    style={`width:${item.children[0].thumbnail ? '68%' : '100%'}`}
+                    onClick={this.toZhihu.bind(this)}
+                  >
                     {item.target.title}
                   </Text>
                   {
@@ -106,24 +115,38 @@ export default class Index extends Component {
   }
   //组件挂载完毕
   componentWillMount() {
-    if (TARO_ENV !== 'h5') {
-      Taro.checkSession().then(() => Taro.login()).catch(() => Taro.login());
-      Taro.getSetting().then(res => {
-        if (res.authSetting['scope.userInfo']) {
-          return Taro.getUserInfo({ lang: 'zh_CN' });
-        }
-        return new Promise(resolve => { resolve() });
-      }).then(res => {
-        if (res) this.saveUserInfo(res);
-      })
-    }
     if (!reqOnOff) return;
+    this.getUserInfo();
+    if (TARO_ENV === 'h5') return;
+    const updateManager = Taro.getUpdateManager();
+    updateManager.onCheckForUpdate(res => {
+      if (res.hasUpdate) updateManager.applyUpdate();
+    })
+    Taro.checkSession().then(() => Taro.login()).catch(() => Taro.login());
+    Taro.getSetting().then(res => {
+      if (res.authSetting['scope.userInfo']) {
+        return Taro.getUserInfo({ lang: 'zh_CN' });
+      }
+      return new Promise(resolve => { resolve() });
+    }).then(res => {
+      if (res) this.saveUserInfo(res);
+    });
+  }
+  // 获取用户和知乎热门数据
+  getUserInfo() {
+    req.get(`/app/user/info`).then(res => {
+      if (res.data.code) {
+        Taro.removeStorageSync('userInfo');
+      } else {
+        Taro.setStorageSync('userInfo', res.data.data);
+      };
+    });
     req.get(`/app/zhihu/hot`).then(res => {
       if (res.data.code) return;
       questionList = res.data.data.data;
       this.setState({ questionList });
       reqOnOff = false;
-    })
+    });
   }
   //菜单显示隐藏
   menuShowHide() {
@@ -140,7 +163,11 @@ export default class Index extends Component {
       tencentUserInfo: userInfo
     });
     Taro.login().then(res => {
-      return req.post(`/app/tencent/${url}`, { js_code: res.code, encryptedData, iv })
+      return req.post(`/app/tencent/${url}`, { js_code: res.code, encryptedData, iv });
     });
+  }
+  // 去知乎
+  toZhihu() {
+    if (TARO_ENV === 'h5') window.open('https://www.zhihu.com/hot');
   }
 }

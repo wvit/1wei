@@ -74,14 +74,21 @@ export default class SignIn extends Component {
         return showToast({
           title: res.data.msg,
           data: res.data
-        })
+        });
       }).then(data => {
+        if (!data.code) {
+          Taro.setStorageSync('jwt', data.data);
+          Taro.setStorageSync('signInData', { nickname, password });
+          return req.get(`/app/user/info`);
+        }
+      }).then(res => {
+        if (!res) return;
+        const { code, data } = res.data;
+        if (code) return;
         this.setState({ reqLoading: false });
-        if (data.code !== 0) return;
-        Taro.setStorageSync('signInData', { nickname, password });
-        Taro.setStorageSync('jwt', data.data);
+        Taro.setStorageSync('userInfo', data);
         Taro.navigateTo({ url: '/pages/user/user' });
-      })
+      });
     }
   }
 }

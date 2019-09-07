@@ -1,28 +1,3 @@
-.nav-list {
-  margin: 50px 0;
-  color: #333;
-}
-
-.nav-item {
-  font-size: 32px;
-  line-height: 80px;
-  border-bottom: 1px solid #f2f2f2;
-  letter-spacing: 1px;
-}
-
-.nav-item::before {
-  margin-right: 20px;
-}
-
-.nav-item.icon::before {
-  color: #333;
-}
-
-.nav-item .at-icon {
-  float: right;
-  line-height: 80px;
-}
-
 .avatarUrl {
   float: left;
   width: 150px;
@@ -52,4 +27,27 @@
 
 .nickName.icon-nv {
   color: #ff7171;
+}
+
+.nav-list {
+  margin: 50px 0;
+  color: #333;
+}
+
+.nav-item {
+  width: 32%;
+  float: left;
+  font-size: 32px;
+  line-height: 50px;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 20px 0;
+  background: #409eff;
+  color: #fff;
+  border-radius: 10px;
+  margin: 2% 0 0 2%;
+}
+
+.nav-text {
+  display: block;
 }

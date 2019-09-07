@@ -29,7 +29,7 @@ const workSkillOption = {
     }
   },
   yAxis: {
-    data: ['Vue', '微信小程序', 'ES6', 'Nodejs', 'React'],
+    data: ['Vue', '微信小程序', 'ES6/7', 'Nodejs', 'React'],
     axisLabel: {
       fontSize: 14
     }
@@ -40,7 +40,7 @@ const workSkillOption = {
       itemStyle: {
         color: mainColor
       },
-      data: [3, 3, 3, 2, 1]
+      data: [0.8, 1, 0.9, 0.75, 0.7]
     }
   ]
 }
@@ -49,7 +49,7 @@ const workSkillOption = {
 const allSkill = {
   title: {
     text: '其他技术',
-    subtext: '插件/库/常用包/其他',
+    subtext: '库 / 常用包 / 技术点 / 工具',
     textStyle: {
       fontSize: 16
     },
@@ -71,22 +71,29 @@ const allSkill = {
       data: [{
         name: 'WEB',
         children: [
-          { name: 'echarts' },
-          { name: 'bootstrap' },
-          { name: 'element-ui' },
+          { name: 'pwa' },
+          { name: 'taro' },
+          { name: 'koa2' },
+          { name: 'iView' },
           { name: 'antd' },
+          { name: 'element-ui' },
+          { name: 'taro-ui' },
           { name: 'mongoDB' },
-          { name: 'webpack' },
+          { name: 'redis' },
+          { name: 'echarts' },
           { name: 'canvas' },
           { name: 'git' },
-          { name: 'axios' },
-          { name: 'ajax' },
+          { name: 'webpack' },
+          { name: 'babel' },
+          { name: 'eslint' },
+          { name: 'typescript' },
+          { name: 'axios/fetch' }
         ]
       }],
       top: '0%',
       bottom: '0%',
       left: '14%',
-      right: '26%',
+      right: '28%',
       symbolSize: 12,
       label: {
         normal: {
@@ -120,7 +127,7 @@ const learnSkill = {
     trigger: 'axis'
   },
   legend: {
-    data: ['Typescript', 'React / RN', 'Nodejs', 'Electron'],
+    data: ['Typescript', 'React', 'Nodejs', 'Electron'],
     top: '12%',
     padding: 5,
     itemGap: 15
@@ -155,7 +162,7 @@ const learnSkill = {
       data: [4, 3, 4, 7, 8, 10]
     },
     {
-      name: 'React / RN',
+      name: 'React',
       type: 'line',
       data: [3, 2, 3, 5, 7, 7]
     },

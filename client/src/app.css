@@ -66,6 +66,10 @@
   padding: 0 30px;
 }
 
+.ml-0 {
+  margin-left: 0 !important;
+}
+
 .mt10 {
   margin-top: 10px;
 }

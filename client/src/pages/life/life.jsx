@@ -50,6 +50,7 @@ export default class Life extends Component {
                     files={item.imgs}
                     length={3}
                     showAddBtn={false}
+                    onImageClick={this.showImg.bind(this, item.imgs)}
                   >
                   </AtImagePicker>
                   <View className='clearfix mt15'>
@@ -92,5 +93,16 @@ export default class Life extends Component {
   //列表滚动
   listScroll(ev) {
     listScrollTop = ev.detail.scrollTop;
+  }
+  // 查看大图
+  showImg(imgs, index, file) {
+    const urls = [];
+    imgs.forEach(item => {
+      urls.push(item.url);
+    });
+    Taro.previewImage({
+      current: file.url,
+      urls
+    });
   }
 }

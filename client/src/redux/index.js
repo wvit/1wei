@@ -6,9 +6,9 @@ import rootReducer from './reducers'
 const middlewares = [
   thunkMiddleware,
   createLogger()
-]
+];
 
 export default function configStore() {
-  const store = createStore(rootReducer, applyMiddleware(...middlewares))
-  return store
+  const store = createStore(rootReducer, applyMiddleware(...middlewares));
+  return store;
 }
