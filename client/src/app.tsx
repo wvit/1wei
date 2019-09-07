@@ -13,7 +13,8 @@ import "taro-ui/dist/style/components/divider.scss"
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/textarea.scss";
 import './assets/iconfont/iconfont.css'
-import './app.css'
+import './assets/css/app.css'
+import './assets/css/WxImageViewer.css'
 
 const store = configStore();
 
