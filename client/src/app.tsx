@@ -27,13 +27,14 @@ const store = configStore();
 class App extends Component {
   config: Config = {
     pages: [
+      'pages/antv/antv',
+      'pages/skill/skill', //技能
       'pages/index/index', //首页
       'pages/user/user', //用户
       'pages/life/life',//生活
       'pages/zhihu/zhihu', //知乎列表
       'pages/zhihuDetail/zhihuDetail', //知乎回答详情
       'pages/cloudMusic/cloudMusic', //网易云音乐
-      'pages/skill/skill', //技能
       'pages/publishLife/publishLife', //发布生活
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系
@@ -41,7 +42,6 @@ class App extends Component {
       'pages/blogDetail/blogDetail', //博客详情
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp' //注册
-
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

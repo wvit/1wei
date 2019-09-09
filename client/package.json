@@ -28,6 +28,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@antv/wx-f2": "^1.1.4",
     "@tarojs/components": "1.3.4",
     "@tarojs/plugin-sass": "^1.3.6",
     "@tarojs/redux": "^1.3.13",

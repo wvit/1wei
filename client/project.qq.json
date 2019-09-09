@@ -5,7 +5,7 @@
   "appid": "1109619105",
   "setting": {
     "urlCheck": true,
-    "es6": false,
+    "es6": true,
     "postcss": false,
     "minified": false
   },

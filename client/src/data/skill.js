@@ -90,10 +90,10 @@ const allSkill = {
           { name: 'axios/fetch' }
         ]
       }],
-      top: '0%',
+      top: '10%',
       bottom: '0%',
       left: '14%',
-      right: '28%',
+      right: '30%',
       symbolSize: 12,
       label: {
         normal: {
