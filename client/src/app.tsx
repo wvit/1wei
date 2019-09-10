@@ -27,7 +27,6 @@ const store = configStore();
 class App extends Component {
   config: Config = {
     pages: [
-      'pages/antv/antv',
       'pages/skill/skill', //技能
       'pages/index/index', //首页
       'pages/user/user', //用户

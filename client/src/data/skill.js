@@ -76,6 +76,7 @@ const allSkill = {
           { name: 'koa2' },
           { name: 'iView' },
           { name: 'antd' },
+          { name: 'antv > f2' },
           { name: 'element-ui' },
           { name: 'taro-ui' },
           { name: 'mongoDB' },
@@ -90,7 +91,7 @@ const allSkill = {
           { name: 'axios/fetch' }
         ]
       }],
-      top: '10%',
+      top: '0%',
       bottom: '0%',
       left: '14%',
       right: '30%',

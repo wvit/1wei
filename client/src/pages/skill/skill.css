@@ -1,9 +1,21 @@
-.skill-wrap {
+.skill-list-wrap {
+  position: absolute;
+  top: 0;
+  width: 100%;
   padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.echarts-item {
+  height: 100vh;
+  position: relative;
 }
 
 .echarts {
-  margin-bottom: 80px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
 }
 
 .skill-echarts1 {
@@ -11,7 +23,7 @@
 }
 
 .skill-echarts2 {
-  height: 1400px;
+  height: 1100px;
 }
 
 .skill-echarts3 {
@@ -20,4 +32,33 @@
 
 .skill-echarts4 {
   height: 650px;
+}
+
+.btns {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
+.prev,
+.next {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background: #409eff;
+  border-radius: 50%;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 40px;
+  color: #fff;
+}
+
+.prev {
+  line-height: 110px;
+}
+
+.next {
+  line-height: 120px;
 }
