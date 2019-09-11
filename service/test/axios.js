@@ -98,6 +98,6 @@ const axios = Axios.create({
 //   });
 // })
 
-Axios.delete('https://1wei.cc:1999/admin/life/delete/5d61e47288617c3e10cee8d5').then(res => {
-  console.log(res.data)
+axios.get('/app/cloudMusic/musicData?ids=415792563').then(res => {
+  console.log(res.data.data)
 })

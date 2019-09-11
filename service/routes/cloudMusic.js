@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const { login, record, wvRecord } = require('../controllers/cloudMusic');
+const { login, record, wvRecord, musicData } = require('../controllers/cloudMusic');
 
 const router = new Router({
   prefix: '/app/cloudMusic'
@@ -13,5 +13,8 @@ router.get('/record', record);
 
 //获取wv听歌记录
 router.get('/wvRecord', wvRecord);
+
+//获取歌曲详情
+router.get('/musicData', musicData);
 
 module.exports = router;

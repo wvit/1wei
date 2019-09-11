@@ -2,11 +2,11 @@ import { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './progress.css'
 
-export default class Progress extends Component<{ height?: number, color?: string, progress: number, speed?: number }> {
+export default class Progress extends Component<{ height?: number, color?: string, progress: string, speed?: number }> {
   constructor(props) {
     super(props);
   }
-  state: {
+  state = {
     width: 0
   }
   render() {
@@ -14,7 +14,7 @@ export default class Progress extends Component<{ height?: number, color?: strin
     const { height = 15, color = 'red', speed = 1 } = this.props;
     return (
       <View className="progress-wrap">
-        <View className="progress" style={`background:${color};width:${width}%;height:${height}px;transition:${speed}s;`}></View>
+        <View className="progress" style={`background:${color};width:${width};height:${height}px;transition:${speed}s;`}></View>
       </View>
     )
   }

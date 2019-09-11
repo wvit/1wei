@@ -114,7 +114,7 @@ const allSkill = {
         }
       },
       expandAndCollapse: false,
-      animationDurationUpdate: 800
+      animationDurationUpdate: 500
     }
   ]
 }

@@ -50,3 +50,13 @@
 .hint {
   text-indent: 0;
 }
+
+.music-data {
+  padding: 20px 30px;
+}
+
+.music-info {
+  font-size: 24px;
+  line-height: 40px;
+  margin: 10px 0;
+}

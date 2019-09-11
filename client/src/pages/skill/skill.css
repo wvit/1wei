@@ -34,31 +34,20 @@
   height: 650px;
 }
 
-.btns {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 9999;
-}
-
-.prev,
 .next {
-  display: block;
+  position: fixed;
+  bottom: 10%;
+  right: 0;
+  z-index: 999;
   width: 120px;
   height: 120px;
+  line-height: 120px;
   background: #409eff;
   border-radius: 50%;
   text-align: center;
-  margin: 20px 0;
-  font-size: 40px;
   color: #fff;
 }
 
-.prev {
-  line-height: 110px;
-}
-
-.next {
-  line-height: 120px;
+.next::before {
+  font-size: 60px;
 }

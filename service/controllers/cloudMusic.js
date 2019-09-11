@@ -81,6 +81,19 @@ class CloudMusic {
     }
     ctx.body = resData;
   }
+  // 获取歌曲详情
+  async musicData(ctx) {
+    ctx.verifyParams({
+      ids: { type: 'string', required: true },
+    });
+    const resData = {
+      code: statusCode.success
+    }
+    const { ids } = ctx.request.query;
+    const { data } = await axios.get(`/song/detail?ids=${ids}`);
+    resData.data = data;
+    ctx.body = resData;
+  }
 }
 
 module.exports = new CloudMusic();
