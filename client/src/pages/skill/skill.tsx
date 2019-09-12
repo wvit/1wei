@@ -33,7 +33,7 @@ export default class Skill extends Component {
         <View className="skill-list-wrap">
           <View className="echarts-item">
             <Echarts
-              id="echarts1"
+              id={`echarts${skillIndex}`}
               className={`echarts skill-echarts${skillIndex + 1}`}
               option={skillData[skillIndex]}
             ></Echarts>

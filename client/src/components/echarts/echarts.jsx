@@ -54,6 +54,8 @@ export default class Echarts extends Component {
     if (TARO_ENV === 'h5') {
       setTimeout(() => {
         const myChart = echarts.init(document.querySelector(`#${id}`));
+        myChart.clear();
+        myChart.resize();
         myChart.setOption(option);
       }, 20);
     } else {

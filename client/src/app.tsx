@@ -24,18 +24,19 @@ const store = configStore();
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
+// 'pages/publishLife/publishLife', //发布生活
 
 class App extends Component {
   config: Config = {
     pages: [
-      'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/index/index', //首页
+      'pages/publishLife/publishLife', //发布生活
+      'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/skill/skill', //技能
       'pages/user/user', //用户
       'pages/life/life',//生活
       'pages/zhihu/zhihu', //知乎列表
       'pages/zhihuDetail/zhihuDetail', //知乎回答详情
-      'pages/publishLife/publishLife', //发布生活
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系
       'pages/learn/learn', //学习

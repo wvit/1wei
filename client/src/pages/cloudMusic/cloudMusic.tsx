@@ -46,11 +46,13 @@ export default class CloudMusic extends Component {
               const progress = Number((item.playCount / logs[0].playCount * 100).toFixed(2));
               if (item.playCount > 5) {
                 return (
-                  <View key={Math.random()} className="item-progress clearfix" onClick={this.watchMusicData.bind(this, item)}>
+                  <View key={item.song.id} className="item-progress clearfix" onClick={this.watchMusicData.bind(this, item)}>
                     <Text className="music-name">{item.song.name}</Text>
                     <View className="music-progress">
-                      <Text className="playCount"
-                        style={`${progress > 30 ? 'left' : 'right'}:10px;color:${progress > 30 ? '#fff' : 'red'}`}>
+                      <Text
+                        className="playCount"
+                        style={`${progress > 30 ? 'left' : 'right'}:10px;color:${progress > 30 ? '#fff' : 'red'}`}
+                      >
                         {item.playCount} 次
                       </Text>
                       <ProgressV height={20} progress={`${progress}%`} />
@@ -61,7 +63,7 @@ export default class CloudMusic extends Component {
             })
           }
         </View>
-        <AtModal isOpened={isOpened}>
+        <AtModal isOpened={isOpened} onClose={this.closeMusicData.bind(this)}>
           {
             isOpened && (
               <View className="music-data">
@@ -101,7 +103,7 @@ export default class CloudMusic extends Component {
     }, () => {
       this.setState({
         logs: this.state[index === 0 ? 'allData' : 'weekData']
-      })
+      });
     });
   }
   // 查看音乐详情
@@ -109,6 +111,12 @@ export default class CloudMusic extends Component {
     musicData = song;
     this.setState({
       isOpened: true
+    });
+  }
+  // 关闭音乐弹窗
+  closeMusicData() {
+    this.setState({
+      isOpened: false
     });
   }
 }

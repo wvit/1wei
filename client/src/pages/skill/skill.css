@@ -18,6 +18,12 @@
   transform: translateY(-50%);
 }
 
+.echarts div,
+.echarts div canvas {
+  height: 100% !important;
+}
+
+
 .skill-echarts1 {
   height: 600px;
 }
