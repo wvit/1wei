@@ -53,6 +53,6 @@ export default class Skill extends Component {
       this.setState({
         skillIndex
       });
-    }, 800);
+    }, 1000);
   }
 }

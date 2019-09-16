@@ -42,22 +42,17 @@ export default class Echarts extends Component {
   }
   // 组件挂载完毕
   componentDidMount() {
-    this.echartsInit();
+    this.echartsInit('init');
   }
   // 数据更新完毕
   componentDidUpdate() {
-    this.echartsInit();
+    this.echartsInit('update');
   }
   // echarts初始化
-  echartsInit() {
+  echartsInit(status) {
     const { id, option } = this.props;
     if (TARO_ENV === 'h5') {
-      setTimeout(() => {
-        const myChart = echarts.init(document.querySelector(`#${id}`));
-        myChart.clear();
-        myChart.resize();
-        myChart.setOption(option);
-      }, 20);
+      status === 'init' ? this.h5Init() : this.h5Update();
     } else {
       this.echarts.init((canvas, width, height) => {
         const myChart = echarts.init(canvas, null, { width, height });
@@ -65,5 +60,23 @@ export default class Echarts extends Component {
         return myChart;
       });
     }
+  }
+  // h5页面初始化
+  h5Init() {
+    setTimeout(() => {
+      const myChart = echarts.init(document.querySelector(`#${id}`));
+      myChart.clear();
+      myChart.resize();
+      myChart.setOption(option);
+    }, 20);
+  }
+  // h5页面更新数据时
+  h5Update() {
+    const myChart = echarts.init(document.querySelector(`#${id}`));
+    myChart.clear();
+    myChart.resize();
+    setTimeout(() => {
+      myChart.setOption(option);
+    }, 50);
   }
 }
