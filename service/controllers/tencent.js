@@ -1,9 +1,11 @@
+const jsonwebtoken = require('jsonwebtoken');
 const Axios = require('axios');
 const TencentUsers = require('../models/tencentUsers');
 const statusCode = require('../configs/statusCode');
 const WXBizDataCrypt = require('../utils/WXBizDataCrypt');
 const { getDate } = require('../utils/util');
 const { wechat, qq } = require('../configs/thirdPartyConfig');
+const { tokenKey, expiresIn } = require('../configs/tokenConfig');
 
 const wxAxios = Axios.create({
   baseURL: 'https://api.weixin.qq.com'
@@ -35,11 +37,13 @@ class Tencent {
     }
     const pc = new WXBizDataCrypt(appid, data.session_key);
     const userInfo = pc.decryptData(encryptedData, iv);
+    const token = jsonwebtoken.sign({ id: data.openid }, tokenKey, { expiresIn });
     userInfo.type = type;
     userInfo.addTime = getDate(Date.now(), true);
     new TencentUsers(userInfo).save();
     ctx.body = {
       code: statusCode.success,
+      data: token,
       msg: `${type}登录成功`
     };
   }

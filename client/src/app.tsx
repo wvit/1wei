@@ -24,13 +24,13 @@ const store = configStore();
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
+
 // 'pages/publishLife/publishLife', //发布生活
 
 class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index', //首页
-      'pages/publishLife/publishLife', //发布生活
       'pages/cloudMusic/cloudMusic', //网易云音乐
       'pages/skill/skill', //技能
       'pages/user/user', //用户

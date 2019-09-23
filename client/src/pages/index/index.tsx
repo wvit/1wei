@@ -61,7 +61,7 @@ export default class Index extends Component {
             </Navigator>
           </View>
         </AtDrawer>
-        {TARO_ENV !== 'h5' && !tencentUserInfo && (
+        {false && TARO_ENV !== 'h5' && !tencentUserInfo && (
           <View className="shadow">
             <View className="shadow-wrap">
               <View className="shadow-hint">
