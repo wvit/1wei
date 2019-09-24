@@ -76,6 +76,7 @@ const allSkill = {
           { name: 'koa2' },
           { name: 'iView' },
           { name: 'antd' },
+          { name: 'antv > f2' },
           { name: 'element-ui' },
           { name: 'taro-ui' },
           { name: 'mongoDB' },
@@ -93,7 +94,7 @@ const allSkill = {
       top: '0%',
       bottom: '0%',
       left: '14%',
-      right: '28%',
+      right: '30%',
       symbolSize: 12,
       label: {
         normal: {
@@ -113,7 +114,7 @@ const allSkill = {
         }
       },
       expandAndCollapse: false,
-      animationDurationUpdate: 800
+      animationDurationUpdate: 500
     }
   ]
 }

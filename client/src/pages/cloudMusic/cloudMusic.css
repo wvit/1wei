@@ -50,3 +50,17 @@
 .hint {
   text-indent: 0;
 }
+
+.music-data {
+  padding: 20px 30px;
+}
+
+.music-info {
+  font-size: 28px;
+  line-height: 40px;
+  margin: 20px 0;
+}
+
+.at-modal__container {
+  width: 90vw;
+}

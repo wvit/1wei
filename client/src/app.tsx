@@ -12,8 +12,10 @@ import "taro-ui/dist/style/components/badge.scss"
 import "taro-ui/dist/style/components/divider.scss"
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/textarea.scss";
+import "taro-ui/dist/style/components/modal.scss";
 import './assets/iconfont/iconfont.css'
-import './app.css'
+import './assets/css/app.css'
+import './assets/css/WxImageViewer.css'
 
 const store = configStore();
 
@@ -23,24 +25,26 @@ const store = configStore();
 //   require('nerv-devtools')
 // }
 
+
+
 class App extends Component {
   config: Config = {
     pages: [
-      'pages/index/index', //首页
+      // 'pages/index/index', //首页
+      // 'pages/publishLife/publishLife', //发布生活
+      'pages/learn/learn', //学习
+      'pages/cloudMusic/cloudMusic', //网易云音乐
+      'pages/skill/skill', //技能
       'pages/user/user', //用户
       'pages/life/life',//生活
       'pages/zhihu/zhihu', //知乎列表
       'pages/zhihuDetail/zhihuDetail', //知乎回答详情
-      'pages/cloudMusic/cloudMusic', //网易云音乐
-      'pages/skill/skill', //技能
-      'pages/publishLife/publishLife', //发布生活
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系
-      'pages/learn/learn', //学习
+
       'pages/blogDetail/blogDetail', //博客详情
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp' //注册
-
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

@@ -12,7 +12,7 @@ export default class Index extends Component {
     }
   }
   render() {
-    const { blogDetail } = this.state;
+    const { blogDetail }: any = this.state;
     return (
       <View className='detail-wrap'>
         <Title title='博客详情'></Title>
@@ -27,7 +27,7 @@ export default class Index extends Component {
             blogDetail.tags.length > 0 ?
               <View className="tags icon icon-tag">
                 {
-                  blogDetail.tags.map((tagItem, tagIndex) => {
+                  blogDetail.tags.map(tagItem => {
                     return (
                       <Text className="tag-item" key={Math.random()}>{tagItem}</Text>
                     )

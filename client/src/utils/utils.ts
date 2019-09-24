@@ -28,10 +28,16 @@ const req: any = {
       data,
       header: {
         'Content-Type': 'application/json',
-        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt')}`
       },
       method: 'POST'
-    })
+    }).then(res => {
+      return new Promise(resolve => {
+        const { data: { token } } = res;
+        resolve(res);
+        if (token) Taro.setStorageSync('jwt', token);
+      });
+    });
   },
   //get请求
   get(url: string) {
@@ -42,7 +48,7 @@ const req: any = {
     return Taro.request({
       url: `${reqAddress}${url}`,
       header: {
-        "Authorization": `Bearer ${Taro.getStorageSync('jwt') || ''}`
+        "Authorization": `Bearer ${Taro.getStorageSync('jwt')}`
       },
       method: 'GET'
     }).then(res => {
@@ -50,8 +56,7 @@ const req: any = {
       return new Promise(resolve => {
         resolve(res)
       })
-    })
-
+    });
   }
 }
 

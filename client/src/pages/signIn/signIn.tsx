@@ -77,7 +77,6 @@ export default class SignIn extends Component {
         });
       }).then(data => {
         if (!data.code) {
-          Taro.setStorageSync('jwt', data.data);
           Taro.setStorageSync('signInData', { nickname, password });
           return req.get(`/app/user/info`);
         }

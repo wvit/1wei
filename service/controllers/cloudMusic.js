@@ -70,7 +70,7 @@ class CloudMusic {
         } catch (e) {
           resData.code = statusCode.signInErr;
           resData.data = [];
-          resData.msg = '获取最近记录，需要登录1wei';
+          resData.msg = '获取最近记录，需要登录';
         }
       }
       if ((type === 'allData') || _id) {
@@ -79,6 +79,19 @@ class CloudMusic {
         resData.msg = '获取成功';
       }
     }
+    ctx.body = resData;
+  }
+  // 获取歌曲详情
+  async musicData(ctx) {
+    ctx.verifyParams({
+      ids: { type: 'string', required: true },
+    });
+    const resData = {
+      code: statusCode.success
+    }
+    const { ids } = ctx.request.query;
+    const { data } = await axios.get(`/song/detail?ids=${ids}`);
+    resData.data = data;
     ctx.body = resData;
   }
 }

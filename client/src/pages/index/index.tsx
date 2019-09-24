@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Navigator, Button } from '@tarojs/components'
+import { View, Text, Navigator } from '@tarojs/components'
 import TabBer from '../../components/tabBer/tabBer'
 import Title from '../../components/title/title'
 import { req } from '../../utils/utils'
@@ -20,13 +20,10 @@ export default class Index extends Component {
   state = {
     menuOnOff: false,// 侧边栏开关
     questionList,// 热门列表
-    statusBarHeight: Taro.getSystemInfoSync().statusBarHeight,// 标题栏高
-    tencentUserInfo: Taro.getStorageSync('tencentUserInfo')// 微信用户数据
+    statusBarHeight: Taro.getSystemInfoSync().statusBarHeight// 标题栏高
   }
   render() {
-    const {
-      menuOnOff, questionList, statusBarHeight, tencentUserInfo
-    } = this.state;
+    const { menuOnOff, questionList, statusBarHeight } = this.state;
     return (
       <View className='index-wrap'>
         <Title title='知乎热门' back={false}>
@@ -61,23 +58,6 @@ export default class Index extends Component {
             </Navigator>
           </View>
         </AtDrawer>
-        {TARO_ENV !== 'h5' && !tencentUserInfo && (
-          <View className="shadow">
-            <View className="shadow-wrap">
-              <View className="shadow-hint">
-                您还未{TARO_ENV === 'qq' ? 'qq' : '微信'}登录，登录后有更好的浏览体验
-              </View>
-              <Button
-                type='primary'
-                lang='zh_CN'
-                openType='getUserInfo'
-                onGetUserInfo={ev => this.saveUserInfo(ev.detail)}
-              >
-                {TARO_ENV === 'qq' ? 'qq' : '微信'}登录
-                </Button>
-            </View>
-          </View>
-        )}
         <View className='zhihu'>
           {
             questionList.map((item: any, index: number) => {
@@ -122,15 +102,22 @@ export default class Index extends Component {
     updateManager.onCheckForUpdate(res => {
       if (res.hasUpdate) updateManager.applyUpdate();
     })
-    Taro.checkSession().then(() => Taro.login()).catch(() => Taro.login());
-    Taro.getSetting().then(res => {
-      if (res.authSetting['scope.userInfo']) {
-        return Taro.getUserInfo({ lang: 'zh_CN' });
-      }
-      return new Promise(resolve => { resolve() });
-    }).then(res => {
-      if (res) this.saveUserInfo(res);
-    });
+    Taro.checkSession()
+      .then(() => this.getTencentUserInfo())
+      .catch(() => this.getTencentUserInfo());
+  }
+  // 获取腾讯用户信息
+  getTencentUserInfo() {
+    Taro.login();
+    Taro.getSetting()
+      .then(res => {
+        if (res.authSetting['scope.userInfo']) {
+          return Taro.getUserInfo({ lang: 'zh_CN' });
+        }
+        return new Promise(resolve => { resolve() });
+      }).then(res => {
+        if (res) this.saveUserInfo(res);
+      })
   }
   // 获取用户和知乎热门数据
   getUserInfo() {
@@ -159,9 +146,6 @@ export default class Index extends Component {
     const url = TARO_ENV === 'weapp' ? 'wxSignIn' : 'qqSignIn';
     if (!userInfo) return;
     Taro.setStorageSync('tencentUserInfo', userInfo);
-    this.setState({
-      tencentUserInfo: userInfo
-    });
     Taro.login().then(res => {
       return req.post(`/app/tencent/${url}`, { js_code: res.code, encryptedData, iv });
     });
