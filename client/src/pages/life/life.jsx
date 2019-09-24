@@ -63,7 +63,7 @@ export default class Life extends Component {
             })
           }
         </ScrollView>
-        <TabBer current={2} />
+        <TabBer current={1} />
       </View>
     )
   }

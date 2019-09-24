@@ -112,17 +112,22 @@ class User {
     } else {
       const { _id } = queryUser;
       const token = jsonwebtoken.sign({ _id }, tokenKey, { expiresIn });
-      resData.data = token;
+      resData.token = token;
     }
     ctx.body = resData;
   }
   //获取用户信息
   async getUserInfo(ctx) {
-    const queryUser = await Users.findOne({ _id: ctx.state.user._id });
-    ctx.body = {
+    const resData = {
       code: statusCode.success,
-      data: queryUser
-    };
+    }
+    try {
+      const queryUser = await Users.findOne({ _id: ctx.state.user._id });
+      resData.data = queryUser;
+    } catch (e) {
+      resData.data = '微信或qq不返回用户信息';
+    }
+    ctx.body = resData;
   }
 }
 

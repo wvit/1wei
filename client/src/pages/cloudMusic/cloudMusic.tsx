@@ -21,10 +21,11 @@ export default class CloudMusic extends Component {
     active: 0,// 选中的选项卡索引
     tabsConfig: [], //tabs配置
     isOpened: false,// 是否显示模态框
-    userInfo: Taro.getStorageSync('userInfo') //1wei用户信息
+    userInfo: Taro.getStorageSync('userInfo'), //1wei用户信息
+    tencentUserInfo: Taro.getStorageSync('tencentUserInfo') //腾讯用户信息
   }
   render() {
-    const { logs, active, userInfo, isOpened }: any = this.state;
+    const { logs, active, userInfo, isOpened, tencentUserInfo }: any = this.state;
     return (
       <View className='pd-lr30'>
         <Title title="云音乐记录" color='red' />
@@ -33,9 +34,9 @@ export default class CloudMusic extends Component {
         </View>
         <View className="music-list">
           {
-            !userInfo && active === 1 && (
-              <View className="hint">您好，查看最近听歌记录需登录1wei。
-              <Navigator url='/pages/signIn/signIn' className="go-signIn">
+            (!userInfo && !tencentUserInfo) && active === 1 && (
+              <View className="hint">您好，查看最近听歌记录需登录。
+              <Navigator url='/pages/user/user' className="go-signIn">
                   去登录 ~
               </Navigator>
               </View>

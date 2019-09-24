@@ -70,7 +70,7 @@ class CloudMusic {
         } catch (e) {
           resData.code = statusCode.signInErr;
           resData.data = [];
-          resData.msg = '获取最近记录，需要登录1wei';
+          resData.msg = '获取最近记录，需要登录';
         }
       }
       if ((type === 'allData') || _id) {
