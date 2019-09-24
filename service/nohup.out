@@ -1,0 +1,12 @@
+23861:C 05 Aug 2019 10:22:57.258 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+23861:C 05 Aug 2019 10:22:57.258 # Redis version=5.0.5, bits=64, commit=00000000, modified=0, pid=23861, just started
+23861:C 05 Aug 2019 10:22:57.258 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+23861:M 05 Aug 2019 10:22:57.258 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+23861:M 05 Aug 2019 10:22:57.259 * Running mode=standalone, port=6379.
+23861:M 05 Aug 2019 10:22:57.259 # Server initialized
+23861:M 05 Aug 2019 10:22:57.259 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+23861:M 05 Aug 2019 10:22:57.259 * Ready to accept connections
+23861:M 05 Aug 2019 13:16:38.380 # User requested shutdown...
+23861:M 05 Aug 2019 13:16:38.380 * Saving the final RDB snapshot before exiting.
+23861:M 05 Aug 2019 13:16:38.396 * DB saved on disk
+23861:M 05 Aug 2019 13:16:38.396 # Redis is now ready to exit, bye bye...
