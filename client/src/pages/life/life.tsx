@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, ScrollView, Navigator } from '@tarojs/components'
+import { View, Text, ScrollView } from '@tarojs/components'
 import { AtImagePicker } from 'taro-ui'
 import { req } from '../../utils/utils'
 import { connect } from '@tarojs/redux'
@@ -8,8 +8,8 @@ import Title from '../../components/title/title'
 import '../../assets/css/blogList.css'
 import './life.css'
 
-let reqOnOff = true;
-let listData = [];// 博客列表
+let reqOnOff: boolean = true;
+let listData: Array<object> = [];// 博客列表
 let page = 0; // 列表分页
 let listScrollTop = 0; //ScrollView的scrollTop
 
@@ -17,15 +17,16 @@ let listScrollTop = 0; //ScrollView的scrollTop
   appData
 }))
 
-export default class Life extends Component {
+export default class Life extends Component<any> {
   constructor(props) {
     super(props);
-    this.state = {
-      listData// 博客列表
-    };
   }
+  state = {
+    listData// 博客列表
+  }
+
   render() {
-    const { listData } = this.state;
+    const { listData }: any = this.state;
     const { appData } = this.props;
     return (
       <View className='blog-wrap life-wrap'>
@@ -33,16 +34,16 @@ export default class Life extends Component {
           <Title title='生活记录' back={false} />
         </View>
         <ScrollView
-          class="blog-list"
+          className="blog-list"
           onScroll={this.listScroll}
           scrollY={true}
           scrollTop={listScrollTop}
           style={`height:calc(100vh - ${appData.scrollHeight}px)`}
           onScrollToLower={this.getPageData.bind(this)}>
           {
-            listData.map((item, index) => {
+            listData.map((item: any) => {
               return (
-                <View className="item" key={Math.random()}>
+                <View className="item" key={item._id}>
                   <Text className="item-content">
                     {item.content}
                   </Text>
@@ -75,10 +76,10 @@ export default class Life extends Component {
   getPageData() {
     page++;
     req.get(`/app/life/list?page=${page}&pageSize=10`).then(res => {
-      const { code, data } = res.data;
-      if (code || data.list < 1) return;
+      const { code, data: { list } } = res.data;
+      if (code || list < 1) return;
       listData = this.state.listData;
-      data.list.forEach(item => {
+      list.forEach(item => {
         item.imgs.forEach(imgItem => {
           imgItem.url = imgItem.path;
         });
@@ -96,8 +97,8 @@ export default class Life extends Component {
   }
   // 查看大图
   showImg(imgs, index, file) {
-    const urls = [];
-    imgs.forEach(item => {
+    const urls: Array<string> = [];
+    imgs.forEach((item: any) => {
       urls.push(item.url);
     });
     Taro.previewImage({

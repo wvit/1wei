@@ -53,7 +53,7 @@ export default class Zhihu extends Component<any> {
               return (
                 <Navigator
                   className="item"
-                  key={Math.random()}
+                  key={item._id}
                   url={`/pages/zhihuDetail/zhihuDetail?_id=${item._id}`}>
                   <Text className="item-title">{item.quesition}</Text>
                   <View className='clearfix mt15'>
@@ -87,8 +87,8 @@ export default class Zhihu extends Component<any> {
   componentWillMount() {
     Taro.setStorageSync('zhihuToolbarVisible', false);
     req.get('/app/zhihu/collections').then(res => {
-      if (res.data.code) return;
-      const data = res.data.data;
+      const { code, data } = res.data;
+      if (code) return;
       this.setState({
         toolbarBtns: data
       });
@@ -141,15 +141,15 @@ export default class Zhihu extends Component<any> {
     const active = this.state.toolbarActive;
     const { id, page }: any = answerData[active];
     req.get(`/app/zhihu/collectionAnswers?id=${id}&page=${page}&pageSize=10`).then(res => {
-      res.data.data.list.forEach(item => {
+      const { code, data } = res.data;
+      if (code) return;
+      data.list.forEach(item => {
         item.summary = item.summary.replace(/\r?\n/g, '');
         item.summary = item.summary.replace('显示全部', '');
         answerData[active].list.push(item);
-      })
-      this.setState({
-        list: answerData[active].list,
-        scrollTop: answerData[active].scrollTop
       });
+      const { list, scrollTop } = answerData[active];
+      this.setState({ list, scrollTop });
     })
   }
 }

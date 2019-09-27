@@ -27,9 +27,9 @@ export default class Index extends Component {
             blogDetail.tags.length > 0 ?
               <View className="tags icon icon-tag">
                 {
-                  blogDetail.tags.map(tagItem => {
+                  blogDetail.tags.map((tagItem, tagIndex) => {
                     return (
-                      <Text className="tag-item" key={Math.random()}>{tagItem}</Text>
+                      <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
                     )
                   })
                 }

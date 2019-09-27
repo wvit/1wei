@@ -9,7 +9,6 @@ import './cloudMusic.css'
 
 let musicData: any = {};// 音乐数据
 
-
 export default class CloudMusic extends Component {
   constructor(props) {
     super(props);

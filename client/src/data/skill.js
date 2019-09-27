@@ -73,6 +73,7 @@ const allSkill = {
         children: [
           { name: 'pwa' },
           { name: 'taro' },
+          { name: 'nuxt' },
           { name: 'koa2' },
           { name: 'iView' },
           { name: 'antd' },

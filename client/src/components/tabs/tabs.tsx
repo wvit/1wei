@@ -12,9 +12,13 @@ export default class Tabs extends Component<{ btns: Array<string>, color: string
       <View className="tabs-wrap" style={`color:${color}`}>
         <View className="btns-wrap clearfix" style={`border:1px solid ${color};`}>
           {
-            btns.map((item: any, index) => {
+            btns.map((item: any, index: number) => {
               return (
-                <Text key={Math.random()} onClick={this.changeTabs.bind(this, index)} className="tabs-btn" style={`${active === index && `background:${color};color:#fff`}`}>
+                <Text
+                  key={index}
+                  onClick={this.changeTabs.bind(this, index)}
+                  className="tabs-btn"
+                  style={`${active === index && `background:${color};color:#fff`}`}>
                   {item}
                 </Text>
               )

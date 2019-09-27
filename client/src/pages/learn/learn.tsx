@@ -8,17 +8,17 @@ import { AtDrawer, AtIcon } from 'taro-ui'
 import '../../assets/css/blogList.css'
 import './learn.css'
 
-const TARO_ENV = process.env.TARO_ENV;
-let reqOnOff = true;//是否允许请求
-let blogList = [];// 博客列表
-let page = 0; // 列表分页
-let listScrollTop = 0; //ScrollView的scrollTop
+const TARO_ENV: string = process.env.TARO_ENV;
+let reqOnOff: boolean = true;//是否允许请求
+let blogList: Array<object> = [];// 博客列表
+let page: number = 0; // 列表分页
+let listScrollTop: number = 0; //ScrollView的scrollTop
 
 @connect(({ appData }) => ({
   appData
 }))
 
-export default class Learn extends Component {
+export default class Learn extends Component<any> {
   constructor(props) {
     super(props);
   }
@@ -30,7 +30,7 @@ export default class Learn extends Component {
 
   render() {
     const { blogList, statusBarHeight, menuOnOff } = this.state;
-    const { appData } = this.props;
+    const { appData }: any = this.props;
     return (
       <View className='blog-wrap'>
         <Title title='学习日志' back={false}>
@@ -72,9 +72,9 @@ export default class Learn extends Component {
           style={`height:calc(100vh - ${appData.scrollHeight}px)`}
           onScrollToLower={this.getPageData.bind(this)}>
           {
-            blogList.map((item, index) => {
+            blogList.map((item: any) => {
               return (
-                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={Math.random()}>
+                <Navigator className="item" url={`/pages/blogDetail/blogDetail?_id=${item._id}`} key={item._id}>
                   <Text className="item-title">{item.title}</Text>
                   <View className='clearfix mt15'>
                     <Text className="add-time icon icon-shijian">
@@ -83,9 +83,9 @@ export default class Learn extends Component {
                   </View>
                   <View className='item-tag mt15 icon icon-tag'>
                     {
-                      item.tags.map((tagItem, tagIndex) => {
+                      item.tags.map((tagItem: any, tagIndex: number) => {
                         return (
-                          <Text className="tag-item" key={Math.random()}>{tagItem}</Text>
+                          <Text className="tag-item" key={tagIndex}>{tagItem}</Text>
                         )
                       })
                     }
@@ -107,7 +107,7 @@ export default class Learn extends Component {
       </View>
     )
   }
-  //组件挂载完毕
+  //初始化
   componentWillMount() {
     if (!reqOnOff) return;
     this.getPageData();
@@ -125,9 +125,10 @@ export default class Learn extends Component {
   getPageData() {
     page++;
     req.get(`/app/blog/list?page=${page}&pageSize=10&type=1`).then(res => {
-      if (res.data.code) return;
+      const { code, data: { list } } = res.data;
+      if (code || list.length < 1) return;
       blogList = this.state.blogList;
-      res.data.data.list.forEach(item => {
+      list.forEach(item => {
         blogList.push(item);
       });
       this.setState({
