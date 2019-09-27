@@ -113,6 +113,11 @@ export default class Learn extends Component<any> {
     this.getPageData();
     this.getUserInfo();
     if (TARO_ENV === 'h5') return;
+    if (TARO_ENV === 'qq') {
+      qq.showShareMenu({
+        showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+      })
+    }
     const updateManager = Taro.getUpdateManager();
     updateManager.onCheckForUpdate(res => {
       if (res.hasUpdate) updateManager.applyUpdate();
