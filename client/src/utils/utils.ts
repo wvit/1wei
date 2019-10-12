@@ -24,6 +24,7 @@ const req: any = {
   // post请求
   post(url: string, data: object = {}) {
     return Taro.request({
+      // @ts-ignore
       url: `${reqAddress}${url}`,
       data,
       header: {
@@ -46,6 +47,7 @@ const req: any = {
     })
     setTimeout(Taro.hideLoading, 10000);
     return Taro.request({
+      // @ts-ignore
       url: `${reqAddress}${url}`,
       header: {
         "Authorization": `Bearer ${Taro.getStorageSync('jwt')}`
@@ -112,6 +114,7 @@ const uploadFiles = ({
   return new Promise(resolve => {
     filesPath.forEach((item: any) => {
       Taro.uploadFile({
+        // @ts-ignore
         url: `${reqAddress}${url}`,
         filePath: item.url,
         name,

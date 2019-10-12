@@ -10,6 +10,12 @@ const axios = Axios.create({
   withCredentials: true
 })
 
+axios.post(
+  '/app/life/add', { content: 'hello', imgs: [] }
+).then(res => {
+  console.log(res.data)
+})
+
 // axios.post(`/app/user/signIn`, {
 //   nickname: 'wv',
 //   password: '19991024'
@@ -24,6 +30,7 @@ const axios = Axios.create({
 //   console.log(res.data)
 // })
 
+
 // axios.post(`/app/user/signIn`, {
 //   nickname: 'wv',
 //   password: '19991024'
@@ -36,12 +43,6 @@ const axios = Axios.create({
 //       }
 //     })
 // }).then(res => {
-//   console.log(res.data)
-// })
-
-// axios.post(
-//   '/app/life/add', { content: 'hello', imgs: [] }
-// ).then(res => {
 //   console.log(res.data)
 // })
 
