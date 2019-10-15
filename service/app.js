@@ -47,7 +47,7 @@ app.use(parameter(app));
 app.use(static(path.join(__dirname, './statics')));
 routing(app);
 
-if (production) {
+if (production && false) {
   app.use(sslify());
   https.createServer(httpsConfig, app.callback()).listen(server.port, () => {
     console.log('https服务已启动', `${server.address}`)
