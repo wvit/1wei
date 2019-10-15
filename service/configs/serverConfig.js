@@ -16,7 +16,7 @@ module.exports = {
           }
         })
       }
-      return production ? '1wei.cc' : ip;
+      return production ? '94.191.115.31' : ip;
     },
     //端口
     get port() {
