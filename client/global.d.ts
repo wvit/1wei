@@ -9,6 +9,7 @@ declare module "*.scss";
 declare module "*.sass";
 declare module "*.styl";
 
+declare const reqAddress: any;
 // @ts-ignore
 declare const process: {
   env: {

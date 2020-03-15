@@ -25,8 +25,6 @@ const store = configStore();
 //   require('nerv-devtools')
 // }
 
-
-
 class App extends Component {
   config: Config = {
     pages: [
@@ -41,7 +39,6 @@ class App extends Component {
       'pages/zhihuDetail/zhihuDetail', //知乎回答详情
       'pages/introduce/introduce', //介绍
       'pages/contact/contact', //联系
-
       'pages/blogDetail/blogDetail', //博客详情
       'pages/signIn/signIn', //登录
       'pages/signUp/signUp' //注册
